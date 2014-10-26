@@ -50501,8 +50501,8 @@ eventer(Collection.prototype)
 /*---------------------------- Default Listeners ----------------------------*/
 
 /**
-* Default listeners that are called with an event with the given name is
-* emitted on the collection or another object it's subscribed to.
+* Default listeners. Called when one of these events is emitted on the
+* collection or on another object it's subscribed to.
 */
 
 Collection.prototype.$listeners = {
