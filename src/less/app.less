@@ -1,0 +1,103 @@
+/********************************** Import ***********************************/
+
+@import (less) '../../node_modules/bootstrap/less/bootstrap';
+@import (less) '../../node_modules/font-awesome/less/font-awesome';
+
+/********************************* Overrides *********************************/
+
+@border-radius-base:  0;
+@border-radius-large: 0;
+@border-radius-small: 0;
+
+/****************************** Misc Utilities *******************************/
+
+.pointer {
+  cursor: pointer;
+}
+
+.block {
+  display: block;
+}
+
+/******************************** Typography *********************************/
+
+.name {
+  padding: 1em;
+}
+
+/******************************** Global Blur ********************************/
+
+.layout.blurred {
+  filter: blur(5px);
+  transition: all 0.1s ease;
+}
+.layout:not(.blurred) {
+  transition: all 0.2s ease;
+}
+
+/******************************* Global Popup ********************************/
+
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 666;
+
+  padding-left: 0;
+  padding-right: 0;
+
+  @media (min-width: @screen-xs) {
+    width: 100%;
+  }
+  @media (min-width: @screen-sm) {
+    width: 50%;
+  }
+  @media (min-width: @screen-md) {
+    width: 40%;
+  }
+  @media (min-width: @screen-lg) {
+    width: 40%;
+  }
+
+  .alert {
+    margin-bottom: -1px;
+  }
+}
+
+// Animation
+.popup {
+  opacity: 0.9;
+  transition: all 0.5s ease;
+  &:hover {
+    opacity: 1;
+  }
+}
+.popup-enter {
+  opacity: 0.01;
+  transition: opacity 0.2s ease;
+}
+.popup-enter.popup-enter-active {
+  opacity: 1;
+}
+.popup-leave {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+.popup-leave.popup-leave-active {
+  opacity: 0.01;
+}
+
+/********************************** Navbar ***********************************/
+
+@navbar-inverse-link-color: darken(@navbar-inverse-link-hover-color, 5%);
+@navbar-inverse-bg: @brand-info;
+
+/******************************** Place Form *********************************/
+
+.place-form {
+  .form-inline {
+    .form-group {
+      margin-right: 1em;
+    }
+  }
+}

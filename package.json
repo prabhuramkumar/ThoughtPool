@@ -1,0 +1,46 @@
+{
+  "name": "react-express-seed",
+  "version": "0.0.1",
+  "description": "Primitive full-stack web application seed",
+  "author": "Mitranim",
+  "scripts": {
+    "postinstall": "ln -sf ../app ./node_modules && mkdir -p mongo-data",
+    "db": "mongod --dbpath ./mongo-data",
+    "dev": "gulp & npm run db & npm start",
+    "start": "node app/app.js"
+  },
+  "main": "app/app.js",
+  "dependencies": {
+    "body-parser": "latest",
+    "cookie-parser": "latest",
+    "express": "latest",
+    "lodash": "latest",
+    "mongoose-q": "latest",
+    "morgan": "latest"
+  },
+  "devDependencies": {
+    "bootstrap": "latest",
+    "browser-sync": "latest",
+    "browserify": "latest",
+    "del": "latest",
+    "es5-shim": "latest",
+    "font-awesome": "latest",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-less": "latest",
+    "gulp-load-plugins": "latest",
+    "gulp-react": "latest",
+    "gulp-util": "latest",
+    "jquery": "latest",
+    "jqx": "jqx",
+    "marked": "latest",
+    "q": "latest",
+    "react": "latest",
+    "react-bootstrap": "latest",
+    "react-router": "latest",
+    "record": "Mitranim/record",
+    "reflux": "latest",
+    "vinyl-source-stream": "latest",
+    "watchify": "latest"
+  }
+}
