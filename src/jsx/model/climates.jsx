@@ -64,8 +64,9 @@ var Climate = Record.derive({
   */
   $extendedSchema: {
     // Random bonus attribute
-    extra: function() {
-      return _.values(_.omit(_.clone(this), 'extra')).join('|')
+    gist: function() {
+      return _.values(_.omit(_.clone(this), 'gist'))
+        .filter(x => typeof x === 'string').join('|')
     }
   }
 

@@ -19,7 +19,7 @@ var Layout = require('view/layout'),
 
 /********************************* Rendering *********************************/
 
-module.exports = React.renderComponent.bind(React, (
+module.exports = React.renderComponent(
 
 <Routes location='history'>
   <Route handler={Layout}>
@@ -29,4 +29,4 @@ module.exports = React.renderComponent.bind(React, (
   </Route>
 </Routes>
 
-), document.body)
+, document.body)

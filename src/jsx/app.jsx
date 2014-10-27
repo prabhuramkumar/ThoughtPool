@@ -21,4 +21,4 @@ require('app-constants')
 require('model/base-config')
 
 // Initialise routing and rendering
-require('app-route')()
+require('app-route')

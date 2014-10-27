@@ -14,8 +14,8 @@ ln       # shell
 mkdir    # shell
 ```
 
-Clone the repo, then run `npm install` to get the dependencies. This should also create a soft symbolic link of `./app` in `./node_modules` and an empty directory `./mongo-data` in `./`. If this failed for some reason, do it manually. See the postintall script in `package.json`. Windows users will have to do this manually.
+Clone the repo, then run `npm install` to get the dependencies. This should also create a soft symbolic link of `./app` in `./node_modules` and an empty directory `./mongo-data` in `./`. If this fails for some reason, or if you happen to be using Windows, do it manually. See the postintall script in `package.json`.
 
 ## Usage
 
-Run `npm run db` to create the database, Ctrl+C, then `npm run dev` (or `npm run db`, `gulp` and `npm start` in three Terminal tabs) and start fooling around with the source and the webpage.
+Run `npm run db` to create the database, Ctrl+C to stop it, then `npm run dev` (or `npm run db`, `gulp` and `npm start` in three Terminal tabs) and start fooling around with the source and the webpage.

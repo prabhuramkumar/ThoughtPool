@@ -16,7 +16,8 @@
     "express": "latest",
     "lodash": "latest",
     "mongoose-q": "latest",
-    "morgan": "latest"
+    "morgan": "latest",
+    "q": "latest"
   },
   "devDependencies": {
     "bootstrap": "latest",
@@ -34,7 +35,6 @@
     "jquery": "latest",
     "jqx": "latest",
     "marked": "latest",
-    "q": "latest",
     "react": "latest",
     "react-bootstrap": "latest",
     "react-router": "latest",
