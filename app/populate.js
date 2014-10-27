@@ -5,11 +5,6 @@
 // Third party
 var Q = require('q')
 
-// Models
-var Place   = require('app/model/place'),
-    Climate = require('app/model/climate')
-
-
 /********************************* Utilities *********************************/
 
 function populate (Model, data) {
@@ -39,8 +34,8 @@ function populate (Model, data) {
 
 // Aggregate the populate promises
 var promise = Q.all([
-  populate(Place,   require('app/populate/place')),
-  populate(Climate, require('app/populate/climate'))
+  populate(require('app/model/place'),   require('app/populate/place')),
+  populate(require('app/model/climate'), require('app/populate/climate'))
 ])
 .then(function() {
   console.log("-- finished populating");

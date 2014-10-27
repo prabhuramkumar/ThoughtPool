@@ -83,8 +83,8 @@ exports.res.xmsg = xmsg
 
 /**
 * Puts an extra message (if any) into the X-Msg header and sends the given
-* data. Automatically chooses between .json and .sendStatus methods, like the
-* old Express .send method.
+* data. Automatically chooses between #json and #sendStatus methods, like the
+* old Express #send method.
 */
 function xsend (data, message) {
   this.xmsg(message)

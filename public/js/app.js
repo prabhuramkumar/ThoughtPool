@@ -53637,7 +53637,7 @@ var Climate = Record.derive({
   $extendedSchema: {
     // Random bonus attribute
     extra: function() {
-      return _.values(this).join('|')
+      return _.values(_.omit(_.clone(this), 'extra')).join('|')
     }
   }
 
@@ -53742,7 +53742,7 @@ var Place = Record.derive({
     },
     // Random bonus attribute
     extra: function() {
-      return _.values(this).join('|')
+      return _.values(_.omit(_.clone(this), 'extra')).join('|')
     }
   },
 
