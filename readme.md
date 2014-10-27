@@ -18,4 +18,4 @@ Clone the repo, then run `npm install` to get the dependencies. This should also
 
 ## Usage
 
-Run `npm run dev` (or `npm run db`, `gulp` and `npm start` in three Terminal tabs) and start fooling around with the source and the webpage.
+Run `npm run db` to create the database, Ctrl+C, then `npm run dev` (or `npm run db`, `gulp` and `npm start` in three Terminal tabs) and start fooling around with the source and the webpage.
