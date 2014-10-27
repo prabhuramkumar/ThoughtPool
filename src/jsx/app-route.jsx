@@ -19,7 +19,7 @@ var Layout = require('view/layout'),
 
 /********************************* Rendering *********************************/
 
-module.exports = React.renderComponent(
+React.renderComponent(
 
 <Routes location='history'>
   <Route handler={Layout}>
