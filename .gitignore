@@ -29,3 +29,7 @@ node_modules
 bower_components
 mongo-data
 src/tmp
+public/**
+
+# Unignore app.html
+!public/app.html
