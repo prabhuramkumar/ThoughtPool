@@ -33,7 +33,6 @@ router.get('/:_id', function (req, res) {
 router.post('*', utils.nonEmpty)
 
 // POST /
-// Creates a new entity
 router.post('/', function (req, res) {
   Place.createQ(req.body)
   .then(function (place) {
@@ -45,7 +44,6 @@ router.post('/', function (req, res) {
 /*----------------------------------- PUT -----------------------------------*/
 
 // PUT :_id
-// Updates an entity
 router.put('/:_id', utils.nonEmpty, function (req, res) {
   Place.findOneQ(req.params)
   .then(function (place) {
@@ -96,7 +94,6 @@ router.put('/:_id/cooldown', function (req, res) {
 router.delete('/:_id', function (req, res) {
   Place.findOneQ(req.params)
   .then(res.exist())
-  .catch(res.xerr(404))
   .then(function (place) {
     return place.removeQ()
   })

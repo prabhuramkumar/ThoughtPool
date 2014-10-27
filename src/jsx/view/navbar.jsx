@@ -4,7 +4,6 @@
 
 // Third party
 var React = require('react/addons'),
-    rb    = require('react-bootstrap'),
     Link  = require('react-router').Link
 
 // Custom components

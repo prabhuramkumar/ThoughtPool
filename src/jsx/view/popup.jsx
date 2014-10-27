@@ -4,8 +4,7 @@
 
 // Third party
 var React = require('react/addons'),
-    rb    = require('react-bootstrap'),
-    _     = require('lodash')
+    rb    = require('react-bootstrap')
 
 // Custom components
 var mixins     = require('app-mixins'),
@@ -18,22 +17,18 @@ var ViewPopup = React.createClass({
   render: function() {return (
 
 <div className='popup container'>
-  {this.makeMessages()}
+
+  {StorePopup.messages.map((msg, index) =>
+    <div key={index} className='pointer' onClick={() => this.handleDismiss(msg)}>
+      <rb.Alert bsStyle={msg.type || 'info'}>
+        <p>{msg.text}</p>
+      </rb.Alert>
+    </div>
+  )}
+
 </div>
 
   )},
-
-  makeMessages: function() {
-    return StorePopup.messages.map((msg, index) =>
-
-<div key={index} className='pointer' onClick={this.handleDismiss.bind(this, msg)}>
-  <rb.Alert bsStyle={msg.type || 'info'}>
-    <p>{msg.text}</p>
-  </rb.Alert>
-</div>
-
-    )
-  },
 
   mixins: mixins.listen.Popup,
 

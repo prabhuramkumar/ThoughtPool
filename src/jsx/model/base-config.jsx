@@ -7,9 +7,7 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var Record = require('record'),
-    _      = require('lodash'),
-    Q      = require('q')
+var Record = require('record')
 
 // Custom components
 var constants = require('app-constants')

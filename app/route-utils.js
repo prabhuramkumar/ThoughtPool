@@ -51,7 +51,9 @@ var errorTypes = {
 * Returns 400 if the request body has no data
 */
 function nonEmpty (req, res, next) {
-  if (_.isEmpty(req.body)) return res.xsend(400, "Request must contain data.")
+  if (_.isEmpty(req.body)) {
+    return res.xsend(400, "Request must contain data.")
+  }
   next()
 }
 exports.nonEmpty = nonEmpty

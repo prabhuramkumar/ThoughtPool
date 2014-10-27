@@ -51,8 +51,8 @@ function popXMsgError (error, status, jqXhr) {
   // If found, display error messages
   if (_.isArray(message)) {
     var messages = message.map(text => ({
-      type : 'danger',
-      text : text
+      type: 'danger',
+      text: text
     }))
     pop.apply(null, messages)
   } else pop({
