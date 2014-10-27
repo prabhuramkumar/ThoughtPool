@@ -32,7 +32,7 @@
     "gulp-react": "latest",
     "gulp-util": "latest",
     "jquery": "latest",
-    "jqx": "jqx",
+    "jqx": "latest",
     "marked": "latest",
     "q": "latest",
     "react": "latest",
