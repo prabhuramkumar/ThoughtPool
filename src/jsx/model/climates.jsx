@@ -31,16 +31,14 @@ var Climate = Record.derive({
 
   path: 'climates',
 
-  constructorName: 'ClimateModel',
-
   getByName: function (name) {
-    return this.readOne({affix: 'one', data: {name: name}})
+    return this.readOne(null, {affix: 'one', data: {name: name}})
   }
 
 }, {
   /** Element */
 
-  constructorName: 'Climate',
+  $constructorName: 'Climate',
 
   $idKey: '_id',
 

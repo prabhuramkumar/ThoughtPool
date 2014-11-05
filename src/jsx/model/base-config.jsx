@@ -12,10 +12,10 @@ var Record = require('record')
 // Custom components
 var constants = require('app-constants')
 
-/******************************* Model Config ********************************/
+/******************************* Static Config *******************************/
 
 /**
-* Attributes and methods for all derived models
+* Attributes and methods for all models
 */
 
 // Base url for all requests
@@ -24,15 +24,15 @@ Record.baseUrl = constants.backendUrl
 /****************************** Element Config *******************************/
 
 /**
-* Attributes and methods for all derived element classes
+* Attributes and methods for all elements
 */
 
-// Record.element.prototype.my-property = my-attribute-or-method
+// Record.prototype.my-property = my-attribute-or-method
 
 /***************************** Collection Config *****************************/
 
 /**
-* Attributes and methods for all derived collection classes
+* Attributes and methods for all collections
 */
 
 // Record.collection.prototype.my-property = my-attribute-or-method

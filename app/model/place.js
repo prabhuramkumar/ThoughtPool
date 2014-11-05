@@ -27,7 +27,7 @@ var Schema = new mongoose.Schema({
     match: [/^[A-Za-z]+/, 'City must be a word.']
   },
 
-  climate: {
+  climateName: {
     type: String,
     trim: true,
     required: true,
@@ -57,12 +57,12 @@ var Schema = new mongoose.Schema({
 /***************************** Instance Methods ******************************/
 
 Schema.methods.warmUp = function() {
-  this.climate = 'warm'
+  this.climateName = 'warm'
   return this.saveQ()
 }
 
 Schema.methods.coolDown = function() {
-  this.climate = 'cold'
+  this.climateName = 'cold'
   return this.saveQ()
 }
 

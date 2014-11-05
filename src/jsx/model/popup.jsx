@@ -4,7 +4,7 @@
 
 // Third party
 var _     = require('lodash'),
-    jqx   = require('jqx')
+    jqx   = require('record').jqx
 
 // Custom components
 var Store = require('model/base-store'),

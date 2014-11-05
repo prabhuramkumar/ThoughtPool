@@ -18,9 +18,7 @@ function result (value) {
 * Coerces a value into a date if possible
 */
 function date (value) {
-  var newDate = new Date(value)
-  if (newDate.valueOf()) return newDate
-  return value
+  return new Date(value).valueOf() || value
 }
 exports.date = date
 

@@ -6,16 +6,16 @@ module.exports = [
   {
     name: 'Yosemite',
     city: 'Sacramento',
-    climate: 'warm'
+    climateName: 'warm'
   },
   {
     name: 'South Pole',
     city: 'Penguinarium',
-    climate: 'cold'
+    climateName: 'cold'
   },
   {
     name: 'Mercury',
     city: 'ZA-78-X',
-    climate: 'warm'
+    climateName: 'warm'
   }
 ]

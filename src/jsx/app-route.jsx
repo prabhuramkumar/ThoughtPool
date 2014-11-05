@@ -19,7 +19,7 @@ var Layout = require('view/layout'),
 
 /********************************* Rendering *********************************/
 
-React.renderComponent(
+React.render(
 
 <Routes location='history'>
   <Route handler={Layout}>

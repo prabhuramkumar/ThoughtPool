@@ -55,7 +55,7 @@ var PlaceForm = React.createClass({
       </div>
       <div className='form-group'>
         <label className='block'>Climate</label>
-        <input valueLink={this.linkState('climate')} type='text' className='form-control' />
+        <input valueLink={this.linkState('climateName')} type='text' className='form-control' />
       </div>
     </div>
     <hr />
@@ -106,9 +106,13 @@ var PlaceList = React.createClass({
                            onClick={() => Places.do(place.$coolDown())}>
                   <span className='fa fa-minus-square-o' />
                 </button></p>
-              : <p><button className='btn btn-xs btn-warning'
+              : place.$isCold() ?
+                <p><button className='btn btn-xs btn-warning'
                            onClick={() => Places.do(place.$warmUp())}>
                   <span className='fa fa-plus-square-o' />
+                </button></p>
+              : <p><button className='btn btn-xs btn-info disabled'>
+                  <span className='fa fa-question-circle' />
                 </button></p>}
 
               {/* Delete */}
@@ -135,10 +139,10 @@ var PlaceList = React.createClass({
             </p>
             <p>
               <span>Climate: </span>
-              <span contentEditable onInput={this.editor(place, 'climate')}>{place.climate}</span>
+              <span contentEditable onInput={this.editor(place, 'climateName')}>{place.climateName}</span>
             </p>
             <p>
-              <span>Recommendation: {place.climateModel.recommendation}</span>
+              <span>Recommendation: {place.climate.recommendation}</span>
             </p>
 
           </pre>

@@ -28,16 +28,14 @@ var err = console.error.bind(console)
 /******************************* Record Model ********************************/
 
 var Place = Record.derive({
-  /** Model */
+  /** Static */
 
-  path: 'places',
-
-  constructorName: 'PlaceModel'
+  path: 'places'
 
 }, {
   /** Element */
 
-  constructorName: 'Place',
+  $constructorName: 'Place',
 
   $idKey: '_id',
 
@@ -53,7 +51,7 @@ var Place = Record.derive({
   $schema: {
     name: '',
     city: '',
-    climate: '',
+    climateName: '',
     createdAt: utils.date
   },
 
@@ -64,8 +62,8 @@ var Place = Record.derive({
   */
   $extendedSchema: {
     // Nested model loaded from server
-    climateModel: function() {
-      return Climate.getByName(this.climate)
+    climate: function() {
+      return Climate.getByName(this.climateName)
     },
     // Random bonus attribute
     gist: function() {
@@ -75,7 +73,11 @@ var Place = Record.derive({
   },
 
   $isWarm: function() {
-    return this.climate.toLowerCase() === 'warm'
+    return this.climateName.toLowerCase() === 'warm'
+  },
+
+  $isCold: function() {
+    return this.climateName.toLowerCase() === 'cold'
   },
 
   $warmUp: function() {
@@ -96,6 +98,7 @@ var Places = Store({
 
   init: function() {
     this.all = Place.newCollection()
+    window.all = this.all
     this.reload()
   },
 
