@@ -37,7 +37,7 @@
     "react": "latest",
     "react-bootstrap": "latest",
     "react-router": "latest",
-    "record": "Mitranim/record",
+    "record": "Mitranim/record#jqx-based",
     "reflux": "latest",
     "vinyl-source-stream": "latest",
     "watchify": "latest"
