@@ -3,8 +3,10 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var mongoose = require('mongoose-q')(),
-    _        = require('lodash')
+var _ = require('lodash')
+
+// Custom components
+var mongoose = require('app/db')
 
 /********************************** Schema ***********************************/
 

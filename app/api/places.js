@@ -15,14 +15,14 @@ var utils  = require('app/route-utils'),
 
 // GET all
 router.get('/', function (req, res, next) {
-  Place.findQ()
+  Place.findAsync()
   .then(res.sendDocs())
   .catch(res.xerr(404))
 })
 
 // GET by :_id
 router.get('/:_id', function (req, res) {
-  Place.findOneQ(req.params)
+  Place.findOneAsync(req.params)
   .then(res.sendDoc())
   .catch(res.xerr(404))
 })
@@ -34,7 +34,7 @@ router.post('*', utils.nonEmpty)
 
 // POST /
 router.post('/', function (req, res) {
-  Place.createQ(req.body)
+  Place.createAsync(req.body)
   .then(function (place) {
     res.xsend(place, 'Successfully created a place.')
   })
@@ -45,12 +45,12 @@ router.post('/', function (req, res) {
 
 // PUT :_id
 router.put('/:_id', utils.nonEmpty, function (req, res) {
-  Place.findOneQ(req.params)
+  Place.findOneAsync(req.params)
   .then(function (place) {
     _.assign(place, req.body)
-    return place.saveQ()
+    return place.saveAsync()
   })
-  .then(function (place) {
+  .spread(function (place) {
     res.xsend(place, 'Successfully updated the place.')
   })
   .catch(res.xerr(400))
@@ -58,15 +58,15 @@ router.put('/:_id', utils.nonEmpty, function (req, res) {
 
 // PUT :_id/warmup
 router.put('/:_id/warmup', function (req, res) {
-  Place.findOneQ(req.params)
+  Place.findOneAsync(req.params)
   .then(function (place) {
     _.assign(place, req.body)
-    return place.saveQ()
+    return place.saveAsync()
   })
-  .then(function (place) {
+  .spread(function (place) {
     return place.warmUp()
   })
-  .then(function (place) {
+  .spread(function (place) {
     res.xsend(place, 'Successfully changed the climate.')
   })
   .catch(res.xerr(404))
@@ -74,15 +74,15 @@ router.put('/:_id/warmup', function (req, res) {
 
 // PUT :_id/cooldown
 router.put('/:_id/cooldown', function (req, res) {
-  Place.findOneQ(req.params)
+  Place.findOneAsync(req.params)
   .then(function (place) {
     _.assign(place, req.body)
-    return place.saveQ()
+    return place.saveAsync()
   })
-  .then(function (place) {
+  .spread(function (place) {
     return place.coolDown()
   })
-  .then(function (place) {
+  .spread(function (place) {
     res.xsend(place, 'Successfully changed the climate.')
   })
   .catch(res.xerr(404))
@@ -92,10 +92,10 @@ router.put('/:_id/cooldown', function (req, res) {
 
 // DELETE :_id
 router.delete('/:_id', function (req, res) {
-  Place.findOneQ(req.params)
+  Place.findOneAsync(req.params)
   .then(res.exist())
   .then(function (place) {
-    return place.removeQ()
+    return place.removeAsync()
   })
   .then(function (place) {
     res.xsend(place, 'Deleted the place.')

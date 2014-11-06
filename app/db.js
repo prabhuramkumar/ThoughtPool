@@ -6,7 +6,13 @@
 var app = require('app/app-base')
 
 // Third party
-var mongoose = require('mongoose-q')()
+var mongoose = require('mongoose'),
+    Promise  = require('bluebird')
+
+/****************************** Mongoose Config ******************************/
+
+// Promisify mongoose
+Promise.promisifyAll(mongoose)
 
 /********************************* DB Config *********************************/
 
@@ -21,6 +27,6 @@ mongoose.connection.on('open', console.log.bind(console, 'connected to the datab
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error'))
 
-/*************************** Model Config / Export ***************************/
+/********************************** Export ***********************************/
 
-module.exports = mongoose.connection
+module.exports = mongoose

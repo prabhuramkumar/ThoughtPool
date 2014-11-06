@@ -11,19 +11,20 @@
   },
   "main": "app/app.js",
   "dependencies": {
+    "bluebird": "latest",
     "body-parser": "latest",
     "cookie-parser": "latest",
     "express": "latest",
     "lodash": "latest",
-    "mongoose-q": "latest",
-    "morgan": "latest",
-    "es6-promise": "latest"
+    "mongoose": "latest",
+    "morgan": "latest"
   },
   "devDependencies": {
     "bootstrap": "latest",
     "browser-sync": "latest",
     "browserify": "latest",
     "del": "latest",
+    "es6-promise": "latest",
     "font-awesome": "latest",
     "gulp": "latest",
     "gulp-autoprefixer": "latest",

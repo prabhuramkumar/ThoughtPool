@@ -1,16 +1,20 @@
 'use strict'
 
+/******************************* Dependencies ********************************/
+
+var Promise = require('bluebird')
+
 /********************************* Utilities *********************************/
 
 function populate (Model, data) {
 
-  var promise = Model.findQ()
+  return Model.findAsync()
   .then(function (docs) {
     if (!docs || !docs.length) throw null
   })
   .catch(function() {
     return Promise.all(data.map(function (elem) {
-      return Model.createQ(elem)
+      return Model.createAsync(elem)
     }))
     .then(function (docs) {
       console.log("-- mapped docs:", docs);
@@ -18,8 +22,6 @@ function populate (Model, data) {
     })
   })
 
-  // Attach a fail handler and return the promise
-  return promise.catch(console.error.bind(console))
 }
 
 /********************************* Populate **********************************/
