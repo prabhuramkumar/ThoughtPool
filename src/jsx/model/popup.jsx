@@ -4,7 +4,7 @@
 
 // Third party
 var _     = require('lodash'),
-    jqx   = require('record').jqx
+    xhttp = require('record').xhttp
 
 // Custom components
 var Store = require('model/base-store'),
@@ -26,12 +26,12 @@ function pop (/* ... options */) {
 }
 
 /**
-* Interceptor for all successful jqx requests. Try to read an X-Msg from
-* the jqXhr object. If found, pop info messages.
+* Interceptor for all successful xhttp requests. Try to read an X-Msg from
+* the xhr object. If found, pop info messages.
 */
-function popXMsgSuccess (data, status, jqXhr) {
+function popXMsgSuccess (data, xhr) {
   // Try to get messages from headers
-  var message = utils.getXMsg(jqXhr)
+  var message = utils.getXMsg(xhr)
   if (!message) return
 
   // If found, display info messages
@@ -40,12 +40,12 @@ function popXMsgSuccess (data, status, jqXhr) {
 }
 
 /**
-* Interceptor for all failed jqx requests. Try to read an X-Msg from
-* the jqXhr object. If found, pop error messages.
+* Interceptor for all failed xhttp requests. Try to read an X-Msg from
+* the xhr object. If found, pop error messages.
 */
-function popXMsgError (error, status, jqXhr) {
+function popXMsgError (data, xhr) {
   // Try to get messages from headers
-  var message = utils.getXMsg(jqXhr)
+  var message = utils.getXMsg(xhr)
   if (!message) return
 
   // If found, display error messages
@@ -64,13 +64,13 @@ function popXMsgError (error, status, jqXhr) {
 /*************************** Register Interceptors ***************************/
 
 /**
-* Use the jqx interceptor feature. These will be applied to all requests
+* Use the xhttp interceptor feature. These will be applied to all requests
 * and will automatically show popups when a server sends an X-Msg.
 */
 
-jqx.addResInterceptor(popXMsgSuccess)
+xhttp.addResInterceptor(popXMsgSuccess)
 
-jqx.addErrInterceptor(popXMsgError)
+xhttp.addErrInterceptor(popXMsgError)
 
 /******************************* Reflux Store ********************************/
 

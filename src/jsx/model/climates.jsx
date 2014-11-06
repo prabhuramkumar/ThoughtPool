@@ -32,7 +32,7 @@ var Climate = Record.derive({
   path: 'climates',
 
   getByName: function (name) {
-    return this.readOne(null, {affix: 'one', data: {name: name}})
+    return this.readOne(null, {affix: 'one', params: {name: name}})
   }
 
 }, {

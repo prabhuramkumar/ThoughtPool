@@ -98,7 +98,6 @@ var Places = Store({
 
   init: function() {
     this.all = Place.newCollection()
-    window.all = this.all
     this.reload()
   },
 

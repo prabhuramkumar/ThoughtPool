@@ -1,5 +1,9 @@
 'use strict'
 
+/********************************* Polyfills *********************************/
+
+require('es6-promise').polyfill()
+
 /******************************* Dependencies ********************************/
 
 // App
@@ -30,6 +34,6 @@ require('app/db').once('open', function() {
 
     server.listen(port, console.log.bind(console, 'Starting http on port', port))
 
-  }).done()
+  }).catch(console.error.bind(console))
 
 })

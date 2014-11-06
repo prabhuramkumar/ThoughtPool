@@ -1,10 +1,5 @@
 'use strict'
 
-/******************************* Dependencies ********************************/
-
-// Third party
-var Q = require('q')
-
 /********************************* Utilities *********************************/
 
 function populate (Model, data) {
@@ -14,7 +9,7 @@ function populate (Model, data) {
     if (!docs || !docs.length) throw null
   })
   .catch(function() {
-    return Q.all(data.map(function (elem) {
+    return Promise.all(data.map(function (elem) {
       return Model.createQ(elem)
     }))
     .then(function (docs) {
@@ -23,17 +18,14 @@ function populate (Model, data) {
     })
   })
 
-  // Let it throw errors
-  promise.done()
-
-  return promise
-
+  // Attach a fail handler and return the promise
+  return promise.catch(console.error.bind(console))
 }
 
 /********************************* Populate **********************************/
 
 // Aggregate the populate promises
-var promise = Q.all([
+var promise = Promise.all([
   populate(require('app/model/place'),   require('app/populate/place')),
   populate(require('app/model/climate'), require('app/populate/climate'))
 ])

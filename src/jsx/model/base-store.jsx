@@ -4,8 +4,7 @@
 
 // Third party
 var Reflux = require('reflux'),
-    _      = require('lodash'),
-    Q      = require('q')
+    _      = require('lodash')
 
 // Custom components
 var utils  = require('app-utils')
@@ -37,7 +36,7 @@ var defaults = {
     }
 
     // Execute
-    return Q.when(value).then(() => this.trigger(origin)).catch(err)
+    return Promise.resolve(value).then(() => this.trigger(origin)).catch(err)
   }
 
 }

@@ -23,11 +23,11 @@ function date (value) {
 exports.date = date
 
 /**
-* Tries to get the contents of the X-Msg header out of a jQuery XHR object
+* Tries to get the contents of the X-Msg header out of an xhr object
 */
-function getXMsg (jqXhr) {
+function getXMsg (xhr) {
   try {
-    return JSON.parse(jqXhr.getResponseHeader('X-Msg'))
+    return JSON.parse(xhr.getResponseHeader('X-Msg'))
   } catch (err) {
     return null
   }
