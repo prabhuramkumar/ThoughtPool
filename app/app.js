@@ -1,9 +1,5 @@
 'use strict'
 
-/********************************* Polyfills *********************************/
-
-require('es6-promise').polyfill()
-
 /******************************* Dependencies ********************************/
 
 // App
@@ -12,7 +8,7 @@ var app = require('app/app-base')
 /********************************* Bootstrap *********************************/
 
 /** Open the database, then bootstrap the application */
-require('app/db').once('open', function() {
+require('app/db').connection.once('open', function() {
 
   /** Populate the DB before continuing */
   require('app/populate').then(function() {
@@ -34,6 +30,6 @@ require('app/db').once('open', function() {
 
     server.listen(port, console.log.bind(console, 'Starting http on port', port))
 
-  }).catch(console.error.bind(console))
+  })
 
 })

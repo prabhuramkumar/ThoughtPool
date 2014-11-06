@@ -15,7 +15,7 @@ var utils   = require('app/route-utils'),
 
 // GET all
 router.get('/', function (req, res, next) {
-  Climate.findQ()
+  Climate.findAsync()
   .then(res.sendDocs())
   .catch(res.xerr(404))
 })
@@ -23,14 +23,14 @@ router.get('/', function (req, res, next) {
 // GET one
 // E.g. by name: /one?name=warm
 router.get('/one', function (req, res) {
-  Climate.findOneQ(req.query)
+  Climate.findOneAsync(req.query)
   .then(res.sendDoc())
   .catch(res.xerr(404))
 })
 
 // GET by :_id
 router.get('/:_id', function (req, res) {
-  Climate.findOneQ(req.params)
+  Climate.findOneAsync(req.params)
   .then(res.sendDoc())
   .catch(res.xerr(404))
 })

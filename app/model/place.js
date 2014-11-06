@@ -3,8 +3,10 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var mongoose = require('mongoose-q')(),
-    _        = require('lodash')
+var _ = require('lodash')
+
+// Custom components
+var mongoose = require('app/db')
 
 /********************************** Schema ***********************************/
 
@@ -58,12 +60,12 @@ var Schema = new mongoose.Schema({
 
 Schema.methods.warmUp = function() {
   this.climateName = 'warm'
-  return this.saveQ()
+  return this.saveAsync()
 }
 
 Schema.methods.coolDown = function() {
   this.climateName = 'cold'
-  return this.saveQ()
+  return this.saveAsync()
 }
 
 /********************************** Export ***********************************/
