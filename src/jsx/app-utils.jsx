@@ -47,3 +47,32 @@ function insert (array, value) {
   return array
 }
 exports.insert = insert
+
+/**
+* IE9-proof console.log
+*/
+function log() {
+  if (_.isObject(console) && typeof console.log === 'function') {
+    console.log.apply(console, arguments)
+  }
+}
+exports.log = log
+
+/**
+* IE9-proof console.error
+*/
+function err() {
+  if (_.isObject(console) && typeof console.error === 'function') {
+    console.error.apply(console, arguments)
+  }
+}
+exports.err = err
+
+/**
+* Basic assertion utility
+*/
+function assert (condition, message) {
+  if (condition) return
+  throw new Error(message)
+}
+exports.assert = assert

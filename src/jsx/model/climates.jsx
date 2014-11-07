@@ -19,10 +19,8 @@ function errPop (error) {
     type : 'danger',
     text : 'Something went wrong when retrieving climates.'
   })
-  console.error("-- error:", error)
+  utils.err("-- error:", error)
 }
-
-var err = console.error.bind(console)
 
 /******************************* Record Model ********************************/
 
@@ -84,7 +82,7 @@ var Climates = Store({
   reload: function() {
     return this.all.$read()
     .then(climates => {
-      console.log("-- climates:", climates)
+      utils.log("-- climates:", climates)
       this.trigger()
     })
     .catch(errPop)

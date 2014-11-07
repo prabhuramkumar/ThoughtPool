@@ -9,10 +9,6 @@ var Reflux = require('reflux'),
 // Custom components
 var utils  = require('app-utils')
 
-/********************************* Utilities *********************************/
-
-var err = console.error.bind(console)
-
 /************************* Default Store Attributes **************************/
 
 var defaults = {
@@ -36,7 +32,7 @@ var defaults = {
     }
 
     // Execute
-    return Promise.resolve(value).then(() => this.trigger(origin)).catch(err)
+    return Promise.resolve(value).then(() => this.trigger(origin)).catch(utils.err)
   }
 
 }
@@ -47,8 +43,6 @@ var defaults = {
 * Makes a store with the default and provided attributes.
 */
 function Store (attributes) {
-  console.assert(!this, "Store is not a constructor.")
-
   var attrs = _.merge({}, defaults, attributes)
   return Reflux.createStore(attrs)
 }

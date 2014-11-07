@@ -20,10 +20,8 @@ function errPop (error) {
     type : 'danger',
     text : 'Something went wrong when retrieving places.'
   })
-  console.error("-- error:", error)
+  utils.error("-- error:", error)
 }
-
-var err = console.error.bind(console)
 
 /******************************* Record Model ********************************/
 
@@ -104,7 +102,7 @@ var Places = Store({
   reload: function() {
     return this.all.$read()
     .then(places => {
-      console.log("-- places:", places)
+      utils.log("-- places:", places)
       this.trigger()
     })
     .catch(errPop)
