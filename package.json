@@ -14,6 +14,7 @@
     "bluebird": "latest",
     "body-parser": "latest",
     "cookie-parser": "latest",
+    "cors": "latest",
     "express": "latest",
     "lodash": "latest",
     "mongoose": "latest",

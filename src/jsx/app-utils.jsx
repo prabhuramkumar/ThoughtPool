@@ -49,7 +49,7 @@ function insert (array, value) {
 exports.insert = insert
 
 /**
-* IE9-proof console.log
+* IE9-proof `console.log`
 */
 function log() {
   if (_.isObject(console) && typeof console.log === 'function') {
@@ -59,7 +59,7 @@ function log() {
 exports.log = log
 
 /**
-* IE9-proof console.error
+* IE9-proof `console.error`
 */
 function err() {
   if (_.isObject(console) && typeof console.error === 'function') {

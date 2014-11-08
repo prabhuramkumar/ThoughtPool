@@ -25,6 +25,11 @@ router.get('/hello', function (req, res) {
 
 /*-------------------------------- Catch-All --------------------------------*/
 
+router.all('*', function (req, res, next) {
+  console.log("-- req.body:", req.body);
+  next()
+})
+
 router.all('*', utils.undefinedMethod)
 
 /********************************** Export ***********************************/

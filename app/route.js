@@ -1,12 +1,17 @@
 'use strict'
 
+/**
+* Base routing configuration module.
+*/
+
 /******************************* Dependencies ********************************/
 
 // App
 var app  = require('app/app-base')
 
 // Third party
-var path = require('path')
+var path = require('path'),
+    cors = require('cors')
 
 /********************************** Globals **********************************/
 
@@ -14,6 +19,9 @@ var path = require('path')
 var html = path.join(__dirname, '../public/app.html')
 
 /********************************** Routing **********************************/
+
+// Configure CORS
+require('app/cors')
 
 // /api
 app.use('/api', require('app/api/api'))
