@@ -36,7 +36,7 @@ var Climate = Record.derive({
 }, {
   /** Element */
 
-  $constructorName: 'Climate',
+  $name: 'Climate',
 
   $idKey: '_id',
 

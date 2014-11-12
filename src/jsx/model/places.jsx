@@ -33,7 +33,7 @@ var Place = Record.derive({
 }, {
   /** Element */
 
-  $constructorName: 'Place',
+  $name: 'Place',
 
   $idKey: '_id',
 
