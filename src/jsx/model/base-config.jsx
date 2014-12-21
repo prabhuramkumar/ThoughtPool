@@ -7,7 +7,7 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var Record = require('record')
+var Record = require('datacore')
 
 // Custom components
 var constants = require('app-constants')

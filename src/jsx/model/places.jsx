@@ -3,7 +3,7 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var Record  = require('record'),
+var Record  = require('datacore'),
     _       = require('lodash')
 
 // Custom components

@@ -4,7 +4,7 @@
 
 // Third party
 var _     = require('lodash'),
-    xhttp = require('record').xhttp
+    xhttp = require('datacore').xhttp
 
 // Custom components
 var Store = require('model/base-store'),

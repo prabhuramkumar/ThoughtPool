@@ -1,6 +1,6 @@
 {
   "name": "react-express-seed",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Primitive full-stack web application seed",
   "author": "Mitranim",
   "scripts": {
@@ -37,7 +37,7 @@
     "react": "latest",
     "react-bootstrap": "latest",
     "react-router": "latest",
-    "record": "Mitranim/record",
+    "datacore": "latest",
     "reflux": "latest",
     "vinyl-source-stream": "latest",
     "watchify": "latest"
