@@ -75,7 +75,7 @@ var Climates = Store({
   Climate: Climate,
 
   init: function() {
-    this.all = Climate.newCollection()
+    this.all = new Climate.collection()
     this.reload()
   },
 

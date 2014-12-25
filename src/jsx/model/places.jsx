@@ -95,7 +95,7 @@ var Places = Store({
   Place: Place,
 
   init: function() {
-    this.all = Place.newCollection()
+    this.all = new Place.collection()
     this.reload()
   },
 
