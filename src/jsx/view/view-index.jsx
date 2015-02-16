@@ -3,9 +3,10 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var React  = require('react/addons'),
-    cx     = React.addons.classSet,
-    _      = require('lodash')
+var React   = require('react/addons'),
+    Handler = require('react-router').RouteHandler,
+    cx      = React.addons.classSet,
+    _       = require('lodash')
 
 // Custom components
 var mixins = require('app-mixins'),

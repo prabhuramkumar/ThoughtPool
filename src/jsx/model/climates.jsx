@@ -72,8 +72,6 @@ var Climate = Record.derive({
 
 var Climates = Store({
 
-  Climate: Climate,
-
   init: function() {
     this.all = new Climate.collection()
     this.reload()
@@ -89,6 +87,8 @@ var Climates = Store({
   }
 
 })
+
+Climates.Climate = Climate
 
 /********************************** Export ***********************************/
 

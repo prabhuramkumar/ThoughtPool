@@ -3,7 +3,8 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var React  = require('react/addons')
+var React   = require('react/addons'),
+    Handler = require('react-router').RouteHandler
 
 // Custom components
 var Navbar = require('view/navbar'),
@@ -24,7 +25,7 @@ var Layout = React.createClass({
     <Navbar />
 
     <div className='site-wrap'>
-      <this.props.activeRouteHandler />
+      <Handler />
     </div>
 
   </div>

@@ -3,8 +3,9 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var React = require('react/addons'),
-    Link  = require('react-router').Link
+var React   = require('react/addons'),
+    Handler = require('react-router').RouteHandler,
+    Link    = require('react-router').Link
 
 // Custom components
 

@@ -3,8 +3,9 @@
 /******************************* Dependencies ********************************/
 
 // Third party
-var React = require('react/addons'),
-    rb    = require('react-bootstrap')
+var React   = require('react/addons'),
+    Handler = require('react-router').RouteHandler,
+    rb      = require('react-bootstrap')
 
 // Custom components
 var mixins     = require('app-mixins'),

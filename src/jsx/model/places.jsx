@@ -20,7 +20,7 @@ function errPop (error) {
     type : 'danger',
     text : 'Something went wrong when retrieving places.'
   })
-  utils.error("-- error:", error)
+  utils.err("-- error:", error)
 }
 
 /******************************* Record Model ********************************/
