@@ -47,13 +47,19 @@ var CommentBox = React.createClass({
 		//setInterval(this.loadCommentsFromServer, this.props.interval);
 	},
 
+	renderComponent: function(){
+		var component;
+		if(this.props.config == 'list'){
+			component =  <CommentList data={this.state.data} />;
+		}else{
+			component =  <CommentForm onPostComment={this.updateNewComment} />;
+		}
+		return component
+	},
+
 	render: function(){
 		return (
-			<div className="commentBox">
-				<CommentList data={this.state.data} />
-				<CommentForm onPostComment={this.updateNewComment} />
-			</div>
-
+			this.renderComponent()
 		);
 	}
 });
@@ -94,11 +100,17 @@ var CommentForm = React.createClass({
 	render: function(){
 		return(
 			<form className="commentForm" onSubmit={this.handleSubmit}>
-		        <input type="text" placeholder="Your name" ref="author" />
-		        <br></br>
-		        <textarea placeholder="Say something..." ref="text" />
-		        <br></br>
-		        <input type="submit" value="Post" />
+				<div className="form-group">
+		        	<input className="form-control" type="text" placeholder="From" ref="author" />
+		        </div>
+		        <div className="form-group">
+		        	<textarea className="form-control" placeholder="Say something..." ref="text" />
+		        </div>
+		        <div className="form-group">
+		        	<input className="btn btn-primary" type="submit" value="Publish" />
+		        </div>
+
+
 		    </form> 
 	    )
 	}
@@ -111,11 +123,11 @@ var Comment = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="comment">
-				<h3 className="author">
+			<div className="alert alert-success">
+				<h4 className="author">
 					{this.props.author}
-				</h3>
-				<span dangerouslySetInnerHTML={this.rawMarkup()}></span>
+				</h4>
+				<p dangerouslySetInnerHTML={this.rawMarkup()}></p>
 			</div>
 		);
 	}

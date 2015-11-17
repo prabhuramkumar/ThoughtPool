@@ -1,13 +1,12 @@
 require("./node_modules/bootstrap/dist/css/bootstrap.min.css")
+require("./css/app.css")
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
-import CommentForm from './commentBox';
 import CommentBox from './commentBox';
-import CommentList from './commentBox';
 import { createHistory, useBasename } from 'history';
-const ACTIVE = { color: 'red' }
+const ACTIVE = { color: 'grey' }
 // export class App extends React.Component {
 // 	render() {
 // 		return (
@@ -19,10 +18,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h5>Navigation</h5>
-        <ul>
-          <li><Link      to="/list"           activeStyle={ACTIVE}>Comments List</Link></li>
-          <li><Link      to="/form"       activeStyle={ACTIVE}>CommentForm </Link></li>
+        <ul className="nav nav-pills nav-justified">
+          <li activeClassName="active"><Link  to="/list"   activeStyle = {ACTIVE}        >Comments List</Link></li>
+          <li activeClassName="active"><Link  to="/form"      activeStyle = {ACTIVE} >CommentForm </Link></li>
         </ul>
 
         {this.props.children}
@@ -34,7 +32,9 @@ class App extends React.Component {
 class ComList extends React.Component {
   render() {
     return (
-      <CommentBox url="http://localhost:3000/api/comments"/>
+   	  <div> 	
+      	<CommentBox url="http://localhost:3000/api/comments" config="list"/>
+      </div>
     )
   }
 }
@@ -42,22 +42,12 @@ class ComList extends React.Component {
 class ComForm extends React.Component {
   render() {
     return (
-    	<h1> Form</h1>
+    	<div className="commentform">
+    		<CommentBox url="http://localhost:3000/api/comments" config="form"/>
+    	</div>
     )
   }
 }
-
-class Index extends React.Component {
-  render() {
-    return (
-      <div>
-        <h3>Index</h3>
-      </div>
-    )
-  }
-}
-
-
 
 
 const history = useBasename(createHistory)({
@@ -67,7 +57,7 @@ const history = useBasename(createHistory)({
 ReactDOM.render((
   <Router history={history}>
     <Route path="/" component={App}>
-      // <IndexRoute component={Index}/>
+      <IndexRoute component={ComList}/>
       <Route path="/list" component={ComList}/>
       <Route path="/form" component={ComForm}/>
     </Route>

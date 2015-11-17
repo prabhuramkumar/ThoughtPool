@@ -1,0 +1,43 @@
+.navbar-inverse {
+	padding-left: 10px;
+	margin-top:10px;
+	margin-bottom: 0;
+}
+.navbar-inverse h3 {
+	color: orange;
+	margin: 10px;
+}
+.navbar-inverse p {
+	color: orange;
+	margin: 10px;
+}
+.nav-pills {
+	margin: 10px 0;
+}
+.nav-pills>li>a:focus, .nav-pills>li>a:hover {
+	background: none;
+}
+
+.alert {
+	background: rgba(255, 152, 0, 0.2);
+	border-left-color: orange;
+	margin-bottom: 10px;
+	border: 1px solid orange;
+}
+.alert p, .alert h4 {
+	color: #333;
+}
+.commentform {
+	border: 1px solid orange;
+	padding: 20px;
+	border-radius: 5px;
+	margin: auto;
+	background: rgba(255, 152, 0, 0.2);
+}
+.container {
+	max-width: 60%;
+}
+.commentList {
+	height: 500px;
+	overflow: auto;
+}
