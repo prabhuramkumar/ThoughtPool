@@ -53,6 +53,7 @@ var CommentBox = React.createClass({
 				<CommentList data={this.state.data} />
 				<CommentForm onPostComment={this.updateNewComment} />
 			</div>
+
 		);
 	}
 });
