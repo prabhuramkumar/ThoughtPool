@@ -32,4 +32,4 @@ src/tmp
 public/**
 
 # Unignore app.html
-!public/app.html
+!public/index.html
