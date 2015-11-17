@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import marked from 'marked';
 import jquery from 'jquery';
 var $ = jquery;
@@ -77,7 +76,7 @@ var CommentList = React.createClass({
 var CommentForm = React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
-		console.log(this.refs);
+		console.log(this.refs.author);
 		var author = this.refs.author.value.trim();
 		var text = this.refs.text.value.trim();
 
