@@ -33,7 +33,7 @@ class ComList extends React.Component {
   render() {
     return (
    	  <div> 	
-      	<CommentBox url="http://localhost:3000/api/comments" config="list"/>
+      	<CommentBox url="api/comments" config="list"/>
       </div>
     )
   }
@@ -43,7 +43,7 @@ class ComForm extends React.Component {
   render() {
     return (
     	<div className="commentform">
-    		<CommentBox url="http://localhost:3000/api/comments" config="form"/>
+    		<CommentBox url="api/comments" config="form"/>
     	</div>
     )
   }

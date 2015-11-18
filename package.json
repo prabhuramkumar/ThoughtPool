@@ -4,9 +4,8 @@
   "description": "React Webpack Babel Starter Kit",
   "main": "''",
   "scripts": {
-    "build": "webpack --progress --profile --colors",
-    "dev": "webpack-dev-server --progress --profile --colors --hot"
-  },
+    "start": "webpack && node server.js"
+     },
   "repository": {
     "type": "git",
     "url": "https://github.com/alicoding/react-webpack-babel"
@@ -44,6 +43,5 @@
     "webpack": "^1.9.11"
   },
   "devDependencies": {
-    "webpack-dev-server": "^1.9.0"
   }
 }
