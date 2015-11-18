@@ -16,6 +16,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+//db
+var mongodb = require('mongodb');
+var MongoClient = mongodb.MongoClient;
+var url = 'mongodb://localhost:27017/Thola';
+
 var COMMENTS_FILE = path.join(__dirname, 'comments.json');
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -31,46 +36,60 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 app.get('/api/comments', function(req, res) {
-  fs.readFile(COMMENTS_FILE, function(err, data) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    res.setHeader('Cache-Control', 'no-cache');
-    res.json(JSON.parse(data));
-  });
+
+MongoClient.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    console.log('Connection established to', url);
+
+    var collection = db.collection('requests');
+
+    collection.find().toArray(function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.setHeader('Cache-Control', 'no-cache');
+        res.json(result);
+      }
+      db.close();
+    });
+  }
+});
 });
 
+
+
 app.post('/api/comments', function(req, res) {
-  fs.readFile(COMMENTS_FILE, function(err, data) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    var comments = JSON.parse(data);
-    // NOTE: In a real implementation, we would likely rely on a database or
-    // some other approach (e.g. UUIDs) to ensure a globally unique id. We'll
-    // treat Date.now() as unique-enough for our purposes.
-    var newComment = {
-      id: Date.now(),
+MongoClient.connect(url, function (err, db) {
+  if (err) {
+    console.log('Unable to connect to the mongoDB server. Error:', err);
+  } else {
+    console.log('Connection established to', url);
+
+    var collection = db.collection('requests');
+    var newRequest = {
       origin: req.body.origin,
       destination: req.body.destination,
       via: req.body.via,
       seats: req.body.seats,
       provider: req.body.provider
     };
-    comments.push(newComment);
-    fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), function(err) {
+    
+    collection.insertOne(newRequest, function (err, result) {
       if (err) {
-        console.error(err);
-        process.exit(1);
+        console.log(err);
+      } else {
+        console.log('documents into the "request" collection are:', result.ops);
       }
-      res.setHeader('Cache-Control', 'no-cache');
-      res.json(comments);
     });
-  });
+
+  }
 });
+});
+
 
 
 app.listen(app.get('port'), function() {
