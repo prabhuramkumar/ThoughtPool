@@ -82,6 +82,13 @@ var CommentList = React.createClass({
 
 
 var CommentForm = React.createClass({
+	getInitialState: function () {
+	    return {
+	      pool: '',
+	      shouldHide: false,
+	      provider: true
+	    };
+  	},
 	handleSubmit: function(e){
 		e.preventDefault();
 		var origin = this.refs.origin.value.trim();
@@ -89,30 +96,50 @@ var CommentForm = React.createClass({
 		var via = this.refs.via.value.trim();
 		var seats = this.refs.seats.value.trim();
 
+
 		if(!destination || !origin){
 			alert("submit some text");
 			return; 
 		}
 
-		this.props.onPostComment({origin: origin, destination: destination, via: via, seats: seats});
-		// this.refs.origin.value = '';
-		// this.refs.destination.value = '';
+		this.props.onPostComment({origin: origin, destination: destination, via: via, seats: seats, provider:this.state.provider});
+	
 	},
-
+	onPoolChanged:function(e){
+		this.value ="selected";
+		console.log("a");
+		console.log(this.refs.pooler);
+		this.setState({
+           provider: !(this.state.provider)
+		});
+		// if(this.refs == "pooler"){
+		// 	pool :'pooler';
+		// 	this.props.shouldHide = true;
+		// }
+	 //    else {
+	 //    	pool :'provider';
+	 //    	this.props.shouldHide = true;
+	 //    }
+	 //    this.setState(pool: pool);
+	},
 	render: function(){
+
 		return(
+			
 			<form className="commentForm" onSubmit={this.handleSubmit}>
+				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Pooler</label>
+				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true} onClick={this.onPoolChanged} /> Provider</label>
 				<div className="form-group">
 		        	<input className="form-control" type="text" placeholder="From" ref="origin" />
 		        </div>
 		        <div className="form-group">
 		        	<input className="form-control" type="text" placeholder="To" ref="destination" />
 		        </div>
-		        <div className="form-group">
-		        	<input className="form-control" type="text" placeholder="via" ref="via" />
+		        <div className="form-group" >
+		        	<input className="form-control" type="text" placeholder="via" ref="via" className={this.state.provider ? '' : 'hidden'}/>
 		        </div>
 		        <div className="form-group">
-		        	<input className="form-control" type="text" placeholder="seats" ref="seats" />
+		        	<input className="form-control" type="text" placeholder="seats" ref="seats" className={this.state.provider ? '' : 'hidden'}/>
 		        </div>
 		        <div className="form-group">
 		        	<input className="btn btn-primary" type="submit" value="Publish" />
@@ -121,6 +148,17 @@ var CommentForm = React.createClass({
 	    )
 	}
 });
+
+// var poolerForm = React.createClass({
+// 	rawMarkup: function(){
+
+// 	},
+// 	render: function(){
+// 		return (
+
+// 		)
+// 	};
+// })
 
 var Comment = React.createClass({
 	rawMarkup: function(){

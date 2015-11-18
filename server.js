@@ -57,7 +57,8 @@ app.post('/api/comments', function(req, res) {
       origin: req.body.origin,
       destination: req.body.destination,
       via: req.body.via,
-      seats: req.body.seats
+      seats: req.body.seats,
+      provider: req.body.provider
     };
     comments.push(newComment);
     fs.writeFile(COMMENTS_FILE, JSON.stringify(comments, null, 4), function(err) {
