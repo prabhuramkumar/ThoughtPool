@@ -19,8 +19,8 @@ class App extends React.Component {
     return (
       <div>
         <ul className="nav nav-pills nav-justified">
-          <li activeClassName="active"><Link  to="/list"   activeStyle = {ACTIVE}        >Comments List</Link></li>
-          <li activeClassName="active"><Link  to="/form"      activeStyle = {ACTIVE} >CommentForm </Link></li>
+          <li activeClassName="active"><Link  to="/list"   activeStyle = {ACTIVE}        >PoolList</Link></li>
+          <li activeClassName="active"><Link  to="/form"      activeStyle = {ACTIVE} >PoolForm </Link></li>
         </ul>
 
         {this.props.children}

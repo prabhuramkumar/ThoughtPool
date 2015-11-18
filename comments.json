@@ -12,5 +12,19 @@
         "destination": "Domlur",
         "via": "sony world",
         "seats": "2"
+    },
+    {
+        "id": 1447821860010,
+        "origin": "Koramangala",
+        "destination": "Whitefield",
+        "via": "Marathalli",
+        "seats": "4"
+    },
+    {
+        "id": 1447821918524,
+        "origin": "Koramangal",
+        "destination": "Indiranaga",
+        "via": "Domulur",
+        "seats": "3"
     }
 ]
