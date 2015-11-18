@@ -60,3 +60,9 @@
 .seats {
 	margin-top: 10px;
 }
+.via {
+    font-size: 11px;
+    color: gray;
+    display: flex;
+    align-items: center;
+}
