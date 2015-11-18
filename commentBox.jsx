@@ -69,7 +69,14 @@ var CommentList = React.createClass({
 	render: function(){
 		var commentNodes = this.props.data.map(function(comment){
 			return (
-				<Comment origin={comment.origin} via={comment.via} seats={comment.seats} key={comment.id} destination={comment.destination}></Comment>
+				<Comment 
+					origin={comment.origin} 
+					via={comment.via} 
+					seats={comment.seats} 
+					key={comment.id} 
+					destination={comment.destination}
+					provider={comment.provider}>
+				</Comment>
 			);
 		});
 		return (
@@ -107,20 +114,9 @@ var CommentForm = React.createClass({
 	},
 	onPoolChanged:function(e){
 		this.value ="selected";
-		console.log("a");
-		console.log(this.refs.pooler);
 		this.setState({
            provider: !(this.state.provider)
 		});
-		// if(this.refs == "pooler"){
-		// 	pool :'pooler';
-		// 	this.props.shouldHide = true;
-		// }
-	 //    else {
-	 //    	pool :'provider';
-	 //    	this.props.shouldHide = true;
-	 //    }
-	 //    this.setState(pool: pool);
 	},
 	render: function(){
 
@@ -135,11 +131,11 @@ var CommentForm = React.createClass({
 		        <div className="form-group">
 		        	<input className="form-control" type="text" placeholder="To" ref="destination" />
 		        </div>
-		        <div className="form-group" >
-		        	<input className="form-control" type="text" placeholder="via" ref="via" className={this.state.provider ? '' : 'hidden'}/>
+		        <div className="form-group">
+		        	<input className={this.state.provider ?'form-control' : 'hidden'} type="text" placeholder="via" ref="via" />
 		        </div>
 		        <div className="form-group">
-		        	<input className="form-control" type="text" placeholder="seats" ref="seats" className={this.state.provider ? '' : 'hidden'}/>
+		        	<input className={this.state.provider ?'form-control' : 'hidden'} type="text" placeholder="seats" ref="seats" />
 		        </div>
 		        <div className="form-group">
 		        	<input className="btn btn-primary" type="submit" value="Publish" />
@@ -149,16 +145,6 @@ var CommentForm = React.createClass({
 	}
 });
 
-// var poolerForm = React.createClass({
-// 	rawMarkup: function(){
-
-// 	},
-// 	render: function(){
-// 		return (
-
-// 		)
-// 	};
-// })
 
 var Comment = React.createClass({
 	rawMarkup: function(){
@@ -170,17 +156,20 @@ var Comment = React.createClass({
 			<div className="alert">
 				<ul className="trip-panel">
 					<li className="origin">
-						Origin: <strong>{this.props.origin}</strong>
+						<strong>{this.props.origin}</strong>
 					</li>
 					<li className="via">
-						Via: <strong>{this.props.via}</strong>
+						<strong>{this.props.via}</strong>
 					</li>
 					<li className="destination">
-						Dest: <strong>{this.props.destination}</strong>
+						<strong>{this.props.destination}</strong>
 					</li>
 				</ul>
 				<p className="seats">
 					Seats: <strong>{this.props.seats}</strong>
+				</p>
+				<p className="seats">
+					Provider: <strong>{this.props.provider}</strong>
 				</p>
 			</div>
 		);
