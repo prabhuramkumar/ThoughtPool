@@ -109,8 +109,6 @@ var CommentForm = React.createClass({
 		        <div className="form-group">
 		        	<input className="btn btn-primary" type="submit" value="Publish" />
 		        </div>
-
-
 		    </form> 
 	    )
 	}
