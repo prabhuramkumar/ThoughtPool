@@ -13,6 +13,7 @@ var CommentBox = React.createClass({
 			dataType: 'json',
 			cache: false,
 			success: function(serverData){
+				console.log(serverData);
 				this.setState({data: serverData});
 			}.bind(this),
 			error: function(){
@@ -68,7 +69,7 @@ var CommentList = React.createClass({
 	render: function(){
 		var commentNodes = this.props.data.map(function(comment){
 			return (
-				<Comment author={comment.author} key={comment.id}>{comment.text}</Comment>
+				<Comment origin={comment.origin} via={comment.via} seats={comment.seats} key={comment.id} destination={comment.destination}></Comment>
 			);
 		});
 		return (
@@ -83,28 +84,35 @@ var CommentList = React.createClass({
 var CommentForm = React.createClass({
 	handleSubmit: function(e){
 		e.preventDefault();
-		console.log(this.refs.author);
-		var author = this.refs.author.value.trim();
-		var text = this.refs.text.value.trim();
+		var origin = this.refs.origin.value.trim();
+		var destination = this.refs.destination.value.trim();
+		var via = this.refs.via.value.trim();
+		var seats = this.refs.seats.value.trim();
 
-		if(!text || !author){
+		if(!destination || !origin){
 			alert("submit some text");
 			return; 
 		}
 
-		this.props.onPostComment({author: author, text: text});
-		this.refs.author.value = '';
-		this.refs.text.value = '';
+		this.props.onPostComment({origin: origin, destination: destination, via: via, seats: seats});
+		// this.refs.origin.value = '';
+		// this.refs.destination.value = '';
 	},
 
 	render: function(){
 		return(
 			<form className="commentForm" onSubmit={this.handleSubmit}>
 				<div className="form-group">
-		        	<input className="form-control" type="text" placeholder="From" ref="author" />
+		        	<input className="form-control" type="text" placeholder="From" ref="origin" />
 		        </div>
 		        <div className="form-group">
-		        	<textarea className="form-control" placeholder="Say something..." ref="text" />
+		        	<input className="form-control" type="text" placeholder="To" ref="destination" />
+		        </div>
+		        <div className="form-group">
+		        	<input className="form-control" type="text" placeholder="via" ref="via" />
+		        </div>
+		        <div className="form-group">
+		        	<input className="form-control" type="text" placeholder="seats" ref="seats" />
 		        </div>
 		        <div className="form-group">
 		        	<input className="btn btn-primary" type="submit" value="Publish" />
@@ -121,11 +129,21 @@ var Comment = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="alert alert-success">
-				<h4 className="author">
-					{this.props.author}
-				</h4>
-				<p dangerouslySetInnerHTML={this.rawMarkup()}></p>
+			<div className="alert">
+				<ul className="trip-panel">
+					<li className="origin">
+						Origin: <strong>{this.props.origin}</strong>
+					</li>
+					<li className="via">
+						Via: <strong>{this.props.via}</strong>
+					</li>
+					<li className="destination">
+						Dest: <strong>{this.props.destination}</strong>
+					</li>
+				</ul>
+				<p className="seats">
+					Seats: <strong>{this.props.seats}</strong>
+				</p>
 			</div>
 		);
 	}
