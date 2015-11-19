@@ -17,9 +17,15 @@ var bodyParser = require('body-parser');
 var app = express();
 
 //db
-var mongodb = require('mongodb');
-var MongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/Thola';
+
+var mongoose = require('mongoose');
+mongoose.connect(url);
+fs.readdirSync(__dirname + '/models').forEach(function(filename) {
+ if (~filename.indexOf('.js')) require(__dirname + '/models/' + filename)
+});
+
+
 
 var COMMENTS_FILE = path.join(__dirname, 'comments.json');
 var allowCrossDomain = function(req, res, next) {
@@ -38,56 +44,38 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get('/api/comments', function(req, res) {
+  var requests =  mongoose.model('request');
 
-MongoClient.connect(url, function (err, db) {
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-    console.log('Connection established to', url);
-
-    var collection = db.collection('requests');
-
-    collection.find().toArray(function (err, result) {
-      if (err) {
+  requests.find(function(err, result){
+   if (err) {
         console.log(err);
       } else {
         res.setHeader('Cache-Control', 'no-cache');
         res.json(result);
       }
-      db.close();
-    });
-  }
 });
 });
 
 
 
 app.post('/api/comments', function(req, res) {
-MongoClient.connect(url, function (err, db) {
-  if (err) {
-    console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-    console.log('Connection established to', url);
 
-    var collection = db.collection('requests');
-    var newRequest = {
+var request =  mongoose.model('request');
+var newRequest = new request({
       origin: req.body.origin,
       destination: req.body.destination,
       via: req.body.via,
       seats: req.body.seats,
       provider: req.body.provider
-    };
-    
-    collection.insertOne(newRequest, function (err, result) {
+});
+newRequest.save(function (err, result) {
       if (err) {
         console.log(err);
       } else {
-        console.log('documents into the "request" collection are:', result.ops);
+        console.log('documents into the "request" collection are:', result);
       }
     });
 
-  }
-});
 });
 
 
