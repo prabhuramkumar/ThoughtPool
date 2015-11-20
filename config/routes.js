@@ -43,6 +43,12 @@ module.exports = function(app, config, passport, fs, path){
 		}
 	);
 
+	app.get('/logout', function(req, res) {
+		req.logout();
+		// TODO: invalidate session on IP
+		res.render("logout.html");
+	});
+
 	app.get('/api/comments', isAuthenticated, function(req, res) {
 	  	var requests =  mongoose.model('request');
 	
