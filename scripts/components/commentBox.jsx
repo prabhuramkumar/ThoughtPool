@@ -72,7 +72,13 @@ var CommentForm = React.createClass({
 			alert("submit some text");
 			return; 
 		}
-		this.props.onFormSubmit({origin: origin, destination: destination, via: via, seats: seats, provider:this.state.provider});
+		this.props.onFormSubmit({
+			'origin': origin, 
+			'destination': destination, 
+			'via': via, 
+			'seats': seats, 
+			'provider':this.state.provider
+		});
 		this.refs.origin.value = '';
 		this.refs.destination.value = '';
 		this.refs.via.value = '';

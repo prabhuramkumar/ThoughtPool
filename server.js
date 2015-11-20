@@ -73,6 +73,8 @@ newRequest.save(function (err, result) {
         console.log(err);
       } else {
         console.log('documents into the "request" collection are:', result);
+        res.setHeader('Cache-Control', 'no-cache');
+        res.json(result);
       }
     });
 

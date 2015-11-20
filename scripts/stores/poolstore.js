@@ -32,15 +32,14 @@ var PoolStore = Reflux.createStore({
 	},
 
 	createPool: function(comment){
-		alert(comment);
 		$.ajax({
 		  url: this.sourceUrl,
 		  dataType: 'json',
 		  type: 'POST',
 		  data: comment,
 		  cache: false,
-		  success: function(data) {
-			this.poollist = data;
+		  success: function(serverData) {
+		  	this.poollist.push(serverData);
 			this.trigger(this.poollist);
 		  }.bind(this),
 		  error: function(xhr, status, err) {
