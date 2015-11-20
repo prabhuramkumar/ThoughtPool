@@ -16,7 +16,6 @@ require('./config/passport')(passport, config);
 var app = express();
 
 var url = 'mongodb://localhost:27017/Thola';
-
 var mongoose = require('mongoose');
 mongoose.connect(url);
 fs.readdirSync(__dirname + '/models').forEach(function(filename) {
@@ -51,42 +50,7 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
-app.get('/api/comments', function(req, res) {
-  var requests =  mongoose.model('request');
-
-  requests.find(function(err, result){
-   if (err) {
-        console.log(err);
-      } else {
-        res.setHeader('Cache-Control', 'no-cache');
-        res.json(result);
-      }
-  });
-});
-
-app.post('/api/comments', function(req, res) {
-
-var request =  mongoose.model('request');
-var newRequest = new request({
-      origin: req.body.origin,
-      destination: req.body.destination,
-      via: req.body.via,
-      seats: req.body.seats,
-      provider: req.body.provider
-});
-newRequest.save(function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('documents into the "request" collection are:', result);
-        res.setHeader('Cache-Control', 'no-cache');
-        res.json(result);
-      }
-    });
-
-});
-
-require('./config/routes')(app, config, passport, fs, path);
+require('./config/routes')(app, config, passport, mongoose, fs, path);
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');

@@ -1,14 +1,4 @@
-module.exports = function(app, config, passport, fs, path){
-
-	var COMMENTS_FILE = path.join(__dirname, 'comments.json');
-	var data = [
-    	{
-    	    "id": 1388534400000,
-    	    "origin": "Koramangala",
-    	    "destination": "Marathalli",
-    	    "via": "ORR",
-    	    "seats": "2"
-    	}];
+module.exports = function(app, config, passport, mongoose, fs, path){
 
     var isAuthenticated = function(req, res, next){
     	if(req.isAuthenticated()){
