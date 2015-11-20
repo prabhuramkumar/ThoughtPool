@@ -107,7 +107,7 @@ var CommentForm = React.createClass({
 		        	<input className={this.state.provider ?'form-control' : 'hidden'} type="text" placeholder="via" ref="via" />
 		        </div>
 		        <div className="form-group">
-		        	<input className={this.state.provider ?'form-control' : 'hidden'} type="text" placeholder="seats" ref="seats" />
+		        	<input className={this.state.provider ?'form-control' : 'hidden'} type="number" min="1" placeholder="seats" ref="seats" />
 		        </div>
 		        <div className="form-group">
 		        	<input className="btn btn-primary" type="submit" value="Publish" />
