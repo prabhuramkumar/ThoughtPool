@@ -22,7 +22,7 @@ var PoolStore = Reflux.createStore({
 			dataType: 'json',
 			cache: false,
 			success: function(serverData){
-				this.poollist = serverData;
+				this.poollist = serverData.reverse();
 				this.trigger(this.poollist);
 			}.bind(this),
 			error: function(){
@@ -40,6 +40,7 @@ var PoolStore = Reflux.createStore({
 		  cache: false,
 		  success: function(serverData) {
 		  	this.poollist.push(serverData);
+		  	this.poollist = this.poollist.reverse();
 			this.trigger(this.poollist);
 		  }.bind(this),
 		  error: function(xhr, status, err) {

@@ -56,19 +56,5 @@ ReactDOM.render((
       <Route path="/form" component={ComForm}/>
     </Route>
   </Router>
-), document.getElementById('myApp'))
-// const history = useBasename(createHistory)({
-//   basename: '/'
-// })
+), document.getElementById('myApp'));
 
-// ReactDOM.render((
-//   <Router history={history}>
-//       <Route path="/" component={CommentForm}/>
-//       <Route path="/commentform" component={CommentBox}/>
-//   </Router>
-// ), document.querySelector("#myApp"));
-
-// ReactDOM.render(
-// 	<CommentBox url="http://localhost:3000/api/comments" interval={2000}/>, 
-// 	document.querySelector("#myApp")
-// );
