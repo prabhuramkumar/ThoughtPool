@@ -4,7 +4,7 @@ require("./css/app.css")
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
-import CommentBox from './scripts/components/commentBox';
+import CommentBox from './commentBox-old';
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
 

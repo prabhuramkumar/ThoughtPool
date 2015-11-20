@@ -38,8 +38,9 @@ var PoolStore = Reflux.createStore({
 		  dataType: 'json',
 		  type: 'POST',
 		  data: comment,
-		  success: function(serverData) {
-		    this.poollist = serverData;
+		  cache: false,
+		  success: function(data) {
+			this.poollist = data;
 			this.trigger(this.poollist);
 		  }.bind(this),
 		  error: function(xhr, status, err) {

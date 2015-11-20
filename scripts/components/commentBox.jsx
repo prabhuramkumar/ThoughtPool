@@ -14,7 +14,6 @@ var CommentBox = React.createClass({
 
 	renderComponent: function(){
 		var component;
-		console.log(this.state);
 		if(this.props.config == 'list'){
 			component =  <CommentList data={this.state.poolstore} />;
 		}else{
