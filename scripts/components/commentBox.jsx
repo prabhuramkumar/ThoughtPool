@@ -1,59 +1,24 @@
 import React from 'react';
 import marked from 'marked';
-import jquery from 'jquery';
-var $ = jquery;
+import Reflux from 'reflux';
+import PoolStore from '../stores/poolstore';
+import PoolActions from '../actions/poolactions';
+
 
 var CommentBox = React.createClass({
-	getInitialState: function() {
-		return {data: []};
-	},
-	loadCommentsFromServer: function (){
-		$.ajax({
-			url: this.props.url,
-			dataType: 'json',
-			cache: false,
-			success: function(serverData){
-				console.log(serverData);
-				this.setState({data: serverData});
-			}.bind(this),
-			error: function(){
-				console.error(this.props.url, status);
-			}.bind(this)
-		})
-	},
+	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 
-	updateNewComment: function(comment){
-		//Post the comment on UI before updating the JSON
-		var comments = this.state.data;
-		comment.id = Date.now();
-		var newComments = comments.concat([comment]);
-		this.setState({data: newComments});
-
-		$.ajax({
-		  url: this.props.url,
-		  dataType: 'json',
-		  type: 'POST',
-		  data: comment,
-		  success: function(data) {
-		    this.setState({data: data});
-		  }.bind(this),
-		  error: function(xhr, status, err) {
-		    console.error(this.props.url, status, err.toString());
-		  }.bind(this)
-		});
-	},
-
-	componentDidMount: function() {
-		this.loadCommentsFromServer();
-		//setInterval(this.loadCommentsFromServer, this.props.interval);
+	onFormSubmit: function(newPool) {
+	  PoolActions.createPool(newPool);
 	},
 
 	renderComponent: function(){
 		var component;
+		console.log(this.state);
 		if(this.props.config == 'list'){
-			component =  <CommentList data={this.state.data} />;
+			component =  <CommentList data={this.state.poolstore} />;
 		}else{
-			component =  <CommentForm onPostComment={this.updateNewComment} />;
+			component =  <CommentForm onFormSubmit={this.onFormSubmit} />;
 		}
 		return component
 	},
@@ -108,8 +73,7 @@ var CommentForm = React.createClass({
 			alert("submit some text");
 			return; 
 		}
-
-		this.props.onPostComment({origin: origin, destination: destination, via: via, seats: seats, provider:this.state.provider});
+		this.props.onFormSubmit({origin: origin, destination: destination, via: via, seats: seats, provider:this.state.provider});
 		this.refs.origin.value = '';
 		this.refs.destination.value = '';
 		this.refs.via.value = '';
