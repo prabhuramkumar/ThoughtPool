@@ -1,22 +1,20 @@
-/**
- * This file provided by Facebook is for non-commercial testing and evaluation
- * purposes only. Facebook reserves all rights not expressly granted.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- */
-
 var fs = require('fs');
 var path = require('path');
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
+var passport = require("passport");
+var cookieParser = require('cookie-parser');
+var methodOverride = require('method-override');
+var ejs = require('ejs');
+
+var env = process.env.NODE_ENV || 'development';
+var config = require('./config/config')[env];
+
+require('./config/passport')(passport, config);
+
 var app = express();
 
-//db
 var url = 'mongodb://localhost:27017/Thola';
 
 var mongoose = require('mongoose');
@@ -25,9 +23,24 @@ fs.readdirSync(__dirname + '/models').forEach(function(filename) {
  if (~filename.indexOf('.js')) require(__dirname + '/models/' + filename)
 });
 
+app.set('port', config.app.port);
+app.set('views', __dirname + '/views');
+app.engine('html', ejs.renderFile);
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(session(
+  {
+    secret: 'tholasessionkey',
+    resave: true,
+    saveUninitialized: true
+  }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride());
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-var COMMENTS_FILE = path.join(__dirname, 'comments.json');
+//check whether it can be deleted
 var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -36,12 +49,7 @@ var allowCrossDomain = function(req, res, next) {
     next();
 }
 
-app.set('port', (process.env.PORT || 3000));
 app.use(allowCrossDomain);
-app.use('/', express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-
 
 app.get('/api/comments', function(req, res) {
   var requests =  mongoose.model('request');
@@ -53,10 +61,8 @@ app.get('/api/comments', function(req, res) {
         res.setHeader('Cache-Control', 'no-cache');
         res.json(result);
       }
+  });
 });
-});
-
-
 
 app.post('/api/comments', function(req, res) {
 
@@ -80,7 +86,7 @@ newRequest.save(function (err, result) {
 
 });
 
-
+require('./config/routes')(app, config, passport, fs, path);
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
