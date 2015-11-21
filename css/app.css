@@ -1,18 +1,13 @@
 .hidden{
 	visibility:hidden;
 }
-.navbar-inverse {
-	padding-left: 10px;
-	margin-top:10px;
-	margin-bottom: 0;
-}
-.navbar-inverse h3 {
-	color: orange;
-	margin: 10px;
-}
-.navbar-inverse p {
-	color: orange;
-	margin: 10px;
+.thola-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: black;
+    padding: 0 20px;
+    color: rgba(0, 173, 0, 0.5);
 }
 .nav-pills {
 	margin: 10px 0;
