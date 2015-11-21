@@ -21,15 +21,19 @@
 	background: none;
 }
 
-.alert {
+.poollist {
+	display: flex;
 	background: rgba(255, 152, 0, 0.2);
 	border-left-color: orange;
 	margin-bottom: 10px;
 	border: 1px solid orange;
+    justify-content: space-between;
+    padding: 10px
 }
-.alert p, .alert h4 {
+.poollist p, .poollist h4 {
 	color: #333;
 }
+
 .commentform {
 	border: 1px solid orange;
 	padding: 20px;
@@ -47,22 +51,42 @@
 	height: 500px;
 	overflow: auto;
 }
-.trip-panel {
+.trip-panel  {
 	display: flex;
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	width: 70%;
 }
-.trip-panel li{
-	border: 1px solid #ccc;
+.trip-panel>li{
 	padding: 10px;
+    margin: 3px;
+    background: rgba(0,176,120,0.5);
+    border-radius: 7px;
+    flex: 1;
+    color: #fff;
 }
-.seats {
-	margin-top: 10px;
+.trip-panel.pooler>li {
+	background: rgba(255,0,0,0.5);
 }
-.via {
-    font-size: 11px;
-    color: gray;
-    display: flex;
-    align-items: center;
+.trip-panel>li>span {
+	font-size: 12px;
+	color: #666;
+	display: flex;
+	align-items: center;
 }
+.trip-panel>li>strong {
+	display: block;
+	font-size: 14px;
+}
+.alert {
+	margin: 0;
+	padding: 0;
+}				
+.misc-panel {
+	list-style: none;
+}
+.misc-panel .seats{
+	float: right;
+}
+
