@@ -2,7 +2,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 
     var isAuthenticated = function(req, res, next){
     	if(req.isAuthenticated()){
-			console.log("already authenticated");
 			return next();
 		}
 		else {
@@ -43,8 +42,7 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 
 	app.get('/logout', function(req, res) {
 		req.logout();
-		// TODO: invalidate session on IP
-		res.render("logout.html");
+		res.redirect("https://thoughtworks.oktapreview.com");
 	});
 
 	app.get('/form', function(req, res) {
@@ -69,7 +67,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 	});
 	
 	app.post('/api/comments', isAuthenticated, function(req, res) {
-	
 		var request =  mongoose.model('request');
 		var newRequest = new request({
 		      origin: req.body.origin,
