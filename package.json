@@ -50,5 +50,8 @@
     "url-loader": "^0.5.6",
     "webpack": "^1.9.11",
     "reflux": "~0.2.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
   }
 }
