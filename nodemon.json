@@ -1,0 +1,22 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "./public"
+  ],
+  "verbose": false,
+  "execMap": {
+    "js": "webpack && node --harmony"
+  },
+  "events": {
+    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
+  },
+  "watch": [
+    "*.*"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json jsx"
+}

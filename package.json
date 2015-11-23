@@ -4,7 +4,7 @@
   "description": "React Webpack Babel Starter Kit",
   "main": "''",
   "scripts": {
-    "start": "webpack && node server.js"
+    "start": "webpack && nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -37,8 +37,8 @@
     "history": "^1.13.1",
     "jquery": "2.1.4",
     "marked": "^0.3.5",
-    "mongodb" : "~2.0",
-    "mongoose" : "*",
+    "mongodb": "~2.0",
+    "mongoose": "*",
     "method-override": "^2.3.5",
     "passport": "*",
     "passport-saml": "*",
@@ -51,5 +51,7 @@
     "webpack": "^1.9.11",
     "reflux": "~0.2.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "express-urlrewrite": "^1.2.0"
+  }
 }

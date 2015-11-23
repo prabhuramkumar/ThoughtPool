@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
+var rewrite = require('express-urlrewrite')
 var bodyParser = require('body-parser');
 var passport = require("passport");
 var cookieParser = require('cookie-parser');
@@ -37,7 +38,7 @@ app.use(session(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 //check whether it can be deleted
 var allowCrossDomain = function(req, res, next) {
@@ -51,6 +52,14 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 require('./config/routes')(app, config, passport, mongoose, fs, path);
+
+
+fs.readdirSync(__dirname).forEach(function (file) {
+  if (fs.statSync(path.join(__dirname, file)).isDirectory())
+    app.use(rewrite('/' + file + '/*', '/' + file + '/index.html'))
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');

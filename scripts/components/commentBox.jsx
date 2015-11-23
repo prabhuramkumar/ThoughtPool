@@ -95,8 +95,8 @@ var CommentForm = React.createClass({
 		return(
 			
 			<form className="commentForm" onSubmit={this.handleSubmit}>
-				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Pooler</label>
 				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true} onClick={this.onPoolChanged} /> Provider</label>
+				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Pooler</label>
 				<div className="form-group">
 		        	<input className="form-control" type="text" placeholder="From" ref="origin" />
 		        </div>
