@@ -14,6 +14,14 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.render("index.html");
 	});
 
+	app.get("/form", isAuthenticated, function(req, res){
+		res.render("index.html");
+	});
+
+	app.get("/list", isAuthenticated, function(req, res){
+		res.render("index.html");
+	});
+
 	app.get("/login",
 		passport.authenticate(config.passport.strategy,
 		{
@@ -38,6 +46,14 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		// TODO: invalidate session on IP
 		res.render("logout.html");
 	});
+
+	app.get('/form', function(req, res) {
+		req.logout();
+		// TODO: invalidate session on IP
+		res.render("index.html");
+	});
+
+	
 
 	app.get('/api/comments', isAuthenticated, function(req, res) {
 	  	var requests =  mongoose.model('request');

@@ -2,7 +2,6 @@ var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var session = require('express-session');
-var rewrite = require('express-urlrewrite')
 var bodyParser = require('body-parser');
 var passport = require("passport");
 var cookieParser = require('cookie-parser');
@@ -53,11 +52,6 @@ app.use(allowCrossDomain);
 
 require('./config/routes')(app, config, passport, mongoose, fs, path);
 
-
-fs.readdirSync(__dirname).forEach(function (file) {
-  if (fs.statSync(path.join(__dirname, file)).isDirectory())
-    app.use(rewrite('/' + file + '/*', '/' + file + '/index.html'))
-});
 
 app.use(express.static(path.join(__dirname, 'public')));
 

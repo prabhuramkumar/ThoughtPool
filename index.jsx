@@ -4,7 +4,8 @@ require("./css/app.css")
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
-import CommentBox from './scripts/components/commentBox';
+import ComList from './scripts/components/comlist';
+import ComForm from './scripts/components/comform';
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
 
@@ -16,29 +17,8 @@ class App extends React.Component {
           <li activeClassName="active"><Link  to="/list"   activeStyle = {ACTIVE}        >PoolList</Link></li>
           <li activeClassName="active"><Link  to="/form"      activeStyle = {ACTIVE} >PoolForm </Link></li>
         </ul>
-
         {this.props.children}
       </div>
-    )
-  }
-}
-
-class ComList extends React.Component {
-  render() {
-    return (
-   	  <div> 	
-      	<CommentBox url="api/comments" config="list"/>
-      </div>
-    )
-  }
-}
-
-class ComForm extends React.Component {
-  render() {
-    return (
-    	<div className="commentform">
-    		<CommentBox url="api/comments" config="form"/>
-    	</div>
     )
   }
 }
