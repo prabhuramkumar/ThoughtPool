@@ -19,7 +19,10 @@ module.exports = function (passport, config) {
 	  function(profile, done) {
 		return done(null,
 			{
-				id : profile.email
+				id : profile.email,
+				email : profile.email,
+				firstName : profile.first,
+  				lastName : profile.last
 			});
 	  })
 	);

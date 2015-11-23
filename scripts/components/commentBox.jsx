@@ -39,7 +39,9 @@ var CommentList = React.createClass({
 					seats={comment.seats} 
 					key={comment.id} 
 					destination={comment.destination}
-					provider={comment.provider}>
+					provider={comment.provider}
+					email={comment.email}
+					name={comment.name}>
 				</Comment>
 			);
 		});
@@ -117,7 +119,6 @@ var CommentForm = React.createClass({
 	}
 });
 
-
 var Comment = React.createClass({
 	rawMarkup: function(){
 		var rawMarkup = marked(this.props.children.toString(), {santize: true});
@@ -143,11 +144,15 @@ var Comment = React.createClass({
 				<ul className="misc-panel">
 					<li>
 						<h5>
-							Ramesh ({this.props.provider ?'Provider' : 'Pooler'})
+							<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
+							({this.props.provider ?'Provider' : 'Pooler'})
+						</h5>
+						<h5>
+							{this.props.email}
 						</h5>
 					</li>
 					<li className="seats">
-						<span>Avilable seats: </span>
+						<span>Available seats: </span>
 						<strong>{this.props.seats}</strong>
 					</li>
 				</ul>

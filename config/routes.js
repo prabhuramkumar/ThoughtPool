@@ -45,14 +45,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.redirect("https://thoughtworks.oktapreview.com");
 	});
 
-	app.get('/form', function(req, res) {
-		req.logout();
-		// TODO: invalidate session on IP
-		res.render("index.html");
-	});
-
-	
-
 	app.get('/api/comments', isAuthenticated, function(req, res) {
 	  	var requests =  mongoose.model('request');
 	
@@ -67,8 +59,11 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 	});
 	
 	app.post('/api/comments', isAuthenticated, function(req, res) {
+		var user = req.user;
 		var request =  mongoose.model('request');
 		var newRequest = new request({
+			  email: user.email,
+			  name: user.firstName + " " + user.lastName,
 		      origin: req.body.origin,
 		      destination: req.body.destination,
 		      via: req.body.via,
