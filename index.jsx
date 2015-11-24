@@ -18,8 +18,6 @@ class App extends React.Component {
       <div>
         <ul className="nav nav-pills nav-justified">
         <li activeClassName="active"><Link to="/search" activeStyle = {ACTIVE}> Search </Link></li>
-          <li activeClassName="active"><Link  to="/list"   activeStyle = {ACTIVE}        >PoolList</Link></li>
-          <li activeClassName="active"><Link  to="/form"      activeStyle = {ACTIVE} >PoolForm </Link></li>
         </ul>
         {this.props.children}
       </div>
@@ -69,8 +67,6 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <IndexRoute component={Search}/>
       <Route path="/search" component={Search}/>
-      <Route path="/list" component={ComList}/>
-      <Route path="/form" component={ComForm}/>
     </Route>
   </Router>
 ), document.getElementById('myApp'));
