@@ -16,10 +16,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ul className="nav nav-pills nav-justified">
-        <li activeClassName="active"><Link to="/search" activeStyle = {ACTIVE}> Search </Link></li>
-        </ul>
-        {this.props.children}
+        <ComForm/>
+        <ComList/>
       </div>
     )
   }
@@ -45,29 +43,13 @@ var ComForm = React.createClass ({
   }
 });
 
-var Search = React.createClass ({
-  render: function(){
-    return (
-      <div>
-        <ComForm  />
-        <ComList  />
-      </div>
-    )
-  }
-});
-
-
-
 const history = useBasename(createHistory)({
   basename: '/'
 })
 
 ReactDOM.render((
   <Router history={history}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Search}/>
-      <Route path="/search" component={Search}/>
-    </Route>
+    <Route path="/" component={App}/>
   </Router>
 ), document.getElementById('myApp'));
 

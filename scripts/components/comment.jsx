@@ -23,7 +23,7 @@ var Comment = React.createClass({
 						<div className="user-name">
 							<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
 							<p>{this.props.email}</p>
-							<p>{this.props.provider ?'Owns a Car' : 'Doesnt own a car'}</p>
+							<p>{this.props.provider ?'Owns a Car' : 'Doesn\'t own a car'}</p>
 						</div>
 					</li>
 				</ul>
