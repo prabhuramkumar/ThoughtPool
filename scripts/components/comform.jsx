@@ -54,7 +54,7 @@ var CommentForm = React.createClass({
 		        </div>
 		        
 		        <div className="form-group">
-		        	<input className="btn btn-primary" type="submit" value="Publish" />
+		        	<input className="btn btn-primary" type="submit" value="Search" />
 		        </div>
 		    </form> 
 	    )

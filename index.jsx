@@ -33,8 +33,8 @@ var ComList = React.createClass ({
 });
 
 var ComForm = React.createClass ({
-  onFormSubmit: function(newPool)  {
-    PoolActions.createPool(newPool);
+  onFormSubmit: function(searchPool)  {
+    PoolActions.searchPoolList(searchPool);
   },
   render: function(){
     return (

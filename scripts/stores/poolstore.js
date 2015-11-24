@@ -6,6 +6,7 @@ var PoolActions = require('../actions/poolactions');
 var PoolStore = Reflux.createStore({
 	listenables: [PoolActions],
 	poollist: [],
+	poollistFiltered: [],
 	sourceUrl: '/api/comments/',
 
 	init: function(){
@@ -23,7 +24,7 @@ var PoolStore = Reflux.createStore({
 			cache: false,
 			success: function(serverData){
 				this.poollist = serverData.reverse();
-				this.trigger(this.poollist);
+				console.log(this.poollist);
 			}.bind(this),
 			error: function(){
 				console.error(this.sourceUrl, status);
@@ -47,6 +48,24 @@ var PoolStore = Reflux.createStore({
 		    console.error(this.sourceUrl, status, err.toString());
 		  }.bind(this)
 		});
+	},
+
+	searchPoolList: function(searchPool){
+		this.poollistFiltered = [];
+		var findPool = function(poollistFiltered) {
+		   return function(pool){
+			    if(this.origin === pool.origin && (this.destination === pool.destination || this.destination == pool.via)){
+		        	poollistFiltered.push(pool);
+					console.log("filtered" + poollistFiltered);
+		        }
+		        else{
+		        	console.log("no matches found");
+		        }
+	    	}
+		}
+
+		this.poollist.filter(findPool(this.poollistFiltered), searchPool);
+		this.trigger(this.poollistFiltered);
 	}
 
 });
