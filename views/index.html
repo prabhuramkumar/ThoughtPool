@@ -6,30 +6,6 @@
     <title>React Webpack Babel App</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,600' rel='stylesheet' type='text/css'>
 </head>
-<script type="text/javascript">
-function searchLocation(e, location){
-    var code = (e.keyCode ? e.keyCode : e.which);
-   if(code == 13) { //Enter keycode
-     alert('enter press');
-     $.ajax({
-          url: '/api/comments',
-          dataType: 'json',
-          type: 'POST',
-          data: location,
-          async: false,
-          cache: false,
-          success: function(serverData) {
-            
-          }.bind(this),
-          error: function(xhr, status, err) {
-            console.error(this.sourceUrl, status, err.toString());
-          }.bind(this)
-        });
- }
-
-}
-
-</script>
 <body>
     <div class="container">
         <div class="thola-nav">
