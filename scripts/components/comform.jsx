@@ -31,7 +31,6 @@ var CommentForm = React.createClass({
 		this.refs.via.value = '';
 	},
 	onPoolChanged:function(e){
-		this.value ="selected";
 		this.setState({
            provider: !(this.state.provider)
 		});
@@ -41,11 +40,9 @@ var CommentForm = React.createClass({
 		return(
 			
 			<form className="commentForm" onSubmit={this.handleSubmit}>
-				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true} onClick={this.onPoolChanged} /> Provider</label>
-				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Pooler</label>
-				<div className="form-group">
-		        	<input className={this.state.provider ?'form-control' : 'hidden'} type="text" placeholder="Name" ref="name" />
-		        </div>
+				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true} onClick={this.onPoolChanged} /> Own a Car</label>
+				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Dont own a Car</label>
+			
 				<div className="form-group">
 		        	<input className="form-control" type="text" placeholder="From" ref="origin" />
 		        </div>
@@ -53,7 +50,7 @@ var CommentForm = React.createClass({
 		        	<input className="form-control" type="text" placeholder="To" ref="destination" />
 		        </div>
 		        <div className="form-group">
-		        	<input className={this.state.provider ?'form-control' : 'hidden'} type="text" placeholder="via" ref="via" />
+		        	<input className="form-control" type="text" placeholder="via" ref="via" />
 		        </div>
 		        
 		        <div className="form-group">

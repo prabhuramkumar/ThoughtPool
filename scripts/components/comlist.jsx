@@ -13,6 +13,8 @@ var CommentList = React.createClass({
 					key={comment.id} 
 					destination={comment.destination}
 					provider={comment.provider}
+					email={comment.email}
+					name={comment.name}>
 					>
 
 				</Comment>

@@ -1,10 +1,6 @@
 import React from 'react';
 
 var Comment = React.createClass({
-	rawMarkup: function(){
-		var rawMarkup = marked(this.props.children.toString(), {santize: true});
-		return {__html: rawMarkup};
-	},
 	render: function(){
 		return (
 			<div className="poollist">
@@ -24,13 +20,14 @@ var Comment = React.createClass({
 				</ul>
 				<ul className="misc-panel">
 					<li>
-						<h5>
-							Ramesh ({this.props.provider ?'Provider' : 'Pooler'})
-						</h5>
+						<div className="user-name">
+							<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
+							<p>{this.props.email}</p>
+							<p>{this.props.provider ?'Owns a Car' : 'Doesnt own a car'}</p>
+						</div>
 					</li>
 				</ul>
-				</div>
-           
+			</div>
 		);
 	}
 });
