@@ -1,3 +1,6 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
 .hidden{
 	visibility:hidden;
 }
@@ -7,7 +10,7 @@
     justify-content: space-between;
     background: black;
     padding: 0 20px;
-    color: rgba(0, 173, 0, 0.5);
+    color: rgba(0, 173, 0, 1);
 }
 .nav-pills {
 	margin: 10px 0;
@@ -15,7 +18,6 @@
 .nav-pills>li>a:focus, .nav-pills>li>a:hover {
 	background: none;
 }
-
 .poollist {
 	display: flex;
 	background: rgba(255, 152, 0, 0.2);
@@ -28,7 +30,6 @@
 .poollist p, .poollist h4 {
 	color: #333;
 }
-
 .commentform {
 	border: 1px solid orange;
 	padding: 20px;
@@ -70,7 +71,7 @@
 	display: flex;
 	align-items: center;
 }
-.trip-panel>li>strong {
+.trip-panel>li>p {
 	display: block;
 	font-size: 14px;
 }
@@ -83,5 +84,21 @@
 }
 .misc-panel .seats{
 	float: right;
+}
+.user-name{
+	font-weight: bold;
+	text-align: right;
+}
+
+
+/********* Icon arrow styel ********/
+.glyphicon-arrow-right:before {
+    content: "\E092";
+    position: absolute;
+    top: 10px;
+    right: -18px;
+    z-index: 9;
+    font-size: 19px;
+    color: #555;
 }
 

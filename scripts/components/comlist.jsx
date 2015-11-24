@@ -5,7 +5,7 @@ var ComList = React.createClass ({
   render() {
     return (
    	  <div> 	
-      	<CommentBox url="../../api/comments" config="list"/>
+      	<CommentBox url="/api/comments" config="list"/>
       </div>
     )
   }

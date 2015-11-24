@@ -1,5 +1,4 @@
 import React from 'react';
-import marked from 'marked';
 import Reflux from 'reflux';
 import PoolStore from '../stores/poolstore';
 import PoolActions from '../actions/poolactions';
@@ -120,19 +119,17 @@ var CommentForm = React.createClass({
 });
 
 var Comment = React.createClass({
-	rawMarkup: function(){
-		var rawMarkup = marked(this.props.children.toString(), {santize: true});
-		return {__html: rawMarkup};
-	},
 	render: function(){
 		return (
 			<div className="poollist">
 				<ul className={this.props.provider ?'trip-panel provider' : 'trip-panel pooler'}>
 					<li className="origin">
+						<span className="glyphicon glyphicon-arrow-right"></span>
 						<span>From</span>
 						<strong>{this.props.origin}</strong>
 					</li>
 					<li className="via">
+						<span className="glyphicon glyphicon-arrow-right"></span>
 						<span>Via</span>
 						<strong>{this.props.via}</strong>
 					</li>
@@ -143,9 +140,9 @@ var Comment = React.createClass({
 				</ul>
 				<ul className="misc-panel">
 					<li>
-						<h5>
+						<h5 className="user-name">
 							<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
-							({this.props.provider ?'Provider' : 'Pooler'})
+							<p>{this.props.provider ?"Owns a Car": "Doesn't own a car"}</p>
 						</h5>
 						<h5>
 							{this.props.email}

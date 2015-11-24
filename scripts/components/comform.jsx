@@ -5,7 +5,7 @@ var ComForm = React.createClass({
   render() {
     return (
     	<div className="commentform">
-    		<CommentBox url="../../api/comments" config="form"/>
+    		<CommentBox url="/api/comments" config="form"/>
     	</div>
     )
   }
