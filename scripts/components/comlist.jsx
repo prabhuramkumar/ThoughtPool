@@ -1,15 +1,30 @@
 import React from 'react';
-import CommentBox from './commentBox';
 
-var ComList = React.createClass ({
-  render() {
-    return (
-   	  <div> 	
-      	<CommentBox url="/api/comments" config="list"/>
-      </div>
-    )
-  }
+import Comment from './comment';
+
+
+var CommentList = React.createClass({
+	render: function(){
+		var commentNodes = this.props.data.map(function(comment){
+			return (
+				<Comment 
+					origin={comment.origin} 
+					via={comment.via} 
+					key={comment.id} 
+					destination={comment.destination}
+					provider={comment.provider}
+					>
+
+				</Comment>
+			);
+		});
+		return (
+			<div className="commentList">
+				{commentNodes}
+			</div>
+		);
+	}
 });
 
-module.exports = ComList;
+module.exports = CommentList;
 

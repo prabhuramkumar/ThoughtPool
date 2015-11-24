@@ -6,9 +6,7 @@ var requestSchema = new Schema({
 	  name: String,
 	  origin: String,
       destination: String,
-      via: String,
-      seats: Number,
-      provider: Boolean
+      via: String
 });
 
 mongoose.model('request', requestSchema)

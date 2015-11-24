@@ -67,7 +67,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      origin: req.body.origin,
 		      destination: req.body.destination,
 		      via: req.body.via,
-		      seats: req.body.seats,
 		      provider: req.body.provider
 		});
 		newRequest.save(function (err, result) {
@@ -77,10 +76,15 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      console.log('documents into the "request" collection are:', result);
 		      res.setHeader('Cache-Control', 'no-cache');
 		      res.json(result);
+
 		    }
 		});	
  	});
+ 	
+
 }
+
+
 
 
 

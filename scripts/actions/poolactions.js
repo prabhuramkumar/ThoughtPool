@@ -2,7 +2,8 @@ var Reflux = require('reflux');
 
 var ActionCollections = Reflux.createActions([
 	'loadPools',
-	'createPool'
+	'createPool',
+	'searchPool'
 ]);
 
 module.exports = ActionCollections;
