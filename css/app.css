@@ -30,22 +30,19 @@ body {
 .poollist p, .poollist h4 {
 	color: #333;
 }
-.commentform {
+.commentForm {
 	border: 1px solid orange;
 	padding: 20px;
 	border-radius: 5px;
 	margin: auto;
 	background: rgba(255, 152, 0, 0.2);
+	margin-top: 20px;
 }
 .commentForm label{
 	margin-right:10px;
 }
 .container {
 	max-width: 60%;
-}
-.commentList {
-	height: 500px;
-	overflow: auto;
 }
 .trip-panel  {
 	display: flex;
@@ -88,7 +85,14 @@ body {
 .user-name{
 	text-align: right;
 }
+.search-form{
+	display: flex;
+}
 
+.search-form>.form-group{
+	flex: 1;
+	margin-right: 10px;
+}
 
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {

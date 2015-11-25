@@ -42,19 +42,20 @@ var CommentForm = React.createClass({
 			<form className="commentForm" onSubmit={this.handleSubmit}>
 				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true} onClick={this.onPoolChanged} /> Own a Car</label>
 				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Don&#39;t own a Car</label>
-			
-				<div className="form-group">
-		        	<input className="form-control" type="text" placeholder="From" ref="origin" />
-		        </div>
-		        <div className="form-group">
-		        	<input className="form-control" type="text" placeholder="To" ref="destination" />
-		        </div>
-		        <div className="form-group">
-		        	<input className="form-control" type="text" placeholder="via" ref="via" />
-		        </div>
-		        
-		        <div className="form-group">
-		        	<input className="btn btn-primary" type="submit" value="Search" />
+				<div className="search-form">
+					<div className="form-group">
+			        	<input className="form-control" type="text" placeholder="From" ref="origin" />
+			        </div>
+			        <div className="form-group">
+			        	<input className="form-control" type="text" placeholder="To" ref="destination" />
+			        </div>
+			        <div className="form-group">
+			        	<input className="form-control" type="text" placeholder="via" ref="via" />
+			        </div>
+			        
+			        <div className="form-group">
+			        	<input className="btn btn-primary" type="submit" value="Search" />
+			        </div>
 		        </div>
 		    </form> 
 	    )
