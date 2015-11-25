@@ -35,7 +35,13 @@ var App = React.createClass({
   }
 });
 
-
+var PostForm = React.createClass({
+  render: function(){
+    return(
+        <CommentForm config="post" />
+    );
+  }
+})
 
 
 const history = useBasename(createHistory)({
@@ -45,6 +51,7 @@ const history = useBasename(createHistory)({
 ReactDOM.render((
   <Router history={history}>
     <Route path="/" component={App}/>
+    <Route path="/post" component={PostForm}/>
   </Router>
 ), document.getElementById('myApp'));
 

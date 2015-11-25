@@ -11,7 +11,11 @@ var CommentForm = React.createClass({
 	    };
   	},
   	onFormSubmit: function(searchPool)  {
-    	PoolActions.searchPoolList(searchPool);
+  		if(this.props.config=="post"){
+    		PoolActions.createPool(searchPool);
+    	}else{
+    		PoolActions.searchPoolList(searchPool);
+    	}
   	},
 	handleSubmit: function(e){
 		e.preventDefault();
@@ -36,14 +40,18 @@ var CommentForm = React.createClass({
            provider: !(this.state.provider)
 		});
 	},
+	closeForm: function(e){
+		alert("closed");
+	},
 	render: function(){
 
 		return(
 			
-			<form className="commentForm" onSubmit={this.handleSubmit}>
+			<form className={this.props.config =='post' ? 'searchForm postForm': 'searchForm'} onSubmit={this.handleSubmit}>
+			    <a className={this.props.config =='post' ? 'glyphicon glyphicon-remove close-form-buttom': 'hidden'} href="/"></a>
 				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true} onClick={this.onPoolChanged} /> Own a Car</label>
 				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Don&#39;t own a Car</label>
-				<div className="search-form">
+				<div className="search-elements">
 					<div className="form-group">
 			        	<input className="form-control" type="text" placeholder="From" ref="origin" />
 			        </div>
@@ -53,12 +61,16 @@ var CommentForm = React.createClass({
 			        <div className="form-group">
 			        	<input className="form-control" type="text" placeholder="via" ref="via" />
 			        </div>
+			        
 		        	<div className="form-group time-wrapper">
-			        	<input id="form-control time-field" ref="time" type="time" />
+			        	<input className="form-control time-field" ref="time" type="time" />
 			        </div>
 			        
-			        <div className="form-group submit-button">
-			        	<input className="btn btn-primary" type="submit" value="Search" />
+			        <div className={this.props.config =='post' ? 'hidden': 'form-group submit-button'}>
+			        	<input className="btn btn-primary" type="submit" ref="submit" value="Search" />
+			        </div>
+			         <div className={this.props.config =='post' ? 'form-group submit-button': 'hidden'}>
+			        	<input className="btn btn-primary" type="submit" ref="post" value="Post" />
 			        </div>
 		        </div>
 		    </form> 

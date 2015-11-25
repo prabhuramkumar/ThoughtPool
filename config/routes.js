@@ -13,11 +13,7 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.render("index.html");
 	});
 
-	app.get("/form", isAuthenticated, function(req, res){
-		res.render("index.html");
-	});
-
-	app.get("/list", isAuthenticated, function(req, res){
+	app.get("/post", isAuthenticated, function(req, res){
 		res.render("index.html");
 	});
 

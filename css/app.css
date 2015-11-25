@@ -40,17 +40,52 @@ body {
 .poollist p, .poollist h4 {
 	color: #333;
 }
-.commentForm {
+
+/********* Forms ***********/
+.searchForm {
+	position: relative;
 	padding: 20px;
 	border-radius: 5px;
 	margin: auto;
 	background: rgba(255, 255, 255, 0.2);
 	margin-top: 20px;
 }
-.commentForm label{
+.searchForm label{
 	margin-right:10px;
 	font-weight: normal;
 }
+.searchForm .time-wrapper{
+	max-width: 106px;
+}
+.searchForm .submit-button {
+    max-width: 70px;
+}
+.postForm {
+	width: 300px;
+}
+.postForm .search-elements{
+	display: block;
+}
+.postForm .time-wrapper{
+	max-width: 100%;
+}
+.postForm .submit-button {
+    max-width: 100%;
+}
+.postForm .btn{
+	width: 100%;
+}
+.postForm .search-elements .form-group{
+	margin-right: 0;
+}
+.close-form-buttom{
+	position: absolute;
+	right:0;
+	margin: 10px;
+	font-size: 20px;
+}
+
+
 .container {
 	max-width: 90%;
 }
@@ -74,7 +109,7 @@ body {
 }
 .trip-panel>li>span {
 	font-size: 12px;
-	color: #666;
+	color: #46afcd;
 	display: flex;
 	align-items: center;
 }
@@ -95,17 +130,21 @@ body {
 .user-name{
 	text-align: right;
 }
-.search-form{
+.search-elements{
 	display: flex;
-}
-.submit-button {
-    max-width: 70px;
 }
 .no-results{
 	margin-top: 40px;
+	color: #fff;
 }
-
-.search-form>.form-group{
+.no-results h4 {
+	font-size: 22px;
+    font-weight: 700;
+}
+.no-results p{
+	color: #ececec;
+}
+.search-elements>.form-group{
 	flex: 1;
 	margin-right: 10px;
 }
