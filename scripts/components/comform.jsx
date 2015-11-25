@@ -1,4 +1,5 @@
 import React from 'react';
+import PoolActions from '../actions/poolactions';
 
 
 var CommentForm = React.createClass({
@@ -8,6 +9,9 @@ var CommentForm = React.createClass({
 	      shouldHide: false,
 	      provider: true
 	    };
+  	},
+  	onFormSubmit: function(searchPool)  {
+    	PoolActions.searchPoolList(searchPool);
   	},
 	handleSubmit: function(e){
 		e.preventDefault();
@@ -20,15 +24,12 @@ var CommentForm = React.createClass({
 			alert("submit some text");
 			return; 
 		}
-		this.props.onFormSubmit({
+		this.onFormSubmit({
 			'origin': origin, 
 			'destination': destination, 
 			'via': via, 
 			'provider':this.state.provider
 		});
-		this.refs.origin.value = '';
-		this.refs.destination.value = '';
-		this.refs.via.value = '';
 	},
 	onPoolChanged:function(e){
 		this.setState({
@@ -53,7 +54,7 @@ var CommentForm = React.createClass({
 			        	<input className="form-control" type="text" placeholder="via" ref="via" />
 			        </div>
 			        
-			        <div className="form-group">
+			        <div className="form-group submit-button">
 			        	<input className="btn btn-primary" type="submit" value="Search" />
 			        </div>
 		        </div>

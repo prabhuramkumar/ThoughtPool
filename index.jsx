@@ -7,45 +7,40 @@ import Reflux from 'reflux';
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
 import CommentList from './scripts/components/comlist';
 import CommentForm from './scripts/components/comform';
+import NoResultFound from './scripts/components/noresultsfound';
 import PoolStore from './scripts/stores/poolstore';
-import PoolActions from './scripts/actions/poolactions';
+
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <ComForm/>
-        <ComList/>
-      </div>
-    )
-  }
-}
-
-var ComList = React.createClass ({
+var App = React.createClass({
   mixins: [Reflux.connect(PoolStore, 'poolstore')],
+  init: function(){
+    var page;
+    if(this.state.poolstore==="noresultsfound"){
+      page = <div>
+                <NoResultFound />
+                <CommentForm />
+              </div>
+    }else{
+      page = <div>
+                <CommentForm />
+                <CommentList data={this.state.poolstore} />
+              </div>
+    }
+    return page;
+  },
   render: function() {
-    return (
-      <CommentList data={this.state.poolstore}  />
-    )
+    return this.init();
   }
 });
 
-var ComForm = React.createClass ({
-  onFormSubmit: function(searchPool)  {
-    PoolActions.searchPoolList(searchPool);
-  },
-  render: function(){
-    return (
-      <CommentForm onFormSubmit={this.onFormSubmit} />
-    )
-  }
-});
+
+
 
 const history = useBasename(createHistory)({
   basename: '/'
-})
+});
 
 ReactDOM.render((
   <Router history={history}>

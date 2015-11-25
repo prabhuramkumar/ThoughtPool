@@ -8,6 +8,7 @@ var PoolStore = Reflux.createStore({
 	poollist: [],
 	poollistFiltered: [],
 	sourceUrl: '/api/comments/',
+	noResultFound: 'asdsa',
 
 	init: function(){
 		this.loadPools();
@@ -56,16 +57,23 @@ var PoolStore = Reflux.createStore({
 		   return function(pool){
 			    if(this.origin === pool.origin && (this.destination === pool.destination || this.destination == pool.via)){
 		        	poollistFiltered.push(pool);
-					console.log("filtered" + poollistFiltered);
 		        }
 		        else{
 		        	console.log("no matches found");
 		        }
 	    	}
+	    	
 		}
 
 		this.poollist.filter(findPool(this.poollistFiltered), searchPool);
-		this.trigger(this.poollistFiltered);
+		
+
+		if(this.poollistFiltered.length == 0){
+    	 	this.noResultFound = "noresultsfound";
+    		this.trigger(this.noResultFound);
+    	}else{
+    		this.trigger(this.poollistFiltered);
+    	}
 	}
 
 });
