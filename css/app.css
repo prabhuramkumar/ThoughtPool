@@ -9,6 +9,9 @@ body {
     background-size: 54%;
     background-position: -5px 11px;
     padding-left: 71px;
+    display: flex;
+    align-items: center;
+    height: 80px;
 }
 .hidden{
 	visibility:hidden;
@@ -112,6 +115,9 @@ body {
 }
 .time-wrapper{
 	max-width: 106px;
+}
+.time-field{
+	padding: 4px;
 }
 
 /********* Icon arrow styel ********/
