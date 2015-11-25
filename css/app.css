@@ -106,6 +106,13 @@ body {
 	flex: 1;
 	margin-right: 10px;
 }
+.time-field {
+	padding: 4px;
+    width: 100%;
+}
+.time-wrapper{
+	max-width: 106px;
+}
 
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {

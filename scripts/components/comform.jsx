@@ -53,8 +53,8 @@ var CommentForm = React.createClass({
 			        <div className="form-group">
 			        	<input className="form-control" type="text" placeholder="via" ref="via" />
 			        </div>
-		        	<div className="form-group">
-			        	<input id="form-control" ref="time" type="time" />
+		        	<div className="form-group time-wrapper">
+			        	<input id="form-control time-field" ref="time" type="time" />
 			        </div>
 			        
 			        <div className="form-group submit-button">
