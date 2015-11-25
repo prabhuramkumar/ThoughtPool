@@ -42,7 +42,14 @@ var PostForm = React.createClass({
     );
   }
 })
-
+var MyPool = React.createClass({
+  mixins: [Reflux.connect(PoolStore, 'poolstore')],
+  render: function(){
+    return(
+      <CommentList data={this.state.poolstore} />
+    )
+  }
+});
 
 const history = useBasename(createHistory)({
   basename: '/'
@@ -51,6 +58,7 @@ const history = useBasename(createHistory)({
 ReactDOM.render((
   <Router history={history}>
     <Route path="/" component={App}/>
+    <Route path="/myaccount" component={MyPool} />
     <Route path="/post" component={PostForm}/>
   </Router>
 ), document.getElementById('myApp'));

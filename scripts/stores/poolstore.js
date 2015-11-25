@@ -26,6 +26,7 @@ var PoolStore = Reflux.createStore({
 			success: function(serverData){
 				this.poollist = serverData.reverse();
 				console.log(this.poollist);
+				this.trigger(this.poollist);
 			}.bind(this),
 			error: function(){
 				console.error(this.sourceUrl, status);
@@ -66,7 +67,6 @@ var PoolStore = Reflux.createStore({
 		}
 
 		this.poollist.filter(findPool(this.poollistFiltered), searchPool);
-		
 
 		if(this.poollistFiltered.length == 0){
     	 	this.noResultFound = "noresultsfound";

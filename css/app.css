@@ -28,7 +28,7 @@ body {
 .nav-pills>li>a:focus, .nav-pills>li>a:hover {
 	background: none;
 }
-.poollist {
+.pool{
     display: flex;
     background: rrgba(239,231,124, 1);
     margin-bottom: 10px;
@@ -37,8 +37,12 @@ body {
     margin-top: 20px;
     border-bottom: 1px solid #ccc;
 }
-.poollist p, .poollist h4 {
+.pool p, .pool h4 {
 	color: #333;
+}
+.poolList{
+	height: 400px;
+	overflow: auto;
 }
 
 /********* Forms ***********/

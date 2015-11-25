@@ -22,6 +22,7 @@ var CommentForm = React.createClass({
 		var origin = this.refs.origin.value.trim();
 		var destination = this.refs.destination.value.trim();
 		var via = this.refs.via.value.trim();
+		var time= this.refs.time.value;
 
 
 		if(!destination || !origin){
@@ -32,7 +33,8 @@ var CommentForm = React.createClass({
 			'origin': origin, 
 			'destination': destination, 
 			'via': via, 
-			'provider':this.state.provider
+			'provider':this.state.provider,
+			'time': time
 		});
 	},
 	onPoolChanged:function(e){

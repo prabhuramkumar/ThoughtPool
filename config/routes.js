@@ -16,6 +16,9 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 	app.get("/post", isAuthenticated, function(req, res){
 		res.render("index.html");
 	});
+	app.get("/myaccount", isAuthenticated, function(req, res){
+		res.render("index.html");
+	});
 
 	app.get("/login",
 		passport.authenticate(config.passport.strategy,
@@ -63,7 +66,8 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      origin: req.body.origin,
 		      destination: req.body.destination,
 		      via: req.body.via,
-		      provider: req.body.provider
+		      provider: req.body.provider,
+		      time: req.body.time
 		});
 		newRequest.save(function (err, result) {
 		    if (err) {
@@ -72,7 +76,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      console.log('documents into the "request" collection are:', result);
 		      res.setHeader('Cache-Control', 'no-cache');
 		      res.json(result);
-
 		    }
 		});	
  	});

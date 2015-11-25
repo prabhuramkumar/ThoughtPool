@@ -7,7 +7,9 @@ var requestSchema = new Schema({
 	  origin: String,
       destination: String,
       via: String,
-      provider: Boolean
+      provider: Boolean,
+      time: String
+
 });
 
 mongoose.model('request', requestSchema)

@@ -3,7 +3,7 @@ import React from 'react';
 var Comment = React.createClass({
 	render: function(){
 		return (
-			<div className="poollist">
+			<div className="pool">
 				<ul className={this.props.provider ?'trip-panel provider' : 'trip-panel pooler'}>
 					<li className="origin">
 						<span>From</span>
@@ -24,6 +24,8 @@ var Comment = React.createClass({
 							<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
 							<p>{this.props.email}</p>
 							<p>{this.props.provider ?'Owns a Car' : 'Doesn\'t own a car'}</p>
+							<p>{this.props.time}</p>
+
 						</div>
 					</li>
 				</ul>

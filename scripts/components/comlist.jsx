@@ -14,14 +14,15 @@ var CommentList = React.createClass({
 					destination={comment.destination}
 					provider={comment.provider}
 					email={comment.email}
-					name={comment.name}>
-					>
+					name={comment.name}
+					time={comment.time}>
+					
 
 				</Comment>
 			);
 		});
 		return (
-			<div className="commentList">
+			<div className="poolList">
 				{commentNodes}
 			</div>
 		);
