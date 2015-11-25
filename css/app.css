@@ -38,7 +38,8 @@ body {
     border-bottom: 1px solid #ccc;
 }
 .pool p, .pool h4 {
-	color: #333;
+	color: #ccc;
+	margin:0;
 }
 .poolList{
 	height: 400px;
@@ -103,13 +104,13 @@ body {
 .trip-panel>li{
 	padding: 10px;
     margin: 3px;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.8);
     border-radius: 7px;
     flex: 1;
     color: #fff;
 }
 .trip-panel.pooler>li {
-	background: rgba(255,255,255,0.3);
+	background: rgba(255,255,255,0.8);
 }
 .trip-panel>li>span {
 	font-size: 12px;
@@ -120,6 +121,12 @@ body {
 .trip-panel>li>p {
 	display: block;
 	font-size: 14px;
+}
+.trip-panel.user-panel{
+	width: 30%;
+}
+.trip-panel.user-panel>li{
+	background: rgba(0,0,0,0.8);
 }
 .alert {
 	margin: 0;

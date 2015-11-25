@@ -18,7 +18,7 @@ var Comment = React.createClass({
 						<strong>{this.props.destination}</strong>
 					</li>
 				</ul>
-				<ul className="misc-panel">
+				<ul className="trip-panel user-panel">
 					<li>
 						<div className="user-name">
 							<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
