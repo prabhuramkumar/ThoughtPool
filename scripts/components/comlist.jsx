@@ -2,7 +2,6 @@ import React from 'react';
 
 import Comment from './comment';
 
-
 var CommentList = React.createClass({
 	render: function(){
 		var commentNodes = this.props.data.map(function(comment){
@@ -15,9 +14,10 @@ var CommentList = React.createClass({
 					provider={comment.provider}
 					email={comment.email}
 					name={comment.name}
-					time={comment.time}>
-					
-
+					time={comment.time}
+					originAddress={comment.originAddress}
+					destinationAddress={comment.destinationAddress}
+					viaAddress={comment.viaAddress}>
 				</Comment>
 			);
 		});

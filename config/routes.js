@@ -13,12 +13,14 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.render("index.html");
 	});
 
+	// to be revisited - temp fix for page refresh
 	app.get("/create", isAuthenticated, function(req, res){
 		res.render("index.html");
 	});
 	app.get("/myaccount", isAuthenticated, function(req, res){
 		res.render("index.html");
 	});
+	// to be revisited - temp fix for page refresh
 
 	app.get("/login",
 		passport.authenticate(config.passport.strategy,
@@ -65,6 +67,9 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 			  name: user.firstName + " " + user.lastName,
 		      origin: req.body.origin,
 		      destination: req.body.destination,
+		      originAddress: req.body.originAddress,
+		      destinationAddress: req.body.destinationAddress,
+		      viaAddress: req.body.viaAddress,
 		      via: req.body.via,
 		      provider: req.body.provider,
 		      time: req.body.time
@@ -79,8 +84,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		    }
 		});	
  	});
- 	
-
 }
 
 

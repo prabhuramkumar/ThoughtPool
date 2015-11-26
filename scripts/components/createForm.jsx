@@ -28,8 +28,11 @@ var CreateForm = React.createClass({
 		var destination = this.refs.destinationId.value;
 		var via = this.refs.viaId.value;
 		var time= this.refs.time.value;
+		var originAddress = this.refs.origin.value;
+		var destinationAddress = this.refs.destination.value;
+		var viaAddress = this.refs.via.value;
 
-		if(!destination || !origin){
+		if(!destinationAddress || !originAddress){
 			alert("submit some text");
 			return; 
 		}
@@ -38,7 +41,10 @@ var CreateForm = React.createClass({
 			'destination': destination, 
 			'via': via, 
 			'provider':this.state.provider,
-			'time': time
+			'time': time,
+			'originAddress': originAddress,
+			'destinationAddress': destinationAddress,
+			'viaAddress': viaAddress
 		});
 	},
 	onPoolChanged:function(e){
