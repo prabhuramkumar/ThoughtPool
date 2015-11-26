@@ -104,6 +104,16 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 	margin: 10px;
 	font-size: 20px;
 }
+.search-form .auto-complete{
+	display: flex;
+    width: 100%;
+}
+
+.search-form .form-group{
+	flex: 1;
+	margin-right: 5px;
+	margin-bottom: 0;
+}
 
 
 .container {
