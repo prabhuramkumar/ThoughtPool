@@ -35,15 +35,15 @@ var Comment = React.createClass({
 			<div className="pool">
 				<ul className={this.props.provider ?'trip-panel provider' : 'trip-panel pooler'}>
 					<li className="origin">
-						<span>From</span>
+						<h5>From</h5>
 						<p>{this.state.origin}</p>
 					</li>
 					<li className="via">
-						<span>Via</span>
+						<h5>Via</h5>
 						<p>{this.state.via}</p>
 					</li>
 					<li className="destination">
-						<span>To</span>
+						<h5>To</h5>
 						<p>{this.state.destination}</p>
 					</li>
 				</ul>

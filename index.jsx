@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 import Reflux from 'reflux';
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
 import CommentList from './scripts/components/comlist';
-import CommentForm from './scripts/components/comform';
+import SearchForm from './scripts/components/searchform';
+import CreateForm from './scripts/components/createform';
 import NoResultFound from './scripts/components/noresultsfound';
 import PoolStore from './scripts/stores/poolstore';
 
@@ -20,11 +21,11 @@ var App = React.createClass({
     if(this.state.poolstore==="noresultsfound"){
       page = <div>
                 <NoResultFound />
-                <CommentForm />
+                <SearchForm />
               </div>
     }else{
       page = <div>
-                <CommentForm />
+                <SearchForm />
                 <CommentList data={this.state.poolstore} />
               </div>
     }
@@ -38,7 +39,7 @@ var App = React.createClass({
 var PostForm = React.createClass({
   render: function(){
     return(
-        <CommentForm config="post" />
+        <CreateForm />
     );
   }
 })

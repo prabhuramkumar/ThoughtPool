@@ -11,7 +11,7 @@ var setAutocompleteAreaForElement = function(inputId, placeElementId){
     });
 }
 
-var CommentForm = React.createClass({
+var SearchForm = React.createClass({
 	getInitialState: function () {
 	    return {
 	      pool: '',
@@ -20,11 +20,7 @@ var CommentForm = React.createClass({
 	    };
   	},
   	onFormSubmit: function(searchPool)  {
-  		if(this.props.config=="post"){
-    		PoolActions.createPool(searchPool);
-    	}else{
-    		PoolActions.searchPoolList(searchPool);
-    	}
+		PoolActions.searchPoolList(searchPool);
   	},
 	handleSubmit: function(e){
 		e.preventDefault();
@@ -45,16 +41,6 @@ var CommentForm = React.createClass({
 			'time': time
 		});
 	},
-	onPoolChanged:function(e){
-		this.setState({
-           provider: !(this.state.provider)
-		});
-	},
-
-	closeForm: function(e){
-		alert("closed");
-	},
-
 	componentDidMount: function() {
     	setAutocompleteAreaForElement("from", "originId");
     	setAutocompleteAreaForElement("via", "viaId");
@@ -62,10 +48,7 @@ var CommentForm = React.createClass({
   	},
 	render: function(){
 		return(
-			<form className={this.props.config =='post' ? 'searchForm postForm': 'searchForm'} onSubmit={this.handleSubmit}>
-			    <a className={this.props.config =='post' ? 'glyphicon glyphicon-remove close-form-buttom': 'hidden'} href="/"></a>
-				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true} onClick={this.onPoolChanged} /> Own a Car</label>
-				<label><input type="radio" name="poolOption" ref="pooler"  onClick={this.onPoolChanged} /> Don&#39;t own a Car</label>
+			<form className="thola-form" onSubmit={this.handleSubmit}>
 				<div className="search-elements">
 					<div className="form-group">
 			        	<input className="form-control" type="text" placeholder="From" ref="origin" id="from"/>
@@ -81,12 +64,10 @@ var CommentForm = React.createClass({
 			        	<input className="form-control time-field" ref="time" type="time" />
 			        </div>
 			        
-			        <div className={this.props.config =='post' ? 'hidden': 'form-group submit-button'}>
+			        <div className="form-group submit-button">
 			        	<input className="btn btn-primary" type="submit" ref="submit" value="Search" />
 			        </div>
-			         <div className={this.props.config =='post' ? 'form-group submit-button': 'hidden'}>
-			        	<input className="btn btn-primary" type="submit" ref="post" value="Post" />
-			        </div>
+			       
 			        <input type="hidden" ref="originId" id="originId"/>
 				    <input type="hidden" ref="destinationId" id="destinationId"/>
 				    <input type="hidden" ref="viaId" id="viaId"/>
@@ -96,4 +77,4 @@ var CommentForm = React.createClass({
 	}
 });
 
-module.exports = CommentForm;
+module.exports = SearchForm;

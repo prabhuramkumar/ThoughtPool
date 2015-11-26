@@ -2,6 +2,14 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	background-image: url('car-bg.jpg');
 	background-size: cover;
+	font-weight: 400;
+}
+h1, h2, h3, h4, h5, h6, label, .user-name a{
+	font-family: 'Poiret One', cursive;
+	margin:0;
+}
+.user-name a{
+	font-size: 20px;
 }
 .logo{
 	background-image: url(logo.png);
@@ -22,6 +30,16 @@ body {
     justify-content: space-between;
     color: #fff;
 }
+.thola-nav a, .thola-nav a:hover{
+	background-color: rgba(254,203,0,1);
+	padding: 5px 10px;
+	color: #333;
+	font-size: 11px;
+}
+.thola-nav a.logout{
+	background: #333;
+	color: #fecb00;
+}
 .nav-pills {
 	margin: 10px 0;
 }
@@ -39,12 +57,12 @@ body {
 }
 
 .poolList{
-	height: 400px;
+	height: 450px;
 	overflow: auto;
 }
 
 /********* Forms ***********/
-.searchForm {
+.thola-form {
 	position: relative;
 	padding: 20px;
 	border-radius: 5px;
@@ -52,32 +70,32 @@ body {
 	background: rgba(255, 255, 255, 0.2);
 	margin-top: 20px;
 }
-.searchForm label{
+.thola-form label{
 	margin-right:10px;
 	font-weight: normal;
 }
-.searchForm .time-wrapper{
+.thola-form .time-wrapper{
 	max-width: 106px;
 }
-.searchForm .submit-button {
+.thola-form .submit-button {
     max-width: 70px;
 }
-.postForm {
+.create-form {
 	width: 300px;
 }
-.postForm .search-elements{
+.create-form .search-elements{
 	display: block;
 }
-.postForm .time-wrapper{
+.create-form .time-wrapper{
 	max-width: 100%;
 }
-.postForm .submit-button {
+.create-form .submit-button {
     max-width: 100%;
 }
-.postForm .btn{
+.create-form .btn{
 	width: 100%;
 }
-.postForm .search-elements .form-group{
+.create-form .search-elements .form-group{
 	margin-right: 0;
 }
 .close-form-buttom{
@@ -100,7 +118,7 @@ body {
 }
 .trip-panel p {
 	margin:0;
-	color:#333;
+	color:#666;
 }
 .trip-panel>li{
 	padding: 10px;
@@ -112,15 +130,16 @@ body {
 .trip-panel.pooler>li {
 	background: rgba(255,255,255,0.8);
 }
-.trip-panel>li>span {
-	font-size: 12px;
-	color: #46afcd;
-	display: flex;
-	align-items: center;
+.trip-panel>li>h5 {
+    font-size: 18px;
+    color: #46afcd;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
 }
 .trip-panel>li>p {
 	display: block;
-	font-size: 14px;
+	font-size: 12px;
 }
 .trip-panel.user-panel{
 	width: 30%;
@@ -130,6 +149,7 @@ body {
 }
 .trip-panel.user-panel p{
 	color: #666;
+	font-size: 12px;
 }
 .alert {
 	margin: 0;
@@ -155,6 +175,7 @@ body {
 .search-elements>.form-group{
 	flex: 1;
 	margin-right: 10px;
+	margin-bottom: 0;
 }
 .time-field {
 	padding: 4px;
@@ -188,6 +209,8 @@ body {
 }
 .form-control{
 	border-radius: 0;
+	color: #46afcd;
+	font-size: 11px;
 }
 a, a:hover, a:focus{
 	color: #fecb00;
