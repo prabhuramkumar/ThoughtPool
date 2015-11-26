@@ -2,17 +2,13 @@ import React from 'react';
 import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
 
-
-
 var CreateForm = React.createClass({
 	getInitialState: function () {
 	    return {
 	      provider: true
 	    };
   	},
-  	onFormSubmit: function(searchPool)  {
-		PoolActions.createPool(searchPool);
-  	},
+  
 	handleSubmit: function(e){
 		e.preventDefault();
 
@@ -30,7 +26,7 @@ var CreateForm = React.createClass({
 			return; 
 		}
 
-		this.onFormSubmit({
+		var searchPool = {
 			'origin': origin, 
 			'destination': destination, 
 			'via': via, 
@@ -39,8 +35,10 @@ var CreateForm = React.createClass({
 			'originAddress': originAddress,
 			'destinationAddress': destinationAddress,
 			'viaAddress': viaAddress
-		});
+		};
+		PoolActions.createPool(searchPool);
 	},
+	
 	onPoolChanged:function(e){
 		this.setState({
            provider: !(this.state.provider)

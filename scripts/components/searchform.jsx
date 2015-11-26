@@ -3,10 +3,6 @@ import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
 
 var SearchForm = React.createClass({
-	autoCompleteValues: [],
-  	onFormSubmit: function(searchPool)  {
-		PoolActions.searchPoolList(searchPool);
-  	},
 
 	handleSubmit: function(e){
 		e.preventDefault();
@@ -17,16 +13,18 @@ var SearchForm = React.createClass({
 			alert("submit some text");
 			return; 
 		}
-		this.onFormSubmit({
+		var searchPool = {
 			origin: this.refs.origin.getPlaceId("originId"),
 			destination: this.refs.destination.getPlaceId("destinationId"),
 			via: this.refs.via.getPlaceId("viaId")
-		});
+		};
+		
+		PoolActions.searchPoolList(searchPool);
 	},
 
 	render: function(){
 		return(
-			<form className="thola-form search-form" onSubmit={this.handleSubmit}>
+			<form className="thola-form search-form">
 				<div className="search-elements">
 					<AutoComplete name="origin" ref="origin"/>
 					<AutoComplete name="destination" ref="destination"/>
@@ -35,7 +33,7 @@ var SearchForm = React.createClass({
 			        	<input className="form-control time-field" ref="time" type="time" />
 			        </div>
 			        <div className="form-group submit-button">
-			        	<input className="btn btn-primary" type="submit" ref="submit" value="Search" />
+			        	<input className="btn btn-primary" type="submit" ref="submit" value="Search" onClick={this.handleSubmit} />
 			        </div>
 		        </div>
 		    </form>
