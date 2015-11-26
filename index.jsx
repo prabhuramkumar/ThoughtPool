@@ -36,13 +36,7 @@ var App = React.createClass({
   }
 });
 
-var PostForm = React.createClass({
-  render: function(){
-    return(
-        <CreateForm />
-    );
-  }
-})
+
 var MyPool = React.createClass({
   mixins: [Reflux.connect(PoolStore, 'poolstore')],
   render: function(){
@@ -60,7 +54,7 @@ ReactDOM.render((
   <Router history={history}>
     <Route path="/" component={App}/>
     <Route path="/myaccount" component={MyPool} />
-    <Route path="/post" component={PostForm}/>
+    <Route path="/create" component={CreateForm}/>
   </Router>
 ), document.getElementById('myApp'));
 
