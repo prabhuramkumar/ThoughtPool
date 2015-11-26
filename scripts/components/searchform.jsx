@@ -1,24 +1,28 @@
 import React from 'react';
 import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
+import Constants from './constants';
 
 var SearchForm = React.createClass({
 
 	handleSubmit: function(e){
 		e.preventDefault();
-		console.log(this.refs.origin.getPlaceId("originId"));
 		var time = this.refs.time.value;
 
-		if(!this.refs.origin.getPlaceId("originId") || !this.refs.destination.getPlaceId("destinationId")){
+		var originPlaceId = this.refs[Constants.origin].getPlaceId(Constants.originId);
+		var destinationPlaceId = this.refs[Constants.destination].getPlaceId(Constants.destinationId);
+		var viaPlaceId = this.refs[Constants.via].getPlaceId(Constants.viaId);
+
+		if(!originPlaceId  || !destinationPlaceId){
 			alert("submit some text");
 			return; 
 		}
 		var searchPool = {
-			origin: this.refs.origin.getPlaceId("originId"),
-			destination: this.refs.destination.getPlaceId("destinationId"),
-			via: this.refs.via.getPlaceId("viaId")
+			origin: originPlaceId,
+			destination: destinationPlaceId,
+			via: viaPlaceId
 		};
-		
+
 		PoolActions.searchPoolList(searchPool);
 	},
 
@@ -26,9 +30,9 @@ var SearchForm = React.createClass({
 		return(
 			<form className="thola-form search-form">
 				<div className="search-elements">
-					<AutoComplete name="origin" ref="origin"/>
-					<AutoComplete name="destination" ref="destination"/>
-					<AutoComplete name="via" ref="via"/>
+					<AutoComplete name={Constants.origin} ref={Constants.origin}/>
+					<AutoComplete name={Constants.destination} ref={Constants.destination}/>
+					<AutoComplete name={Constants.via} ref={Constants.via}/>
 			        <div className="form-group time-wrapper">
 			        	<input className="form-control time-field" ref="time" type="time" />
 			        </div>

@@ -26,6 +26,7 @@ var AutoComplete = React.createClass({
   	getPlace: function(ref){
   		return this.refs[ref].value;
   	},
+  	
 	render: function(){
 		var ref = this.props.name, 
 			refId=ref + "Id";
