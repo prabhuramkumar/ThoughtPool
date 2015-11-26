@@ -13,13 +13,13 @@ var Comment = React.createClass({
 						<h5>From</h5>
 						<p>{this.props.originAddress}</p>
 					</li>
-					<li className="via">
-						<h5>Via</h5>
-						<p>{this.props.viaAddress}</p>
-					</li>
 					<li className="destination">
 						<h5>To</h5>
 						<p>{this.props.destinationAddress}</p>
+					</li>
+					<li className="via">
+						<h5>Via</h5>
+						<p>{this.props.viaAddress}</p>
 					</li>
 				</ul>
 				<ul className="trip-panel user-panel">
