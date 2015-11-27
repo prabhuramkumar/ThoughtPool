@@ -72,7 +72,8 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      viaAddress: req.body.viaAddress,
 		      via: req.body.via,
 		      provider: req.body.provider,
-		      time: req.body.time
+		      time: req.body.time,
+		      routeEncoded: req.body.routeEncoded
 		});
 		newRequest.save(function (err, result) {
 		    if (err) {

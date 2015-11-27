@@ -202,12 +202,13 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
   margin: 0;
   padding: 0;
   height: 300px;
-  argin: 0;
-  width: 50%;
   margin-top: 20px;
 }
 .create-container{
 	display: flex;
+}
+.map-container{
+	width: 70%;
 }
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {

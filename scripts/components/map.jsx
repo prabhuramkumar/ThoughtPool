@@ -7,7 +7,10 @@ var Map = React.createClass({
 	},
 	render: function(){
 		return(
-			<div id="map"></div>
+			<div className="map-container">
+				<div id="map"></div>
+				<input type="hidden" id="encodedRoute"/>
+			</div>
 			);
 	}
 });

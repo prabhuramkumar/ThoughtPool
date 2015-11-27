@@ -11,8 +11,8 @@ var requestSchema = new Schema({
       via: String,
 	  viaAddress: String,
       provider: Boolean,
-      time: String
-
+      time: String,
+      routeEncoded: String
 });
 
 mongoose.model('request', requestSchema)

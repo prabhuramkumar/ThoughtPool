@@ -27,8 +27,7 @@ var mapRenderer = {
 		  	directionsService.route(request, function(result, status) {
 		    	if (status == google.maps.DirectionsStatus.OK) {
 		      		directionsDisplay.setDirections(result);
-		      		//store routeencoded in db
-		      		routeEncoded = result.routes[0].overview_polyline;
+		      		$("#encodedRoute").val(result.routes[0].overview_polyline);
 		    	} else {
 		     		alert("couldn't get directions:" + status);
 		    	}
@@ -49,6 +48,10 @@ var mapRenderer = {
 
 		map = new google.maps.Map(document.getElementById("map"), mapOptions);
 		directionsDisplay.setMap(map);
+		directionsDisplay.addListener('directions_changed', function() {
+    		var result = directionsDisplay.getDirections();
+   			$("#encodedRoute").val(result.routes[0].overview_polyline);
+  		});
 	}
 }
 

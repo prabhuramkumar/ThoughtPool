@@ -20,14 +20,15 @@ var CreateForm = React.createClass({
 			provider = this.refs.provider.checked,
 			originAddress = originElement.getPlace(Constants.origin),
 			destinationAddress = destinationElement.getPlace(Constants.destination),
-			viaAddress = viaElement.getPlace(Constants.via)
+			viaAddress = viaElement.getPlace(Constants.via),
+			routeEncoded = document.getElementById("encodedRoute").value;
 
 		if(!origin || !via || !destination || !time){
 			alert("submit some text");
 			return; 
 		}
 
-		var searchPool = {
+		var pool = {
 			'origin': origin, 
 			'destination': destination, 
 			'via': via, 
@@ -35,9 +36,10 @@ var CreateForm = React.createClass({
 			'time': time,
 			'originAddress': originAddress,
 			'destinationAddress': destinationAddress,
-			'viaAddress': viaAddress
+			'viaAddress': viaAddress,
+			'routeEncoded': routeEncoded
 		};
-		PoolActions.createPool(searchPool);
+		PoolActions.createPool(pool);
 	},
 
 	render: function(){
