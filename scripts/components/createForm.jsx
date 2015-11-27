@@ -28,6 +28,10 @@ var CreateForm = React.createClass({
 			return; 
 		}
 
+		if(!routeEncoded){
+			alert("Route doesn't exist for the given areas")
+		}
+		
 		var pool = {
 			'origin': origin, 
 			'destination': destination, 

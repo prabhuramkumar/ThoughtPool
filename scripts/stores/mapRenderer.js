@@ -17,6 +17,8 @@ var mapRenderer = {
 		this.setRoute(this.source, this.destination);
 	},
 	setRoute: function(source, destination){
+		$("#encodedRoute").val('');
+		
 		if(source != '' && destination != ''){
 		    var request = {
 		   		origin: {'placeId': source},
