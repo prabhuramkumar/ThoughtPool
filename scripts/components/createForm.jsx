@@ -1,6 +1,7 @@
 import React from 'react';
 import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
+import Map from './map';
 import Constants from './constants';
 
 var CreateForm = React.createClass({
@@ -41,23 +42,26 @@ var CreateForm = React.createClass({
 
 	render: function(){
 		return(
-			<form className="thola-form create-form" onSubmit={this.handleSubmit}>
-			    <a className="glyphicon glyphicon-remove close-form-buttom" href="/"></a>
-				<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true}  /> Own a Car</label>
-				<label><input type="radio" name="poolOption" ref="pooler"/> Don&#39;t own a Car</label>
-				<div className="search-elements">
-					<AutoComplete name={Constants.origin} ref={Constants.origin}/>
-					<AutoComplete name={Constants.destination} ref={Constants.destination}/>
-					<AutoComplete name={Constants.via} ref={Constants.via}/>
+			<div className="create-container">
+				<form className="thola-form create-form" onSubmit={this.handleSubmit}>
+				    <a className="glyphicon glyphicon-remove close-form-buttom" href="/"></a>
+					<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true}  /> Own a Car</label>
+					<label><input type="radio" name="poolOption" ref="pooler"/> Don&#39;t own a Car</label>
+					<div className="search-elements">
+						<AutoComplete name={Constants.origin} ref={Constants.origin}/>
+						<AutoComplete name={Constants.destination} ref={Constants.destination}/>
+						<AutoComplete name={Constants.via} ref={Constants.via}/>
 
-					<div className="form-group time-wrapper">
-			        	<input className="form-control time-field" ref="time" type="time" />
+						<div className="form-group time-wrapper">
+				        	<input className="form-control time-field" ref="time" type="time" />
+				        </div>
+					    <div className="form-group submit-button">
+				        	<input className="btn btn-primary" type="submit" ref="post" value="Post" />
+				        </div>
 			        </div>
-				    <div className="form-group submit-button">
-			        	<input className="btn btn-primary" type="submit" ref="post" value="Post" />
-			        </div>
-		        </div>
-		    </form>
+			    </form>
+			    <Map/>
+		    </div>
 	    )
 	}
 });
