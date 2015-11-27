@@ -52,6 +52,8 @@ var mapRenderer = {
 		directionsDisplay.setMap(map);
 		directionsDisplay.addListener('directions_changed', function() {
     		var result = directionsDisplay.getDirections();
+    		$("#origin").val(result.routes[0].legs[0].start_address)
+    		$("#destination").val(result.routes[0].legs[0].end_address)
    			$("#encodedRoute").val(result.routes[0].overview_polyline);
   		});
 	}
