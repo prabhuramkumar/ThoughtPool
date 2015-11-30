@@ -15,46 +15,46 @@ import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
 
 var App = React.createClass({
-  mixins: [Reflux.connect(PoolStore, 'poolstore')],
-  init: function(){
-    var page;
-    if(this.state.poolstore==="noresultsfound"){
-      page = <div>
-                <NoResultFound />
-                <SearchForm />
-              </div>
-    }else{
-      page = <div>
-                <SearchForm />
-                <CommentList data={this.state.poolstore} />
-              </div>
-    }
-    return page;
-  },
-  render: function() {
-    return this.init();
-  }
+	mixins: [Reflux.connect(PoolStore, 'poolstore')],
+	init: function(){
+		var page;
+		if(this.state.poolstore==="noresultsfound"){
+			page = <div>
+						<NoResultFound />
+						<SearchForm />
+					</div>
+		}else{
+			page = <div>
+						<SearchForm />
+						<CommentList data={this.state.poolstore} />
+					</div>
+		}
+		return page;
+	},
+	render: function() {
+		return this.init();
+	}
 });
 
 
 var MyPool = React.createClass({
-  mixins: [Reflux.connect(PoolStore, 'poolstore')],
-  render: function(){
-    return(
-      <CommentList data={this.state.poolstore} />
-    )
-  }
+	mixins: [Reflux.connect(PoolStore, 'poolstore')],
+	render: function(){
+		return(
+			<CommentList data={this.state.poolstore} />
+		)
+	}
 });
 
 const history = useBasename(createHistory)({
-  basename: '/'
+	basename: '/'
 });
 
 ReactDOM.render((
-  <Router history={history}>
-    <Route path="/" component={App}/>
-    <Route path="/myaccount" component={MyPool} />
-    <Route path="/create" component={CreateForm}/>
-  </Router>
+	<Router history={history}>
+		<Route path="/" component={App}/>
+		<Route path="/myaccount" component={MyPool} />
+		<Route path="/create" component={CreateForm}/>
+	</Router>
 ), document.getElementById('myApp'));
 
