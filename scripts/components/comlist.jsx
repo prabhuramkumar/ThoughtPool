@@ -8,7 +8,6 @@ var CommentList = React.createClass({
 			return (
 				<Comment 
 					origin={comment.origin} 
-					via={comment.via} 
 					key={comment.id} 
 					destination={comment.destination}
 					provider={comment.provider}
@@ -16,8 +15,7 @@ var CommentList = React.createClass({
 					name={comment.name}
 					time={comment.time}
 					originAddress={comment.originAddress}
-					destinationAddress={comment.destinationAddress}
-					viaAddress={comment.viaAddress}>
+					destinationAddress={comment.destinationAddress}>
 				</Comment>
 			);
 		});

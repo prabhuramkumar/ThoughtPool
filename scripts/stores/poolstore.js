@@ -56,7 +56,7 @@ var PoolStore = Reflux.createStore({
 		this.poollistFiltered = [];
 		var findPool = function(poollistFiltered) {
 		   return function(pool){
-			    if(this.origin === pool.origin && (this.destination === pool.destination || this.destination == pool.via)){
+			    if(this.origin === pool.origin && this.destination === pool.destination){
 		        	poollistFiltered.push(pool);
 		        }
 		        else{

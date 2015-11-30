@@ -69,8 +69,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      destination: req.body.destination,
 		      originAddress: req.body.originAddress,
 		      destinationAddress: req.body.destinationAddress,
-		      viaAddress: req.body.viaAddress,
-		      via: req.body.via,
 		      provider: req.body.provider,
 		      time: req.body.time,
 		      routeEncoded: req.body.routeEncoded

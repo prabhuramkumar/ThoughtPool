@@ -3,44 +3,49 @@ import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
 import Map from './map';
 import Constants from './constants';
+import MapRenderer from '../stores/mapRenderer';
 
 var CreateForm = React.createClass({
 	
+	resetSource: function(placeId){
+		MapRenderer.resetSource(placeId);
+	},
+
+	resetDestination: function(placeId){
+		MapRenderer.resetDestination(placeId);
+	},
+
 	handleSubmit: function(e){
 		e.preventDefault();
 
 		var originElement = this.refs[Constants.origin];
 		var destinationElement = this.refs[Constants.destination];
-		var viaElement = this.refs[Constants.via];
 
 		var origin = originElement.getPlaceId(Constants.originId),
-			via= viaElement.getPlaceId(Constants.viaId),
 			destination = destinationElement.getPlaceId(Constants.destinationId),
 			time = this.refs.time.value,
 			provider = this.refs.provider.checked,
 			originAddress = originElement.getPlace(Constants.origin),
 			destinationAddress = destinationElement.getPlace(Constants.destination),
-			viaAddress = viaElement.getPlace(Constants.via),
 			routeEncoded = document.getElementById("encodedRoute").value;
 
-		if(!origin || !via || !destination || !time){
+		if(!origin || !destination || !time){
 			alert("submit some text");
 			return; 
 		}
 
 		if(!routeEncoded){
-			alert("Route doesn't exist for the given areas")
+			alert("Route doesn't exist for the given areas");
+			return;
 		}
 		
 		var pool = {
 			'origin': origin, 
 			'destination': destination, 
-			'via': via, 
 			'provider': provider,
 			'time': time,
 			'originAddress': originAddress,
 			'destinationAddress': destinationAddress,
-			'viaAddress': viaAddress,
 			'routeEncoded': routeEncoded
 		};
 		PoolActions.createPool(pool);
@@ -54,9 +59,14 @@ var CreateForm = React.createClass({
 					<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true}  /> Own a Car</label>
 					<label><input type="radio" name="poolOption" ref="pooler"/> Don&#39;t own a Car</label>
 					<div className="search-elements">
-						<AutoComplete name={Constants.origin} ref={Constants.origin}/>
-						<AutoComplete name={Constants.destination} ref={Constants.destination}/>
-						<AutoComplete name={Constants.via} ref={Constants.via}/>
+						<AutoComplete 
+							name={Constants.origin}
+							ref={Constants.origin}
+							placeChangedCallback={this.resetSource}/>
+						<AutoComplete
+							name={Constants.destination}
+							ref={Constants.destination}
+							placeChangedCallback={this.resetDestination}/>
 
 						<div className="form-group time-wrapper">
 				        	<input className="form-control time-field" ref="time" type="time" />

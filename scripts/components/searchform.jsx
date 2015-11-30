@@ -11,7 +11,6 @@ var SearchForm = React.createClass({
 
 		var originPlaceId = this.refs[Constants.origin].getPlaceId(Constants.originId);
 		var destinationPlaceId = this.refs[Constants.destination].getPlaceId(Constants.destinationId);
-		var viaPlaceId = this.refs[Constants.via].getPlaceId(Constants.viaId);
 
 		if(!originPlaceId  || !destinationPlaceId){
 			alert("submit some text");
@@ -20,7 +19,6 @@ var SearchForm = React.createClass({
 		var searchPool = {
 			origin: originPlaceId,
 			destination: destinationPlaceId,
-			via: viaPlaceId
 		};
 
 		PoolActions.searchPoolList(searchPool);
@@ -32,7 +30,6 @@ var SearchForm = React.createClass({
 				<div className="search-elements">
 					<AutoComplete name={Constants.origin} ref={Constants.origin}/>
 					<AutoComplete name={Constants.destination} ref={Constants.destination}/>
-					<AutoComplete name={Constants.via} ref={Constants.via}/>
 			        <div className="form-group time-wrapper">
 			        	<input className="form-control time-field" ref="time" type="time" />
 			        </div>

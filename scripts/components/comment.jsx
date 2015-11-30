@@ -17,10 +17,6 @@ var Comment = React.createClass({
 						<h5>To</h5>
 						<p>{this.props.destinationAddress}</p>
 					</li>
-					<li className="via">
-						<h5>Via</h5>
-						<p>{this.props.viaAddress}</p>
-					</li>
 				</ul>
 				<ul className="trip-panel user-panel">
 					<li>

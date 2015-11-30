@@ -8,8 +8,6 @@ var requestSchema = new Schema({
 	  originAddress: String,
       destination: String,
 	  destinationAddress: String,
-      via: String,
-	  viaAddress: String,
       provider: Boolean,
       time: String,
       routeEncoded: String
