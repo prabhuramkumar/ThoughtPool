@@ -6,6 +6,12 @@ var AutoComplete = React.createClass({
 	    var inputElement = document.getElementById(inputId);
 	    var autocomplete = new google.maps.places.Autocomplete(inputElement);
 	    var component = this;
+	    var name = this.props.name;
+
+	    inputElement.addEventListener('change', function(){
+	        document.getElementById(placeElementId).value = "";
+	    });
+
 	    autocomplete.addListener('place_changed', function() {
 	        var place = autocomplete.getPlace();
 	        var placeId = place.place_id;
