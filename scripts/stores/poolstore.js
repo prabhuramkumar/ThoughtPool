@@ -6,9 +6,7 @@ var PoolActions = require('../actions/poolactions');
 var PoolStore = Reflux.createStore({
 	listenables: [PoolActions],
 	poollist: [],
-	poollistFiltered: [],
 	sourceUrl: '/api/comments/',
-	noResultFound: 'asdsa',
 
 	init: function(){
 		this.loadPools();
@@ -53,26 +51,14 @@ var PoolStore = Reflux.createStore({
 	},
 
 	searchPoolList: function(searchPool){
-		this.poollistFiltered = [];
-		var findPool = function(poollistFiltered) {
-		   return function(pool){
-			    if(this.origin === pool.origin && this.destination === pool.destination){
-		        	poollistFiltered.push(pool);
-		        }
-		        else{
-		        	console.log("no matches found");
-		        }
-	    	}
-	    	
-		}
+		var poollistFiltered = this.poollist.filter(function(pool){
+			return (searchPool.origin === pool.origin && searchPool.destination === pool.destination);
+		});
 
-		this.poollist.filter(findPool(this.poollistFiltered), searchPool);
-
-		if(this.poollistFiltered.length == 0){
-    	 	this.noResultFound = "noresultsfound";
-    		this.trigger(this.noResultFound);
-    	}else{
-    		this.trigger(this.poollistFiltered);
+		if(poollistFiltered.length == 0){
+    		this.trigger("noresultsfound");
+    	} else {
+    		this.trigger(poollistFiltered);
     	}
 	}
 
