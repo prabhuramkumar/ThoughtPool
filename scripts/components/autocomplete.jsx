@@ -1,52 +1,47 @@
 import React from 'react';
 
 var AutoComplete = React.createClass({
+	latlong:'',
 
-	setAutocompleteAreaForElement: function(inputId, placeElementId){
+	setAutocompleteAreaForElement: function(inputId){
 	    var inputElement = document.getElementById(inputId);
 	    var autocomplete = new google.maps.places.Autocomplete(inputElement);
 	    var component = this;
-	    var name = this.props.name;
 
 	    inputElement.addEventListener('change', function(){
-	        document.getElementById(placeElementId).value = "";
+	        component.latlong = '';
 	    });
 
 	    autocomplete.addListener('place_changed', function() {
 	        var place = autocomplete.getPlace();
-	        var placeId = place.place_id;
-	        document.getElementById(placeElementId).value = placeId;
+	        component.latlong = place.geometry.location;
 
 	        if(component.props.placeChangedCallback){
-	     	   component.props.placeChangedCallback(placeId);
+	     	   component.props.placeChangedCallback(place.geometry.location);
 	    	}
 	    });
 	},
   
 	componentDidMount: function() {
-		var ref = this.props.name, 
-			refId=ref + "Id";
-    	this.setAutocompleteAreaForElement(ref, refId);
+    	this.setAutocompleteAreaForElement(this.props.name);
   	},
 
-  	getPlaceId: function(refId){
-  		return this.refs[refId].value;
-  	},
-
-  	getPlace: function(ref){
-  		return this.refs[ref].value;
+  	getPlace: function(){
+  		return this.refs[this.props.name].value;
   	},
   	
+  	getLatLong: function(){
+  		return this.latlong;
+  	},
+
 	render: function(){
-		var ref = this.props.name, 
-			refId=ref + "Id";
+		var ref = this.props.name;
+
 		return(
 			<div className="auto-complete">
 				<div className="form-group">
 		        	<input className="form-control" type="text" ref={ref} id={ref} placeholder={ref}/>
 		        </div>
-		        
-		        <input type="hidden" ref={refId} id={refId}/>
 		    </div>
 			      
 	    )

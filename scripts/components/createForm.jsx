@@ -7,12 +7,12 @@ import MapRenderer from '../stores/mapRenderer';
 
 var CreateForm = React.createClass({
 	
-	resetSource: function(placeId){
-		MapRenderer.resetSource(placeId);
+	resetSource: function(source){
+		MapRenderer.resetSource(source);
 	},
 
-	resetDestination: function(placeId){
-		MapRenderer.resetDestination(placeId);
+	resetDestination: function(destination){
+		MapRenderer.resetDestination(destination);
 	},
 
 	handleSubmit: function(e){
@@ -21,16 +21,16 @@ var CreateForm = React.createClass({
 		var originElement = this.refs[Constants.origin];
 		var destinationElement = this.refs[Constants.destination];
 
-		var origin = originElement.getPlaceId(Constants.originId),
-			destination = destinationElement.getPlaceId(Constants.destinationId),
-			time = this.refs.time.value,
+		var time = this.refs.time.value,
 			provider = this.refs.provider.checked,
-			originAddress = originElement.getPlace(Constants.origin),
-			destinationAddress = destinationElement.getPlace(Constants.destination),
-			routeEncoded = document.getElementById("encodedRoute").value;
+			originAddress = originElement.getPlace(),
+			destinationAddress = destinationElement.getPlace(),
+			routeEncoded = document.getElementById("encodedRoute").value,
+			origin = originElement.getLatLong(),
+			destination = destinationElement.getLatLong();
 
 		if(!origin || !destination || !time){
-			alert("submit some text");
+			alert("submit valid input");
 			return; 
 		}
 
@@ -40,8 +40,6 @@ var CreateForm = React.createClass({
 		}
 		
 		var pool = {
-			'origin': origin, 
-			'destination': destination, 
 			'provider': provider,
 			'time': time,
 			'originAddress': originAddress,

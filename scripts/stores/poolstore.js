@@ -2,7 +2,6 @@ var Reflux = require('reflux');
 var $ = require('jquery');
 var PoolActions = require('../actions/poolactions');
 
-
 var PoolStore = Reflux.createStore({
 	listenables: [PoolActions],
 	poollist: [],
@@ -23,7 +22,6 @@ var PoolStore = Reflux.createStore({
 			cache: false,
 			success: function(serverData){
 				this.poollist = serverData.reverse();
-				console.log(this.poollist);
 				this.trigger(this.poollist);
 			}.bind(this),
 			error: function(){
@@ -52,7 +50,17 @@ var PoolStore = Reflux.createStore({
 
 	searchPoolList: function(searchPool){
 		var poollistFiltered = this.poollist.filter(function(pool){
-			return (searchPool.origin === pool.origin && searchPool.destination === pool.destination);
+			var path = google.maps.geometry.encoding.decodePath(pool.routeEncoded);
+		    var polyline = new google.maps.Polyline({
+		        path: path,
+		    });
+
+			var sourceFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.origin, polyline, 0.001);
+			var destinationFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.destination, polyline, 0.001);;
+
+			var fallsOnRoute = sourceFallsOnRoute || destinationFallsOnRoute;
+
+			return fallsOnRoute;
 		});
 
 		if(poollistFiltered.length == 0){

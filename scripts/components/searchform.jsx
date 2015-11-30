@@ -9,16 +9,16 @@ var SearchForm = React.createClass({
 		e.preventDefault();
 		var time = this.refs.time.value;
 
-		var originPlaceId = this.refs[Constants.origin].getPlaceId(Constants.originId);
-		var destinationPlaceId = this.refs[Constants.destination].getPlaceId(Constants.destinationId);
+		var origin = this.refs[Constants.origin].getLatLong();
+		var destination = this.refs[Constants.destination].getLatLong();
 
-		if(!originPlaceId  || !destinationPlaceId){
-			alert("submit some text");
-			return; 
+		if(!origin || !destination){
+			alert("submit valid input");
+			return;
 		}
 		var searchPool = {
-			origin: originPlaceId,
-			destination: destinationPlaceId,
+			origin: origin,
+			destination: destination,
 		};
 
 		PoolActions.searchPoolList(searchPool);

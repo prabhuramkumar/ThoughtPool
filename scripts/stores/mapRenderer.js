@@ -8,6 +8,7 @@ var directionsDisplay,
 var mapRenderer = {
 	source: '',
 	destination:'',
+
 	resetSource: function (source) {
 		this.source = source;
 		this.setRoute(this.source, this.destination);
@@ -21,8 +22,8 @@ var mapRenderer = {
 		
 		if(source != '' && destination != ''){
 		    var request = {
-		   		origin: {'placeId': source},
-		    	destination: {'placeId': destination},
+		   		origin: source,
+		    	destination: destination,
 		    	travelMode: google.maps.TravelMode.DRIVING
 		  	};
 
