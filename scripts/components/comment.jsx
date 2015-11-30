@@ -1,13 +1,30 @@
 import React from 'react';
+import MapRenderer from '../stores/mapRenderer';
+
 
 var Comment = React.createClass({
 	getInitialState: function(){
 		return {};
 	},
+
+	setCallback : function(){
+		var inputElements = document.getElementsByClassName('listP');
+		var com = this;
+		var count;
+		
+			inputElements[com.props.index].addEventListener('click', function(){
+				MapRenderer.showRoute(com.props.routeEncoded);
+			});
+		
+	},
+
+	componentDidMount: function(){
+		this.setCallback();
+	},
                   
 	render: function(){
 		return (
-			<div className="pool">
+			<div className="pool listP">
 				<ul className={this.props.provider ?'trip-panel provider' : 'trip-panel pooler'}>
 					<li className="origin">
 						<h5>From</h5>

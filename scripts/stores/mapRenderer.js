@@ -4,6 +4,7 @@ var directionsService = new google.maps.DirectionsService();
 var directionsDisplay,
 	routeEncoded,
 	map;
+var polyline;
 
 var mapRenderer = {
 	source: '',
@@ -16,6 +17,20 @@ var mapRenderer = {
 	resetDestination: function(destination){
 		this.destination = destination;
 		this.setRoute(this.source, this.destination);
+	},
+	showRoute: function(routeDetails){
+		var path = google.maps.geometry.encoding.decodePath(routeDetails);
+	      
+	    polyline = new google.maps.Polyline({
+	          path: path,
+	          strokeColor: '#FF0000',
+	          strokeWeight: 2
+	      });
+	      
+
+  		polyline.setMap(map);
+  		directionsDisplay.setMap(map);
+
 	},
 	setRoute: function(source, destination){
 		$("#encodedRoute").val('');
