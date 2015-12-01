@@ -4,7 +4,10 @@ var directionsService = new google.maps.DirectionsService();
 var directionsDisplay,
 	routeEncoded,
 	map;
-var polyline;
+var polyline = new google.maps.Polyline({
+	          strokeColor: '#FF0000',
+	          strokeWeight: 2
+	      });	      
 
 var mapRenderer = {
 	source: '',
@@ -19,18 +22,12 @@ var mapRenderer = {
 		this.setRoute(this.source, this.destination);
 	},
 	showRoute: function(routeDetails){
+	    polyline.setMap(null); 
 		var path = google.maps.geometry.encoding.decodePath(routeDetails);
 	      
-	    polyline = new google.maps.Polyline({
-	          path: path,
-	          strokeColor: '#FF0000',
-	          strokeWeight: 2
-	      });
-	      
+	    polyline.setPath(path);
 
   		polyline.setMap(map);
-  		directionsDisplay.setMap(map);
-
 	},
 	setRoute: function(source, destination){
 		$("#encodedRoute").val('');
