@@ -55,8 +55,8 @@ var PoolStore = Reflux.createStore({
 		        path: path,
 		    });
 
-			var sourceFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.origin, polyline, 0.001);
-			var destinationFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.destination, polyline, 0.001);;
+			var sourceFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.origin, polyline, 0.002);
+			var destinationFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.destination, polyline, 0.002);;
 
 			var fallsOnRoute = sourceFallsOnRoute && destinationFallsOnRoute;
 

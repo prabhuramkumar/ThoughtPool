@@ -25,7 +25,7 @@ var CreateForm = React.createClass({
 			provider = this.refs.provider.checked,
 			originAddress = originElement.getPlace(),
 			destinationAddress = destinationElement.getPlace(),
-			routeEncoded = document.getElementById("encodedRoute").value,
+			routeEncoded = this.refs.map.getEncodedRoute(),
 			origin = originElement.getLatLong(),
 			destination = destinationElement.getLatLong();
 
@@ -74,7 +74,7 @@ var CreateForm = React.createClass({
 				        </div>
 			        </div>
 			    </form>
-			    <Map/>
+			    <Map ref="map"/>
 		    </div>
 	    )
 	}
