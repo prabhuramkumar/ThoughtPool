@@ -11,7 +11,6 @@ var SearchForm = React.createClass({
 
 	handleSubmit: function(e){
 		e.preventDefault();
-		var time = this.refs.time.value;
 
 		var origin = this.refs[Constants.origin].getLatLong();
 		var destination = this.refs[Constants.destination].getLatLong();
@@ -49,9 +48,7 @@ var SearchForm = React.createClass({
 						ref={Constants.destination}
 						placeChangedCallback={this.resetDestination}/>
 
-			        <div className="form-group time-wrapper">
-			        	<input className="form-control time-field" ref="time" type="time" />
-			        </div>
+			     
 			        <div className="form-group submit-button">
 			        	<input className="btn btn-primary" type="submit" ref="submit" value="Search" onClick={this.handleSubmit} />
 			        </div>
