@@ -158,12 +158,17 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .user-name p{
 	color: #ccc;
 }
+.user-details .position, .user-name .time {
+	color: #46afcd;
+}
 .user-details{
 	background: #ececec;
 	padding: 15px;
 }
 .user-details h5{
 	color: #46afcd;
+}
+.user-details p span{
 }
 .search-elements{
 	display: flex;

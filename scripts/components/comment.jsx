@@ -28,16 +28,13 @@ var Comment = React.createClass({
 		
 				<div className="user-name">
 					<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
-					<p>{this.props.email}</p>
-					<p>{this.props.provider ?'Owns a Car' : 'Doesn\'t own a car'}</p>
+					<p>{this.props.provider ?'Owns a Car' : 'Doesn\'t own a car'}, leaving at <span className="time">{this.props.time}</span></p>
 				</div>
 				<div className="user-details">
-					<h5>From</h5>
-					<p>{this.props.originAddress}</p>
-					<h5>To</h5>
-					<p>{this.props.destinationAddress}</p>
-					<br/>
-					<p>{this.props.time}</p>
+					<div className="dotted-line">
+						<p><span className="position">From: </span>{this.props.originAddress}</p>
+						<p><span className="position">To: </span>{this.props.destinationAddress}</p>
+					</div>
 				</div>
 				
 			</div>
