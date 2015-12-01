@@ -31,10 +31,8 @@ var Comment = React.createClass({
 					<p>{this.props.provider ?'Owns a Car' : 'Doesn\'t own a car'}, leaving at <span className="time">{this.props.time}</span></p>
 				</div>
 				<div className="user-details">
-					<div className="dotted-line">
-						<p><span className="position">From: </span>{this.props.originAddress}</p>
-						<p><span className="position">To: </span>{this.props.destinationAddress}</p>
-					</div>
+					<p><span className="position">From: </span>{this.props.originAddress}</p>
+					<p><span className="position">To: </span>{this.props.destinationAddress}</p>
 				</div>
 				
 			</div>
