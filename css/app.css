@@ -80,11 +80,8 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .thola-form .submit-button {
     max-width: 70px;
 }
-.create-form {
-	width: 300px;
-}
-.create-form .search-elements{
-	display: block;
+.create-form .search-elements .auto-complete{
+	flex: 1;
 }
 .create-form .time-wrapper{
 	max-width: 100%;
@@ -172,7 +169,8 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .user-details p span{
 }
 .search-elements{
-	display: flex;
+    display: flex;
+    width: 100%;
 }
 .no-results{
 	margin-top: 40px;
@@ -205,9 +203,6 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
   padding: 0;
   height: 400px;
   margin-top: 23px;
-}
-.create-container{
-	display: flex;
 }
 .map-container{
 	width: 100%;

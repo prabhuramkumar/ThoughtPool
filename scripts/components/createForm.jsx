@@ -53,7 +53,6 @@ var CreateForm = React.createClass({
 		return(
 			<div className="create-container">
 				<form className="thola-form create-form" onSubmit={this.handleSubmit}>
-				    <a className="glyphicon glyphicon-remove close-form-buttom" href="/"></a>
 					<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true}  /> Own a Car</label>
 					<label><input type="radio" name="poolOption" ref="pooler"/> Don&#39;t own a Car</label>
 					<div className="search-elements">
