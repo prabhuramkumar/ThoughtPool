@@ -1,9 +1,7 @@
 var Reflux = require('reflux');
 var $ = require('jquery');
 var directionsService = new google.maps.DirectionsService();
-var directionsDisplay,
-	routeEncoded,
-	map;
+var directionsDisplay, routeEncoded, map;
 var polyline = new google.maps.Polyline({
 	          strokeColor: '#FF0000',
 	          strokeWeight: 2
@@ -21,6 +19,14 @@ var mapRenderer = {
 		this.destination = destination;
 		this.setRoute(this.source, this.destination);
 	},
+
+	setMarker: function(location){
+		marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+	},
+
 	showRoute: function(routeDetails){
 	    polyline.setMap(null); 
 		var path = google.maps.geometry.encoding.decodePath(routeDetails);
@@ -29,6 +35,7 @@ var mapRenderer = {
 
   		polyline.setMap(map);
 	},
+
 	setRoute: function(source, destination){
 		$("#encodedRoute").val('');
 		
@@ -53,7 +60,7 @@ var mapRenderer = {
 		var twBlrOffice = new google.maps.LatLng(12.928716, 77.628971);
 		var	mapOptions = {
 				center: twBlrOffice,
-				zoom: 18
+				zoom: 11
 			};
 
 		directionsDisplay = new google.maps.DirectionsRenderer({

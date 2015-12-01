@@ -2,6 +2,10 @@ import React from 'react';
 import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
 import Constants from './constants';
+import MapRenderer from '../stores/mapRenderer';
+
+
+
 
 var SearchForm = React.createClass({
 
@@ -23,13 +27,28 @@ var SearchForm = React.createClass({
 
 		PoolActions.searchPoolList(searchPool);
 	},
+	
+	resetSource: function(source){
+		MapRenderer.resetSource(source);
+	},
+
+	resetDestination: function(destination){
+		MapRenderer.resetDestination(destination);
+	},
 
 	render: function(){
 		return(
 			<form className="thola-form search-form">
 				<div className="search-elements">
-					<AutoComplete name={Constants.origin} ref={Constants.origin}/>
-					<AutoComplete name={Constants.destination} ref={Constants.destination}/>
+					<AutoComplete 
+						name={Constants.origin} 
+						ref={Constants.origin}
+						placeChangedCallback={this.resetSource}/>
+					<AutoComplete 
+						name={Constants.destination} 
+						ref={Constants.destination}
+						placeChangedCallback={this.resetDestination}/>
+
 			        <div className="form-group time-wrapper">
 			        	<input className="form-control time-field" ref="time" type="time" />
 			        </div>
@@ -37,6 +56,7 @@ var SearchForm = React.createClass({
 			        	<input className="btn btn-primary" type="submit" ref="submit" value="Search" onClick={this.handleSubmit} />
 			        </div>
 		        </div>
+		        
 		    </form>
 	    )
 	}

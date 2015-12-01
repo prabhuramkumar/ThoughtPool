@@ -58,13 +58,13 @@ var PoolStore = Reflux.createStore({
 			var sourceFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.origin, polyline, 0.001);
 			var destinationFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.destination, polyline, 0.001);;
 
-			var fallsOnRoute = sourceFallsOnRoute || destinationFallsOnRoute;
+			var fallsOnRoute = sourceFallsOnRoute && destinationFallsOnRoute;
 
 			return fallsOnRoute;
 		});
 
 		if(poollistFiltered.length == 0){
-    		this.trigger("noresultsfound");
+    		this.trigger([]);
     	} else {
     		this.trigger(poollistFiltered);
     	}

@@ -10,6 +10,7 @@ import SearchForm from './scripts/components/searchform';
 import CreateForm from './scripts/components/createform';
 import NoResultFound from './scripts/components/noresultsfound';
 import PoolStore from './scripts/stores/poolstore';
+import Map from './scripts/components/map';
 
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
@@ -17,19 +18,16 @@ const ACTIVE = { color: 'grey' }
 var App = React.createClass({
 	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 	init: function(){
-		var page;
-		if(this.state.poolstore==="noresultsfound"){
-			page = <div>
-						<NoResultFound />
-						<SearchForm />
-					</div>
-		}else{
-			page = <div>
-						<SearchForm />
-						<CommentList data={this.state.poolstore} />
-					</div>
-		}
-		return page;
+	return(
+		<div>
+			<SearchForm />
+			<div className="map-and-list">
+				<Map/>
+				<CommentList data={this.state.poolstore} />
+			</div>
+		</div>
+	);
+	
 	},
 	render: function() {
 		return this.init();
