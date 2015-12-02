@@ -10,6 +10,8 @@ import SearchForm from './scripts/components/searchform';
 import CreateForm from './scripts/components/createform';
 import NoResultFound from './scripts/components/noresultsfound';
 import Map from './scripts/components/map';
+import PoolStore from './scripts/stores/poolstore';
+
 
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
@@ -45,6 +47,7 @@ var Home = React.createClass({
 	render: function(){
 		return(
 			<div>
+				<SuccessAlert/>
 				<SearchForm />
 				<div className="map-and-list">
 					<Map/>
@@ -54,6 +57,28 @@ var Home = React.createClass({
 		);
 	}
 })
+
+var SuccessAlert = React.createClass({
+	mixins: [Reflux.connect(PoolStore, 'poolstore')],
+	init: function(){
+		var page;
+		console.log("SuccessAlert");
+		console.log(this.state.poolstore);
+		if(this.state.poolstore.postSuccess){
+			page = <div className="alert alert-success">
+				 	Your route is Successfully created and posted
+				 </div> 
+		}else{
+			page = <div></div>
+		}
+		return page;
+
+	},
+	render: function(){
+		return this.init();
+	}
+})
+
 
 var MyAccount = React.createClass({
 	render: function(){

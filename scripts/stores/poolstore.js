@@ -4,15 +4,16 @@ var PoolActions = require('../actions/poolactions');
 
 var PoolStore = Reflux.createStore({
 	listenables: [PoolActions],
-	poollist: [],
 	sourceUrl: '/api/comments/',
+	poolObject: {poollist: [], postSuccess: false},
+
 
 	init: function(){
 		this.loadPools();
 	},
 
 	getInitialState: function() {
-        return this.poollist;
+        return this.poolObject;
     },
 
 	loadPools: function (){
@@ -21,8 +22,8 @@ var PoolStore = Reflux.createStore({
 			dataType: 'json',
 			cache: false,
 			success: function(serverData){
-				this.poollist = serverData.reverse();
-				this.trigger(this.poollist);
+				this.poolObject.poollist = serverData.reverse();
+				this.trigger(this.poolObject);
 			}.bind(this),
 			error: function(){
 				console.error(this.sourceUrl, status);
@@ -38,9 +39,9 @@ var PoolStore = Reflux.createStore({
 		  data: comment,
 		  cache: false,
 		  success: function(serverData) {
-		  	this.poollist.push(serverData);
-		  	this.poollist = this.poollist.reverse();
-			this.trigger(this.poollist);
+		  	this.poolObject.poollist.push(serverData);
+		  	this.poolObject.poollist = this.poolObject.poollist.reverse();
+			this.trigger(this.poolObject);
 		  }.bind(this),
 		  error: function(xhr, status, err) {
 		    console.error(this.sourceUrl, status, err.toString());
@@ -49,7 +50,7 @@ var PoolStore = Reflux.createStore({
 	},
 
 	searchPoolList: function(searchPool){
-		var poollistFiltered = this.poollist.filter(function(pool){
+		var poollistFiltered = this.poolObject.poollist.filter(function(pool){
 			var path = google.maps.geometry.encoding.decodePath(pool.routeEncoded);
 		    var polyline = new google.maps.Polyline({
 		        path: path,
@@ -64,9 +65,9 @@ var PoolStore = Reflux.createStore({
 		});
 
 		if(poollistFiltered.length == 0){
-    		this.trigger([]);
+    		this.trigger({poollist: [], postSuccess: true});
     	} else {
-    		this.trigger(poollistFiltered);
+    		this.trigger({poollist: poollistFiltered, postSuccess: true});
     	}
 	}
 

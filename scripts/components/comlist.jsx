@@ -11,10 +11,12 @@ var CommentList = React.createClass({
 	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 	component: '',
 	render: function(){
-		if(this.state.poolstore.length == 0){
+		console.log("CommentList");
+		console.log(this.state.poolstore);
+		if(this.state.poolstore.poollist.length == 0){
 			this.component = <NoResultFound/>
 		}else{
-		    this.component = this.state.poolstore.map(function(comment, i){
+		    this.component = this.state.poolstore.poollist.map(function(comment, i){
 				return (
 					<Comment
 						index={i}
