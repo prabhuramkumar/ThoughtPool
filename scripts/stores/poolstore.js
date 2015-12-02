@@ -65,9 +65,9 @@ var PoolStore = Reflux.createStore({
 		});
 
 		if(poollistFiltered.length == 0){
-    		this.trigger({poollist: [], postSuccess: true});
+    		this.trigger({poollist: [], postSuccess: false});
     	} else {
-    		this.trigger({poollist: poollistFiltered, postSuccess: true});
+    		this.trigger({poollist: poollistFiltered, postSuccess: false});
     	}
 	}
 
