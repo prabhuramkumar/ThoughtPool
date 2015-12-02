@@ -6,7 +6,7 @@ import Constants from './constants';
 import MapRenderer from '../stores/mapRenderer';
 
 var CreateForm = React.createClass({
-	
+
 	resetSource: function(source){
 		MapRenderer.resetSource(source);
 	},
@@ -47,6 +47,7 @@ var CreateForm = React.createClass({
 			'routeEncoded': routeEncoded
 		};
 		PoolActions.createPool(pool);
+		this.props.history.pushState(null, '/');
 	},
 
 	render: function(){

@@ -41,6 +41,9 @@ var PoolStore = Reflux.createStore({
 		  success: function(serverData) {
 		  	this.poolObject.poollist.push(serverData);
 		  	this.poolObject.poollist = this.poolObject.poollist.reverse();
+			alert("success");
+			this.poolObject.postSuccess = true;
+			alert(this.poolObject.postSuccess);
 			this.trigger(this.poolObject);
 		  }.bind(this),
 		  error: function(xhr, status, err) {

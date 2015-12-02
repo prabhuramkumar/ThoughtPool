@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 	font-family: 'Poiret One', cursive;
 	margin:0;
 }
+
 .user-name a{
 	font-size: 20px;
 }
@@ -159,7 +160,16 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .alert {
 	margin: 0;
 	padding: 0;
-}				
+}		
+.alert.alert-success{
+	padding: 10px;
+	margin-top: 10px;
+	opacity: 0;
+	-webkit-transition: opacity 5s ease-in-out;
+    -moz-transition: opacity 5s ease-in-out;
+    -ms-transition: opacity 5s ease-in-out;
+    -o-transition: opacity 5s ease-in-out;
+}		
 .user-name{
 	background: #333;
 	padding: 15px;

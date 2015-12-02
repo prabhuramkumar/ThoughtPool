@@ -62,8 +62,6 @@ var SuccessAlert = React.createClass({
 	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 	init: function(){
 		var page;
-		console.log("SuccessAlert");
-		console.log(this.state.poolstore);
 		if(this.state.poolstore.postSuccess){
 			page = <div className="alert alert-success">
 				 	Your route is Successfully created and posted
@@ -94,7 +92,7 @@ const history = useBasename(createHistory)({
 
 ReactDOM.render((
 	<Router history={history}>
-		<Route path="/" component={App}>
+		<Route path="/" component={App} history={history}>
 			<IndexRoute component={Home}/>
 			<Route path="/myaccount" component={MyAccount} />
 			<Route path="/create" component={CreateForm}/>
