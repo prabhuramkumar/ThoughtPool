@@ -13,14 +13,14 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.render("index.html");
 	});
 
-	// to be revisited - temp fix for page refresh
-	app.get("/create", isAuthenticated, function(req, res){
-		res.render("index.html");
-	});
 	app.get("/myaccount", isAuthenticated, function(req, res){
 		res.render("index.html");
 	});
-	// to be revisited - temp fix for page refresh
+
+	app.get("/create", isAuthenticated, function(req, res){
+		res.render("index.html");
+	});
+
 
 	app.get("/login",
 		passport.authenticate(config.passport.strategy,

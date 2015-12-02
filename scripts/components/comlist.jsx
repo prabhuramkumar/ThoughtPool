@@ -1,16 +1,20 @@
 import React from 'react';
+import Reflux from 'reflux';
 
 import Comment from './comment';
 import NoResultFound from './noresultsfound';
+import PoolStore from '../stores/poolstore';
+
 
 
 var CommentList = React.createClass({
+	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 	component: '',
 	render: function(){
-		if(this.props.data.length == 0){
+		if(this.state.poolstore.length == 0){
 			this.component = <NoResultFound/>
 		}else{
-		    this.component = this.props.data.map(function(comment, i){
+		    this.component = this.state.poolstore.map(function(comment, i){
 				return (
 					<Comment
 						index={i}

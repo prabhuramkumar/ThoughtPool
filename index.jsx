@@ -9,37 +9,56 @@ import CommentList from './scripts/components/comlist';
 import SearchForm from './scripts/components/searchform';
 import CreateForm from './scripts/components/createform';
 import NoResultFound from './scripts/components/noresultsfound';
-import PoolStore from './scripts/stores/poolstore';
 import Map from './scripts/components/map';
 
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
 
+
 var App = React.createClass({
-	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 	init: function(){
-	return(
-		<div>
-			<SearchForm />
-			<div className="map-and-list">
-				<Map/>
-				<CommentList data={this.state.poolstore} />
-			</div>
-		</div>
-	);
-	
+		return(
+			<div>
+				<div className="thola-header">
+		            <div className="logo">
+		                <h3>Thola</h3>
+		            </div>
+		            <ul className="thola-nav">
+			          <li><IndexLink      to="/"           activeStyle={ACTIVE}>Home</IndexLink></li>
+			          <li><Link to="/myaccount"           activeStyle={ACTIVE}>My Account</Link></li>
+			          <li><Link      to="/create"      activeStyle={ACTIVE}>Create</Link></li>
+			          <li><Link to="/logout"      activeStyle={ACTIVE}>Logout</Link></li>
+			        </ul>
+
+		        </div>
+		        {this.props.children}
+	        </div>
+			
+		)
 	},
 	render: function() {
 		return this.init();
 	}
 });
 
-
-var MyPool = React.createClass({
-	mixins: [Reflux.connect(PoolStore, 'poolstore')],
+var Home = React.createClass({
 	render: function(){
 		return(
-			<CommentList data={this.state.poolstore} />
+			<div>
+				<SearchForm />
+				<div className="map-and-list">
+					<Map/>
+					<CommentList  />
+				</div>
+			</div>
+		);
+	}
+})
+
+var MyAccount = React.createClass({
+	render: function(){
+		return(
+			<CommentList />
 		)
 	}
 });
@@ -50,9 +69,11 @@ const history = useBasename(createHistory)({
 
 ReactDOM.render((
 	<Router history={history}>
-		<Route path="/" component={App}/>
-		<Route path="/myaccount" component={MyPool} />
-		<Route path="/create" component={CreateForm}/>
+		<Route path="/" component={App}>
+			<IndexRoute component={Home}/>
+			<Route path="/myaccount" component={MyAccount} />
+			<Route path="/create" component={CreateForm}/>
+		</Route>
 	</Router>
 ), document.getElementById('myApp'));
 

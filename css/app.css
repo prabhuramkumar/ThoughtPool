@@ -24,21 +24,33 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .hidden{
 	visibility:hidden;
 }
-.thola-nav{
+.thola-header{
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #fff;
 }
-.thola-nav a, .thola-nav a:hover{
+.thola-header a, .thola-header a:hover{
 	background-color: rgba(254,203,0,1);
 	padding: 5px 10px;
 	color: #333;
 	font-size: 11px;
 }
-.thola-nav a.logout{
+.thola-header a.logout{
 	background: #333;
 	color: #fecb00;
+}
+.thola-nav{
+	display: flex;
+	margin:0 10px;
+	padding: 0;
+	list-style: none;
+}
+.thola-nav li{
+	margin-right: 10px;
+}
+.thola-nav li:last-child{
+	margin-right: 0px;
 }
 .nav-pills {
 	margin: 10px 0;
