@@ -1,3 +1,5 @@
+require('date-utils');
+
 module.exports = function(app, config, passport, mongoose, fs, path){
 
     var isAuthenticated = function(req, res, next){
@@ -49,10 +51,11 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 	app.get('/api/comments', isAuthenticated, function(req, res) {
 	  	var requests =  mongoose.model('request');
 	
-	  	requests.find(function(err, result){
+	  	requests.find({ createdOn : { $eq: Date.today() } } , function(err, result){
 	   		if (err) {
 	        	console.log(err);
 	      	} else {
+
 	        	res.setHeader('Cache-Control', 'no-cache');
 	        	res.json(result);
 	      	}
@@ -71,7 +74,8 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      destinationAddress: req.body.destinationAddress,
 		      provider: req.body.provider,
 		      time: req.body.time,
-		      routeEncoded: req.body.routeEncoded
+		      routeEncoded: req.body.routeEncoded,
+		      createdOn: Date.today()
 		});
 		newRequest.save(function (err, result) {
 		    if (err) {

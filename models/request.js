@@ -10,7 +10,8 @@ var requestSchema = new Schema({
 	  destinationAddress: String,
       provider: Boolean,
       time: String,
-      routeEncoded: String
+      routeEncoded: String,
+      createdOn: Date
 });
 
 mongoose.model('request', requestSchema)

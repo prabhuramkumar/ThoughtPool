@@ -30,6 +30,7 @@
     "bootstrap": "^3.3.5",
     "cookie-parser": "^1.4.0",
     "css-loader": "^0.18.0",
+    "date-utils":"*",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
