@@ -172,7 +172,7 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 }		
 .user-name{
 	background: #333;
-	padding: 15px;
+	padding: 2px 15px;
 }
 .user-name p{
 	color: #ccc;
@@ -182,7 +182,7 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 }
 .user-details{
 	background: #ececec;
-	padding: 15px;
+	padding: 7px 15px;
 	font-size: 11px;
 }
 .user-details h5{
