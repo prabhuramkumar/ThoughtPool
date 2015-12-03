@@ -3,16 +3,15 @@ import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
 import Map from './map';
 import Constants from './constants';
-import MapRenderer from '../stores/mapRenderer';
 
 var CreateForm = React.createClass({
 
 	resetSource: function(source){
-		MapRenderer.resetSource(source);
+		this.refs.mapForCreatePage.actions.resetRoute({"source": source});
 	},
 
 	resetDestination: function(destination){
-		MapRenderer.resetDestination(destination);
+		this.refs.mapForCreatePage.actions.resetRoute({"destination": destination});
 	},
 
 	handleSubmit: function(e){
@@ -25,7 +24,7 @@ var CreateForm = React.createClass({
 			provider = this.refs.provider.checked,
 			originAddress = originElement.getPlace(),
 			destinationAddress = destinationElement.getPlace(),
-			routeEncoded = this.refs.map.getEncodedRoute(),
+			routeEncoded = this.refs.mapForCreatePage.actions.getEncodedRoute(),
 			origin = originElement.getLatLong(),
 			destination = destinationElement.getLatLong();
 
@@ -74,7 +73,7 @@ var CreateForm = React.createClass({
 				        </div>
 			        </div>
 			    </form>
-			    <Map ref="map"/>
+			    <Map ref="mapForCreatePage"/>
 		    </div>
 	    )
 	}

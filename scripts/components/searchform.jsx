@@ -2,10 +2,6 @@ import React from 'react';
 import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
 import Constants from './constants';
-import MapRenderer from '../stores/mapRenderer';
-
-
-
 
 var SearchForm = React.createClass({
 
@@ -30,11 +26,13 @@ var SearchForm = React.createClass({
 	},
 	
 	resetSource: function(source){
-		MapRenderer.resetSource(source);
+		var newRoute = {"source": source};
+		this.props.mapActions().resetRoute(newRoute);
 	},
 
 	resetDestination: function(destination){
-		MapRenderer.resetDestination(destination);
+		var newRoute = {"destination": destination};
+		this.props.mapActions().resetRoute(newRoute);
 	},
 
 	render: function(){

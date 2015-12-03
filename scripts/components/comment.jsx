@@ -1,6 +1,4 @@
 import React from 'react';
-import MapRenderer from '../stores/mapRenderer';
-
 
 var Comment = React.createClass({
 	getInitialState: function(){
@@ -13,7 +11,7 @@ var Comment = React.createClass({
 		var count;
 		
 		inputElements[com.props.index].addEventListener('click', function(){
-			MapRenderer.showRoute(com.props.routeEncoded);
+			com.props.mapActions().showRoute(com.props.routeEncoded);
 		});
 		
 	},

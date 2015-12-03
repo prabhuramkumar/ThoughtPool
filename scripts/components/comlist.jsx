@@ -5,17 +5,18 @@ import Comment from './comment';
 import NoResultFound from './noresultsfound';
 import PoolStore from '../stores/poolstore';
 
-
-
 var CommentList = React.createClass({
+
 	mixins: [Reflux.connect(PoolStore, 'poolstore')],
+
 	component: '',
+
 	render: function(){
-		console.log("CommentList");
-		console.log(this.state.poolstore);
+		var current = this;
+
 		if(this.state.poolstore.poollist.length == 0){
 			this.component = <NoResultFound/>
-		}else{
+		} else {
 		    this.component = this.state.poolstore.poollist.map(function(comment, i){
 				return (
 					<Comment
@@ -29,7 +30,8 @@ var CommentList = React.createClass({
 						time={comment.time}
 						originAddress={comment.originAddress}
 						destinationAddress={comment.destinationAddress}
-						routeEncoded={comment.routeEncoded}>
+						routeEncoded={comment.routeEncoded}
+						mapActions = {current.props.mapActions}>
 					</Comment>
 				);
 			});

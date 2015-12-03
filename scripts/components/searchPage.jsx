@@ -5,15 +5,18 @@ import Map from './map';
 import SuccessAlert from './successAlert';
 
 var SearchPage = React.createClass({
-	
+	mapActions: function(route){
+		return this.refs.mapForSearchPage.actions;
+	},
+
 	render: function(){
 		return(
 			<div>
 				<SuccessAlert/>
-				<SearchForm/>
+				<SearchForm mapActions = {this.mapActions}/>
 				<div className="map-and-list">
-					<Map/>
-					<CommentList/>
+					<Map ref="mapForSearchPage"/>
+					<CommentList mapActions = {this.mapActions}/>
 				</div>
 			</div>
 		);
