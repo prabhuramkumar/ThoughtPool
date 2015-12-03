@@ -44,9 +44,7 @@ var PoolStore = Reflux.createStore({
 		  success: function(serverData) {
 		  	this.poolObject.poollist.push(serverData);
 		  	this.poolObject.poollist = this.poolObject.poollist.reverse();
-			alert("success");
 			this.poolObject.postSuccess = true;
-			alert(this.poolObject.postSuccess);
 			this.trigger(this.poolObject);
 		  }.bind(this),
 		  error: function(xhr, status, err) {
@@ -55,28 +53,65 @@ var PoolStore = Reflux.createStore({
 		});
 	},
 
-	searchPoolList: function(searchPool){
-		var poollistFiltered = this.poolObject.poollist.filter(function(pool){
-			var path = google.maps.geometry.encoding.decodePath(pool.routeEncoded);
-		    var polyline = new google.maps.Polyline({
+	getPath: function(encodedRoute){
+		return google.maps.geometry.encoding.decodePath(encodedRoute);
+	},
+
+	getPolyline: function(path){
+		var polyline = new google.maps.Polyline({
 		        path: path,
 		    });
+		return polyline;
+	},
 
-			var sourceFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.origin, polyline, 0.002);
-			var destinationFallsOnRoute = google.maps.geometry.poly.isLocationOnEdge(searchPool.destination, polyline, 0.002);;
+	fallsOnRoute: function(placeLatLng, pathPolyline){
+		return google.maps.geometry.poly.isLocationOnEdge(placeLatLng, pathPolyline, 0.002);
+	},
 
-			var fallsOnRoute = sourceFallsOnRoute && destinationFallsOnRoute;
+	searchPoolList: function(searchPool){
+		var allPool = this.poolObject.poollist;
+		var exactPool = [];
+		var partialPool = [];
+		var lessPartialPool = [];
 
-			return fallsOnRoute;
-		});
+		var preferredRoutePolyline = this.getPolyline(this.getPath(searchPool.encodedRoute));
+		var searchOrigin = searchPool.origin;
+		var searchDestination = searchPool.destination;
 
-		if(poollistFiltered.length == 0){
-    		this.poolObject.poollist = [];
-    	} else {
-    		this.poolObject.poollist = poollistFiltered;
-    	}
+		for(var i = 0; i<allPool.length; i++){
+
+			var pool = allPool[i];
+			var path = this.getPath(pool.routeEncoded);
+			var polyline = this.getPolyline(path);
+
+			var sourceFallsOnRoute = this.fallsOnRoute(searchOrigin, polyline);
+			var destinationFallsOnRoute = this.fallsOnRoute(searchDestination, polyline);
+
+			
+			if (sourceFallsOnRoute && destinationFallsOnRoute){
+				exactPool = exactPool.concat([pool]);
+			}
+			else
+			{
+				if (sourceFallsOnRoute || destinationFallsOnRoute){
+					var poolStart = path[0];
+					var poolEnd = path[path.length - 1];
+
+					var poolStartFallsOnRoute = this.fallsOnRoute(poolStart, preferredRoutePolyline);
+					var poolEndFallsOnRoute = this.fallsOnRoute(poolEnd, preferredRoutePolyline);
+
+					if (poolStartFallsOnRoute && poolEndFallsOnRoute){
+						partialPool = partialPool.concat([pool]);
+					}
+					else{
+						lessPartialPool = lessPartialPool.concat([pool])
+					}
+				}
+			}
+		}
+
+		var poollistFiltered = exactPool.concat(partialPool).concat(lessPartialPool);
+		this.poolObject.poollist = poollistFiltered;
 	}
-
 });
-
 module.exports = PoolStore;

@@ -14,6 +14,7 @@ var SearchForm = React.createClass({
 
 		var origin = this.refs[Constants.origin].getLatLong();
 		var destination = this.refs[Constants.destination].getLatLong();
+		var preferredRoute = $("#encodedRoute").val();
 
 		if(!origin || !destination){
 			alert("submit valid input");
@@ -22,6 +23,7 @@ var SearchForm = React.createClass({
 		var searchPool = {
 			origin: origin,
 			destination: destination,
+			encodedRoute: preferredRoute
 		};
 
 		PoolActions.loadPools(searchPool);
