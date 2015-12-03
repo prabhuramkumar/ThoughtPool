@@ -74,7 +74,7 @@ var PoolStore = Reflux.createStore({
 		var partialPool = [];
 		var lessPartialPool = [];
 
-		var preferredRoutePolyline = this.getPolyline(this.getPath(searchPool.encodedRoute));
+		var searchPolyline = this.getPolyline(this.getPath(searchPool.encodedRoute));
 		var searchOrigin = searchPool.origin;
 		var searchDestination = searchPool.destination;
 
@@ -97,8 +97,8 @@ var PoolStore = Reflux.createStore({
 					var poolStart = path[0];
 					var poolEnd = path[path.length - 1];
 
-					var poolStartFallsOnRoute = this.fallsOnRoute(poolStart, preferredRoutePolyline);
-					var poolEndFallsOnRoute = this.fallsOnRoute(poolEnd, preferredRoutePolyline);
+					var poolStartFallsOnRoute = this.fallsOnRoute(poolStart, searchPolyline);
+					var poolEndFallsOnRoute = this.fallsOnRoute(poolEnd, searchPolyline);
 
 					if (poolStartFallsOnRoute && poolEndFallsOnRoute){
 						partialPool = partialPool.concat([pool]);
