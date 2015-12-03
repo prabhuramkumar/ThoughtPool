@@ -24,7 +24,7 @@ var SearchForm = React.createClass({
 			destination: destination,
 		};
 
-		PoolActions.searchPoolList(searchPool);
+		PoolActions.loadPools(searchPool);
 	},
 	
 	resetSource: function(source){

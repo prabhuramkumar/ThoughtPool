@@ -16,13 +16,16 @@ var PoolStore = Reflux.createStore({
         return this.poolObject;
     },
 
-	loadPools: function (){
+	loadPools: function (searchPool){
 		$.ajax({
 			url: this.sourceUrl,
 			dataType: 'json',
 			cache: false,
 			success: function(serverData){
 				this.poolObject.poollist = serverData.reverse();
+				if(searchPool){
+					this.searchPoolList(searchPool);
+				}
 				this.trigger(this.poolObject);
 			}.bind(this),
 			error: function(){
@@ -68,9 +71,9 @@ var PoolStore = Reflux.createStore({
 		});
 
 		if(poollistFiltered.length == 0){
-    		this.trigger({poollist: [], postSuccess: false});
+    		this.poolObject.poollist = [];
     	} else {
-    		this.trigger({poollist: poollistFiltered, postSuccess: false});
+    		this.poolObject.poollist = poollistFiltered;
     	}
 	}
 
