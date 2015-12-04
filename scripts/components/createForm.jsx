@@ -13,6 +13,12 @@ var CreateForm = React.createClass({
 	resetDestination: function(destination){
 		this.refs.mapForCreatePage.actions.resetRoute({"destination": destination});
 	},
+	resetSourceLatLng: function(sourcePosition){
+		this.refs.origin.resetLatLng(sourcePosition);
+	},
+	resetDestinantionLatLng: function(destinationPosition){
+		this.refs.destination.resetLatLng(destinationPosition);
+	},
 
 	handleSubmit: function(e){
 		e.preventDefault();
@@ -74,7 +80,10 @@ var CreateForm = React.createClass({
 				        </div>
 			        </div>
 			    </form>
-			    <Map ref="mapForCreatePage" route={route}/>
+			    <Map ref="mapForCreatePage" 
+			    	 route={route} 
+			    	 sourcePositionChangeCallback={this.resetSourceLatLng}
+			    	 destinationPositionChangeCallback ={this.resetDestinantionLatLng}/>
 		    </div>
 	    )
 	}

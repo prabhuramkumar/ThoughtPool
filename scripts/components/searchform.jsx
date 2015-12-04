@@ -35,6 +35,13 @@ var SearchForm = React.createClass({
 		this.props.mapActions().resetRoute(newRoute);
 	},
 
+	resetSourceLatLng: function(sourcePosition){
+		this.refs.origin.resetLatLng(sourcePosition);
+	},
+	resetDestinantionLatLng: function(destinationPosition){
+		this.refs.destination.resetLatLng(destinationPosition);
+	},
+
 	render: function(){
 		return(
 			<form className="thola-form search-form">

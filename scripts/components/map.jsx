@@ -9,7 +9,7 @@ var polyline = new google.maps.Polyline({
 var current;
 
 var Map = React.createClass({
-	source: '',
+	origin: '',
 	destination:'',
 	
 	actions:{
@@ -17,30 +17,44 @@ var Map = React.createClass({
 			return current.refs.encodedRoute.value;
 		},
 
-		resetRoute: function(route){
-			current.refs.encodedRoute.value = '';
-			
-			if(route.source != undefined){
-				current.source = route.source;
+		updateOrigin: function(newOrigin){
+			if(newOrigin){
+				current.origin = newOrigin;
+				current.props.sourcePositionChangeCallback(current.origin);
 			}
-			if(route.destination != undefined){
-				current.destination = route.destination;
-			}
+		},
 
-			if(current.source != '' && current.destination != ''){
-			    var request = {
-			   		origin: current.source,
+		updateDestination: function(newDestination){
+			if(newDestination){
+				current.destination = newDestination;
+				current.props.destinationPositionChangeCallback(current.destination);
+			}
+		},
+
+		updateRoute: function(){
+			var request = {
+			   		origin: current.origin,
 			    	destination: current.destination,
 			    	travelMode: google.maps.TravelMode.DRIVING
 			  	};
-			  	directionsService.route(request, function(result, status) {
-			    	if (status == google.maps.DirectionsStatus.OK) {
-			      		directionsDisplay.setDirections(result);
-			      		current.refs.encodedRoute.value = result.routes[0].overview_polyline;
-			    	} else {
-			     		alert("couldn't get directions:" + status);
-			    	}
-			  	});
+		  	directionsService.route(request, function(result, status) {
+		    	if (status == google.maps.DirectionsStatus.OK) {
+		      		directionsDisplay.setDirections(result);
+		      		current.refs.encodedRoute.value = result.routes[0].overview_polyline;
+		    	} else {
+		     		alert("couldn't get directions:" + status);
+		    	}
+		  	});
+		},
+
+		resetRoute: function(route){
+			current.refs.encodedRoute.value = '';
+			
+			this.updateOrigin(route.source);
+			this.updateDestination(route.destination);
+
+			if(current.origin != '' && current.destination != ''){
+			    this.updateRoute();
 		  	}
 		},
 
@@ -49,12 +63,12 @@ var Map = React.createClass({
 			var path = google.maps.geometry.encoding.decodePath(routeDetails);
 		      
 		    polyline.setPath(path);
-
 	  		polyline.setMap(map);
 		}
 	},
 
 	componentDidMount: function(){
+		var component = this;
 		var twBlrOffice = new google.maps.LatLng(12.928716, 77.628971);
 		var	mapOptions = {
 				center: twBlrOffice,
@@ -73,16 +87,24 @@ var Map = React.createClass({
 
     		$("#origin").val(result.routes[0].legs[0].start_address)
     		$("#destination").val(result.routes[0].legs[0].end_address)
-   			current.refs.encodedRoute.value = result.routes[0].overview_polyline;
+
+    		current.props.sourcePositionChangeCallback(directionsDisplay.getDirections().request.origin);
+    		current.props.destinationPositionChangeCallback(directionsDisplay.getDirections().request.destination);
+   			current.refs.encodedRoute.value = result.routes[0].overview_polyline;			
   		});
 
 		if(this.props.route){
-			var path  = google.maps.geometry.encoding.decodePath(this.props.route);
-			var newRoute = {source: path[0], destination: path[path.length - 1]}
-			this.actions.resetRoute(newRoute);
+			current.resetCurretnRoute(this.props.route)
 		}
 
 	},
+
+	resetCurretnRoute: function(route){
+		var path  = google.maps.geometry.encoding.decodePath(this.props.route);
+		var newRoute = {source: path[0], destination: path[path.length - 1]}
+		this.actions.resetRoute(newRoute);
+	},
+
 
 	render: function(){
 		current = this;

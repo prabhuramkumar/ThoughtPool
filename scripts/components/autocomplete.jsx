@@ -1,7 +1,7 @@
 import React from 'react';
 
 var AutoComplete = React.createClass({
-	latlong:'',
+	latlong:{},
 
 	setAutocompleteAreaForElement: function(inputId){
 	    var inputElement = document.getElementById(inputId);
@@ -9,17 +9,21 @@ var AutoComplete = React.createClass({
 	    var component = this;
 
 	    inputElement.addEventListener('change', function(){
-	        component.latlong = '';
+	        component.resetLatLng({});
 	    });
 
 	    autocomplete.addListener('place_changed', function() {
 	        var place = autocomplete.getPlace();
-	        component.latlong = place.geometry.location;
+	        component.resetLatLng(place.geometry.location);
 
 	        if(component.props.placeChangedCallback){
 	     	   component.props.placeChangedCallback(place.geometry.location);
 	    	}
 	    });
+	},
+
+	resetLatLng: function(position){
+		this.latlong = position;
 	},
   
 	componentDidMount: function() {
