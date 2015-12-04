@@ -75,6 +75,13 @@ var Map = React.createClass({
     		$("#destination").val(result.routes[0].legs[0].end_address)
    			current.refs.encodedRoute.value = result.routes[0].overview_polyline;
   		});
+
+		if(this.props.route){
+			var path  = google.maps.geometry.encoding.decodePath(this.props.route);
+			var newRoute = {source: path[0], destination: path[path.length - 1]}
+			this.actions.resetRoute(newRoute);
+		}
+
 	},
 
 	render: function(){

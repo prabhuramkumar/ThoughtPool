@@ -5,7 +5,7 @@ var PoolActions = require('../actions/poolactions');
 var PoolStore = Reflux.createStore({
 	listenables: [PoolActions],
 	sourceUrl: '/api/comments/',
-	poolObject: {poollist: [], postSuccess: false},
+	poolObject: {poollist: [], postSuccess: false, searchPool: {}},
 
 
 	init: function(){
@@ -25,6 +25,7 @@ var PoolStore = Reflux.createStore({
 				this.poolObject.poollist = serverData.reverse();
 				if(searchPool){
 					this.searchPoolList(searchPool);
+					this.poolObject.searchPool = searchPool; 
 				}
 				this.trigger(this.poolObject);
 			}.bind(this),

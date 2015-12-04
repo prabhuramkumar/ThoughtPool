@@ -10,19 +10,18 @@ var CommentList = React.createClass({
 	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 
 	component: '',
-
+	
 	render: function(){
 		var current = this;
 
 		if(this.state.poolstore.poollist.length == 0){
-			this.component = <NoResultFound/>
+			this.component = <NoResultFound route={this.state.poolstore.searchPool.encodedRoute}/>
 		} else {
 		    this.component = this.state.poolstore.poollist.map(function(comment, i){
 				return (
 					<Comment
 						index={i}
 						origin={comment.origin} 
-						key={comment.id} 
 						destination={comment.destination}
 						provider={comment.provider}
 						email={comment.email}

@@ -50,6 +50,7 @@ var CreateForm = React.createClass({
 	},
 
 	render: function(){
+		var {route} = this.props.location.query;
 		return(
 			<div className="create-container">
 				<form className="thola-form create-form" onSubmit={this.handleSubmit}>
@@ -73,7 +74,7 @@ var CreateForm = React.createClass({
 				        </div>
 			        </div>
 			    </form>
-			    <Map ref="mapForCreatePage"/>
+			    <Map ref="mapForCreatePage" route={route}/>
 		    </div>
 	    )
 	}
