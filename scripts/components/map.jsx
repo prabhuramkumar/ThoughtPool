@@ -42,7 +42,20 @@ var Map = React.createClass({
 	  	});
 	},
 
-	actions:{
+	setCenter: function(path){
+		var bounds = new google.maps.LatLngBounds();
+    	$(path).each(function(index, item) {
+      		bounds.extend(item);
+    	});
+  	
+  		google.maps.event.trigger(map, 'resize');
+		
+		map.fitBounds(bounds);
+    	map.setCenter(bounds.getCenter());
+	},
+
+	actions: {
+
 		getEncodedRoute: function(){
 			return current.refs.encodedRoute.value;
 		},
@@ -64,9 +77,7 @@ var Map = React.createClass({
 		    
 		    polyline.setPath(path);
 	  		polyline.setMap(map);
-
-	  		google.maps.event.trigger(map, 'resize');
-	  		map.setCenter(path[0]);
+	  		current.setCenter(path);
 		}
 	},
 
