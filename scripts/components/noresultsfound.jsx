@@ -7,9 +7,6 @@ var NoResultFound = React.createClass({
     return (
       <div className="no-results">
         <h4>No results Found</h4>
-        <p><span className="position">From: </span>{this.props.origin}</p>
-		<p><span className="position">From: </span>{this.props.origin}</p>
-
         <p>You can post a fresh request using the <Link to="/create" query={{route: this.props.route}}>Post</Link> form and we will notify you when there is a pooler avilable on the same route.</p>
       </div>
     );
@@ -17,4 +14,3 @@ var NoResultFound = React.createClass({
 });
 
 module.exports = NoResultFound;
-
