@@ -61,9 +61,12 @@ var Map = React.createClass({
 		showRoute: function(routeDetails){
 		    polyline.setMap(null); 
 			var path = google.maps.geometry.encoding.decodePath(routeDetails);
-		      
+		    
 		    polyline.setPath(path);
 	  		polyline.setMap(map);
+
+	  		google.maps.event.trigger(map, 'resize');
+	  		map.setCenter(path[0]);
 		}
 	},
 
