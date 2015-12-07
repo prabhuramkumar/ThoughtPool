@@ -11,50 +11,50 @@ var current;
 var Map = React.createClass({
 	origin: '',
 	destination:'',
-	
+
+	updateOrigin: function(newOrigin){
+		if(newOrigin){
+			current.origin = newOrigin;
+			current.props.sourcePositionChangeCallback(current.origin);
+		}
+	},
+
+	updateDestination: function(newDestination){
+		if(newDestination){
+			current.destination = newDestination;
+			current.props.destinationPositionChangeCallback(current.destination);
+		}
+	},
+
+	updateRoute: function(){
+		var request = {
+		   		origin: current.origin,
+		    	destination: current.destination,
+		    	travelMode: google.maps.TravelMode.DRIVING
+		  	};
+	  	directionsService.route(request, function(result, status) {
+	    	if (status == google.maps.DirectionsStatus.OK) {
+	      		directionsDisplay.setDirections(result);
+	      		current.refs.encodedRoute.value = result.routes[0].overview_polyline;
+	    	} else {
+	     		alert("couldn't get directions:" + status);
+	    	}
+	  	});
+	},
+
 	actions:{
 		getEncodedRoute: function(){
 			return current.refs.encodedRoute.value;
 		},
 
-		updateOrigin: function(newOrigin){
-			if(newOrigin){
-				current.origin = newOrigin;
-				current.props.sourcePositionChangeCallback(current.origin);
-			}
-		},
-
-		updateDestination: function(newDestination){
-			if(newDestination){
-				current.destination = newDestination;
-				current.props.destinationPositionChangeCallback(current.destination);
-			}
-		},
-
-		updateRoute: function(){
-			var request = {
-			   		origin: current.origin,
-			    	destination: current.destination,
-			    	travelMode: google.maps.TravelMode.DRIVING
-			  	};
-		  	directionsService.route(request, function(result, status) {
-		    	if (status == google.maps.DirectionsStatus.OK) {
-		      		directionsDisplay.setDirections(result);
-		      		current.refs.encodedRoute.value = result.routes[0].overview_polyline;
-		    	} else {
-		     		alert("couldn't get directions:" + status);
-		    	}
-		  	});
-		},
-
 		resetRoute: function(route){
 			current.refs.encodedRoute.value = '';
 			
-			this.updateOrigin(route.source);
-			this.updateDestination(route.destination);
+			current.updateOrigin(route.source);
+			current.updateDestination(route.destination);
 
 			if(current.origin != '' && current.destination != ''){
-			    this.updateRoute();
+			    current.updateRoute();
 		  	}
 		},
 
