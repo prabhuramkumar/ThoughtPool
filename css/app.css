@@ -229,8 +229,13 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .map-container{
 	width: 100%;
 }
-.map-and-list{
+.map-and-list, 
+.create-options {
 	display: flex;
+	margin-bottom: 10px;
+}
+.pool-options {
+	margin-right: 70px;
 }
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {

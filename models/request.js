@@ -4,14 +4,13 @@ var Schema = mongoose.Schema;
 var requestSchema = new Schema({
 	  email: String,
 	  name: String,
-	  origin: String,
 	  originAddress: String,
-      destination: String,
 	  destinationAddress: String,
-      provider: Boolean,
-      time: String,
-      routeEncoded: String,
-      createdOn: Date
+        provider: Boolean,
+        time: String,
+        routeEncoded: String,
+        createdOn: Date,
+        everyday: Boolean
 });
 
 mongoose.model('request', requestSchema)

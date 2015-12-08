@@ -31,6 +31,7 @@ var CreateForm = React.createClass({
 			originAddress = originElement.getPlace(),
 			destinationAddress = destinationElement.getPlace(),
 			routeEncoded = this.refs.mapForCreatePage.actions.getEncodedRoute(),
+			everyday = this.refs.everyday.checked,
 			origin = originElement.getLatLong(),
 			destination = destinationElement.getLatLong();
 
@@ -49,7 +50,8 @@ var CreateForm = React.createClass({
 			'time': time,
 			'originAddress': originAddress,
 			'destinationAddress': destinationAddress,
-			'routeEncoded': routeEncoded
+			'routeEncoded': routeEncoded,
+			'everyday': everyday
 		};
 		PoolActions.createPool(pool);
 		this.props.history.pushState(null, '/');
@@ -60,8 +62,17 @@ var CreateForm = React.createClass({
 		return(
 			<div className="create-container">
 				<form className="thola-form create-form" onSubmit={this.handleSubmit}>
-					<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true}  /> Own a Car</label>
-					<label><input type="radio" name="poolOption" ref="pooler"/> Don&#39;t own a Car</label>
+					<div className="create-options">
+						<div className="pool-options">
+							<label><input type="radio" name="poolOption" ref="provider" defaultChecked={true}  /> Own a Car</label>
+							<label><input type="radio" name="poolOption" ref="pooler"/> Don&#39;t own a Car</label>
+						</div>
+
+						<div className="day-options">
+							<label><input type="radio" name="dayOption" ref="today" defaultChecked={true}  /> Today</label>
+							<label><input type="radio" name="dayOption" ref="everyday"/> Every Day</label>
+						</div>
+					</div>
 					<div className="search-elements">
 						<AutoComplete 
 							name={Constants.origin}
@@ -73,12 +84,13 @@ var CreateForm = React.createClass({
 							placeChangedCallback={this.resetDestination}/>
 
 						<div className="form-group time-wrapper">
-				        	<input className="form-control time-field" ref="time" type="time" />
+				        	<input className="form-control time-field" ref="time" type="time" placeholder="time" />
 				        </div>
 					    <div className="form-group submit-button">
 				        	<input className="btn btn-primary" type="submit" ref="post" value="Post" />
 				        </div>
 			        </div>
+			        
 			    </form>
 			    <Map ref="mapForCreatePage" 
 			    	 route={route} 

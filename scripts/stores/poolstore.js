@@ -111,7 +111,7 @@ var PoolStore = Reflux.createStore({
 			}
 		}
 
-		var poollistFiltered = exactPool.concat(partialPool).concat(lessPartialPool);
+		var poollistFiltered = exactPool.concat(partialPool);
 		this.poolObject.poollist = poollistFiltered;
 	}
 });
