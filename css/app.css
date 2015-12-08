@@ -63,7 +63,6 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
     margin-bottom: 10px;
     justify-content: space-between;
     padding-bottom: 10px;
-    margin-top: 20px;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
@@ -72,6 +71,7 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 	height: 450px;
 	overflow: auto;
 	margin-left: 30px;
+	margin-top: 24px;
 }
 
 /********* Forms ***********/
