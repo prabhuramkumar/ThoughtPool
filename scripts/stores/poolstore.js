@@ -5,8 +5,7 @@ var PoolActions = require('../actions/poolactions');
 var PoolStore = Reflux.createStore({
 	listenables: [PoolActions],
 	sourceUrl: '/api/comments/',
-	poolObject: {poollist: [], postSuccess: false, searchPool: {}},
-
+	poolObject: {poollist: [], postSuccess: false, searchPool: {}, myPoolList: []},
 
 	init: function(){
 		this.loadPools();
@@ -27,6 +26,21 @@ var PoolStore = Reflux.createStore({
 					this.searchPoolList(searchPool);
 					this.poolObject.searchPool = searchPool; 
 				}
+				this.trigger(this.poolObject);
+			}.bind(this),
+			error: function(){
+				console.error(this.sourceUrl, status);
+			}.bind(this)
+		})
+	},
+
+	loadMyPools: function (){
+		$.ajax({
+			url: '/api/mycomments',
+			dataType: 'json',
+			cache: false,
+			success: function(serverData){
+				this.poolObject.myPoolList = serverData.reverse();
 				this.trigger(this.poolObject);
 			}.bind(this),
 			error: function(){

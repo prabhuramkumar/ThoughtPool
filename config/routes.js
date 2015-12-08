@@ -48,20 +48,32 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.redirect("https://thoughtworks.oktapreview.com");
 	});
 
-	app.get('/api/comments', isAuthenticated, function(req, res) {
+	var getPools = function(query, res){
 	  	var requests =  mongoose.model('request');
 	
-	  	requests.find( { $or:[ {createdOn : { $eq: Date.today() } }, { everyday: { $eq: true } }] } , function(err, result){
+		requests.find(query, function(err, result){
 	   		if (err) {
 	        	console.log(err);
 	      	} else {
-
 	        	res.setHeader('Cache-Control', 'no-cache');
 	        	res.json(result);
 	      	}
 	  	});
+	};
+
+	app.get('/api/comments', isAuthenticated, function(req, res) {
+		var query = {$or:[{createdOn: {$eq: Date.today()}}, {everyday: {$eq: true}}]};
+
+		getPools(query, res);
 	});
 	
+	app.get('/api/mycomments', isAuthenticated, function(req, res) {
+		var myEmailId = req.user.email;
+		var query = {email: myEmailId};
+
+		getPools(query, res);
+	});
+
 	app.post('/api/comments', isAuthenticated, function(req, res) {
 		var user = req.user;
 		var request =  mongoose.model('request');

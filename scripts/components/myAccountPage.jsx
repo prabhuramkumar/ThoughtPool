@@ -1,11 +1,12 @@
 import React from 'react';
 import CommentList from './comlist';
+import Constants from './constants';
 
 var MyAccountPage = React.createClass({
 	
 	render: function(){
 		return(
-			<CommentList />
+			<CommentList filter={Constants.myPoolsFilter}/>
 		)
 	}
 });
