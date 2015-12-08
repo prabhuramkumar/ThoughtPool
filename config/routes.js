@@ -51,7 +51,7 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 	app.get('/api/comments', isAuthenticated, function(req, res) {
 	  	var requests =  mongoose.model('request');
 	
-	  	requests.find({ createdOn : { $eq: Date.today() } } , function(err, result){
+	  	requests.find( { $or:[ {createdOn : { $eq: Date.today() } }, { everyday: { $eq: true } }] } , function(err, result){
 	   		if (err) {
 	        	console.log(err);
 	      	} else {
@@ -75,7 +75,7 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      provider: req.body.provider,
 		      time: req.body.time,
 		      routeEncoded: req.body.routeEncoded,
-		      createdOn: Date.today(),
+		      createdOn: Date.yesterday(),
 		      everyday:req.body.everyday
 		});
 		newRequest.save(function (err, result) {
