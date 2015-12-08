@@ -173,6 +173,7 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .user-profile{
 	background: #333;
 	padding: 2px 15px;
+	width: 215px;
 }
 .user-profile p{
 	color: #ccc;
