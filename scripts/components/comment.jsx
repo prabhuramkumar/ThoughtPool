@@ -24,9 +24,10 @@ var Comment = React.createClass({
 		return (
 			<div className="pool listP">
 		
-				<div className="user-name">
-					<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> {this.props.name}</a>
+				<div className="user-profile">
+					<h3 className="user-name">{this.props.name}</h3>
 					<p>{this.props.provider ?'Owns a Car' : 'Doesn\'t own a car'}, leaving at <span className="time">{this.props.time}</span></p>
+					<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.email} target="_blank"> Contact</a>
 				</div>
 				<div className="user-details">
 					<p><span className="position">From: </span>{this.props.originAddress}</p>
