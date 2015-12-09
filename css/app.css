@@ -184,6 +184,8 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 	padding: 3px 10px;
 	background: #fecb00;
 	color: #333;
+	margin-right: 3px;
+	margin-bottom: 5px;
 }
 .user-name {
 	color: #666;

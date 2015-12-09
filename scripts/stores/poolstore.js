@@ -68,6 +68,23 @@ var PoolStore = Reflux.createStore({
 		});
 	},
 
+	deletePool: function(poolId){
+		$.ajax({
+		  url: this.sourceUrl,
+		  dataType: 'json',
+		  type: 'DELETE',
+		  data: {id: poolId},
+		  cache: false,
+		  success: function(serverData) {
+			this.loadPools();
+			this.loadMyPools();
+		  }.bind(this),
+		  error: function(xhr, status, err) {
+		    console.error(this.sourceUrl, status, err.toString());
+		  }.bind(this)
+		});
+	},
+
 	getPath: function(encodedRoute){
 		return google.maps.geometry.encoding.decodePath(encodedRoute);
 	},

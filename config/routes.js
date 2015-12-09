@@ -23,7 +23,6 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.render("index.html");
 	});
 
-
 	app.get("/login",
 		passport.authenticate(config.passport.strategy,
 		{
@@ -72,6 +71,18 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		var query = {email: myEmailId};
 
 		getPools(query, res);
+	});
+
+	app.delete('/api/comments', function (req, res) {
+		var requests =  mongoose.model('request');
+		var query = {_id: req.body.id};
+		requests.remove(query, function(err, result){
+	   		if (err) {
+	        	console.log(err);
+	      	} else {
+	      		console.log("pool deleted");
+	      	}
+	  	});
 	});
 
 	app.post('/api/comments', isAuthenticated, function(req, res) {
