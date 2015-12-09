@@ -72,10 +72,17 @@ var Map = React.createClass({
 		},
 
 		showRoute: function(routeDetails){
+
+			var lineSymbol = {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW};
+			var icons = [{ 	icon: lineSymbol,
+      						offset: '100%'
+    					}];
+
 		    polyline.setMap(null); 
 			var path = google.maps.geometry.encoding.decodePath(routeDetails);
 		    
 		    polyline.setPath(path);
+		    polyline.setOptions({icons: icons})
 	  		polyline.setMap(map);
 	  		current.setCenter(path);
 		}
