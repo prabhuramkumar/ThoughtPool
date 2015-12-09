@@ -27,7 +27,7 @@ var Comment = React.createClass({
 	componentDidMount: function(){
 		this.setCallback();
 	},
-                  
+	
 	render: function(){
 		return (
 			<div className="pool listP">

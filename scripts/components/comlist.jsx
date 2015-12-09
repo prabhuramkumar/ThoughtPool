@@ -3,6 +3,7 @@ import Reflux from 'reflux';
 
 import Comment from './comment';
 import NoResultFound from './noresultsfound';
+import NoMyPoolsFound from './noMyPoolsFound';
 import PoolStore from '../stores/poolstore';
 import Constants from './constants';
 import PoolActions from '../actions/poolactions';
@@ -23,12 +24,14 @@ var CommentList = React.createClass({
 			pools.forEach(function(pool){
 				pool.editable = true;
 			});
-			this.state.poolstore.searchPool = {};	
+			this.state.poolstore.searchPool = {};
 		}
-		
+
 		if(pools.length == 0){
-			this.component = <NoResultFound route={this.state.poolstore.searchPool.encodedRoute}/>
-		} else {
+			this.component = this.props.filter === Constants.myPoolsFilter?<NoMyPoolsFound/>:
+																		   <NoResultFound route={this.state.poolstore.searchPool.encodedRoute}/>;
+		}
+		else{
 		    this.component = pools.map(function(pool, i){
 				return (
 					<Comment
@@ -39,6 +42,7 @@ var CommentList = React.createClass({
 				);
 			});
 		}
+
 		return (
 			<div className="poolList">
 				{this.component}
@@ -48,4 +52,3 @@ var CommentList = React.createClass({
 });
 
 module.exports = CommentList;
-

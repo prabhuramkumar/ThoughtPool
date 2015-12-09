@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-
 var NoResultFound = React.createClass({
   render: function(){
     return (
