@@ -87,8 +87,8 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      provider: req.body.provider,
 		      time: req.body.time,
 		      routeEncoded: req.body.routeEncoded,
-		      createdOn: Date.yesterday(),
-		      everyday:req.body.everyday
+		      createdOn: Date.today(),
+		      everyday: req.body.everyday
 		});
 		newRequest.save(function (err, result) {
 		    if (err) {
