@@ -20,6 +20,13 @@ var CreateForm = React.createClass({
 		this.refs.destination.resetLatLng(destinationPosition);
 	},
 
+	componentDidMount: function(){
+		$("#timepicker1").timepicker({
+			showMeridian: false,
+			template: 'modal'
+		});
+	},
+
 	handleSubmit: function(e){
 		e.preventDefault();
 
@@ -83,9 +90,7 @@ var CreateForm = React.createClass({
 							ref={Constants.destination}
 							placeChangedCallback={this.resetDestination}/>
 
-						<div className="form-group time-wrapper">
-				        	<input className="form-control time-field" ref="time" type="time" placeholder="time" />
-				        </div>
+			            <input id="timepicker1" type="text" className="form-control input-small" ref="time"/>
 					    <div className="form-group submit-button">
 				        	<input className="btn btn-primary" type="submit" ref="post" value="Post" />
 				        </div>

@@ -3,14 +3,18 @@ import PoolActions from '../actions/poolactions';
 import AutoComplete from './autocomplete';
 import Constants from './constants';
 
+
+
+
 var SearchForm = React.createClass({
 
 	handleSubmit: function(e){
 		e.preventDefault();
 
-		var origin = this.refs[Constants.origin].getLatLong();
-		var destination = this.refs[Constants.destination].getLatLong();
-		var preferredRoute = $("#encodedRoute").val();
+		var origin = this.refs[Constants.origin].getLatLong(),
+		destination = this.refs[Constants.destination].getLatLong(),
+		preferredRoute = $("#encodedRoute").val(),
+		time = $("#time").val();
 
 		if(!origin || !destination){
 			alert("submit valid input");
@@ -19,12 +23,13 @@ var SearchForm = React.createClass({
 		var searchPool = {
 			origin: origin,
 			destination: destination,
-			encodedRoute: preferredRoute
+			encodedRoute: preferredRoute,
+			time: time
 		};
 
 		PoolActions.loadPools(searchPool);
 	},
-	
+
 	resetSource: function(source){
 		var newRoute = {"source": source};
 		this.props.mapActions().resetRoute(newRoute);

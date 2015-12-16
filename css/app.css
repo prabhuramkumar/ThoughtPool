@@ -254,6 +254,15 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .pool-options {
 	margin-right: 70px;
 }
+
+.bootstrap-timepicker {
+	display: flex;
+	width:50%;
+}
+#timepicker1{
+	width: 200px;
+}
+
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {
     content: "\E092";

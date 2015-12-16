@@ -28,9 +28,10 @@
     "babel-loader": "^5.1.4",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.5",
+    "bootstrap-timepicker": "^0.5.1",
     "cookie-parser": "^1.4.0",
     "css-loader": "^0.18.0",
-    "date-utils":"*",
+    "date-utils": "*",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
@@ -38,21 +39,23 @@
     "history": "^1.13.1",
     "jquery": "2.1.4",
     "marked": "^0.3.5",
+    "method-override": "^2.3.5",
+    "moment": "^2.10.6",
     "mongodb": "~2.0",
     "mongoose": "*",
-    "method-override": "^2.3.5",
     "passport": "*",
     "passport-saml": "*",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-hot-loader": "^1.2.7",
     "react-router": "^1.0.0",
+    "reflux": "~0.2.7",
     "style-loader": "^0.12.4",
     "url-loader": "^0.5.6",
-    "webpack": "^1.9.11",
-    "reflux": "~0.2.7"
+    "webpack": "^1.9.11"
   },
   "devDependencies": {
+    "moment": "^2.10.6",
     "nodemon": "^1.8.1"
   }
 }

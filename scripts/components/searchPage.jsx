@@ -5,6 +5,7 @@ import Map from './map';
 import SuccessAlert from './successAlert';
 
 var SearchPage = React.createClass({
+
 	mapActions: function(route){
 		return this.refs.mapForSearchPage.actions;
 	},
@@ -27,6 +28,7 @@ var SearchPage = React.createClass({
 					<CommentList mapActions = {this.mapActions}/>
 				</div>
 			</div>
+
 		);
 	}
 });

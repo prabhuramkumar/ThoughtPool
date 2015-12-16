@@ -10,7 +10,7 @@ var SuccessAlert = React.createClass({
 		var page;
 		if(this.state.poolstore.postSuccess){
 			page = <div className="alert alert-success">
-				 	Your route is Successfully created and posted
+				 	Your route is Successfully created and posted.
 				 </div> 
 		} else {
 			page = <div></div>
