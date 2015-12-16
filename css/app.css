@@ -203,7 +203,9 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .user-details h5{
 	color: #46afcd;
 }
-.user-details p span{
+.user-details p {
+    height: 30px;
+    overflow: hidden;
 }
 .search-elements{
     display: flex;

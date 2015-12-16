@@ -97,7 +97,7 @@ var PoolStore = Reflux.createStore({
 	},
 
 	fallsOnRoute: function(placeLatLng, pathPolyline){
-		return google.maps.geometry.poly.isLocationOnEdge(placeLatLng, pathPolyline, 0.002);
+		return google.maps.geometry.poly.isLocationOnEdge(placeLatLng, pathPolyline, 0.005);
 	},
 
 	searchPoolList: function(searchPool){
