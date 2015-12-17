@@ -61,7 +61,7 @@ var CreateForm = React.createClass({
 			'everyday': everyday
 		};
 		PoolActions.createPool(pool);
-		this.props.history.pushState(null, '/');
+		this.props.history.pushState(null, '/search');
 	},
 
 	render: function(){
