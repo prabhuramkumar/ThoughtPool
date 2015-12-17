@@ -23,6 +23,10 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		res.render("index.html");
 	});
 
+	app.get("/search", isAuthenticated, function(req, res){
+		res.render("index.html");
+	});
+
 	app.get("/login",
 		passport.authenticate(config.passport.strategy,
 		{

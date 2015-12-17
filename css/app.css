@@ -262,7 +262,53 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 #timepicker1{
 	width: 200px;
 }
+.home-page{
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.intro-block{
+	display: flex;
+	width: 80%;
+}
+.intro-block h4{
+	font-size:30px;
+	color: #46afcd;
+}
+.intro-block p{
+	color: #666;
+	margin-top:5px;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+
+.intro-block .btn{
+	font-size: 20px;
+	margin-top: 10px;
+    font-family: 'Poiret One', cursive;
+}
+
+.intro-block .intro{
+	position: relative;
+    padding: 20px;
+    border-radius: 5px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.7);
+    margin-top: 50px;
+    width: 385px;
+}
+.welcome{
+	color: #fff;
+}
+.purpose{
+	margin-top: 50px;
+    color: #fff;
+    width: 50%;
+    letter-spacing: 0.5px;
+}
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {
     content: "\E092";

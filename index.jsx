@@ -10,6 +10,7 @@ import CreateForm from './scripts/components/createform';
 import NoResultFound from './scripts/components/noresultsfound';
 import SearchPage from './scripts/components/searchPage';
 import MyAccountPage from './scripts/components/myAccountPage';
+import HomePage from './scripts/components/HomePage';
 
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
@@ -24,9 +25,10 @@ var App = React.createClass({
 		            </div>
 		            <ul className="thola-nav">
 			          <li><IndexLink      to="/"           activeStyle={ACTIVE}>Home</IndexLink></li>
-			          <li><Link to="/myaccount"           activeStyle={ACTIVE}>My Account</Link></li>
+			          <li><Link      to="/search"      activeStyle={ACTIVE}>Search</Link></li>
 			          <li><Link      to="/create"      activeStyle={ACTIVE}>Create</Link></li>
-			          <li><a href ="/logout">Logout</a></li>
+			          <li><Link to="/myaccount"           activeStyle={ACTIVE}>My Account</Link></li>
+			          <li><a className="logout" href ="/logout">Logout</a></li>
 			        </ul>
 
 		        </div>
@@ -47,7 +49,8 @@ const history = useBasename(createHistory)({
 ReactDOM.render((
 	<Router history={history}>
 		<Route path="/" component={App} history={history}>
-			<IndexRoute component={SearchPage}/>
+			<IndexRoute component={HomePage}/>
+			<Route path="/search" component={SearchPage} />
 			<Route path="/myaccount" component={MyAccountPage} />
 			<Route path="/create" component={CreateForm}/>
 		</Route>
