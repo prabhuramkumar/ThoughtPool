@@ -1,4 +1,5 @@
 require('date-utils');
+var sendgrid  = require('sendgrid')("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");
 
 module.exports = function(app, config, passport, mongoose, fs, path){
 
@@ -95,13 +96,11 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		var newRequest = new request({
 			  email: user.email,
 			  name: user.firstName + " " + user.lastName,
-		      origin: req.body.origin,
-		      destination: req.body.destination,
 		      originAddress: req.body.originAddress,
 		      destinationAddress: req.body.destinationAddress,
 		      provider: req.body.provider,
 		      time: req.body.time,
-		      routeEncoded: req.body.routeEncoded,
+		      encodedRoute: req.body.encodedRoute,
 		      createdOn: Date.today(),
 		      everyday: req.body.everyday
 		});
@@ -114,6 +113,31 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		      res.json(result);
 		    }
 		});	
+
+
+ 	});
+
+ 	app.post('/notify', isAuthenticated, function(req, res) {
+ 		var notifications = req.body.notifications;
+ 		console.log("notifications");
+ 		console.log(notifications);
+
+		notifications.forEach(function(notification){
+			var payload   = {
+			  to      : notification.email,
+			  from    : notification.from,
+			  subject : notification.subject,
+			  text    : notification.text
+			}
+			sendgrid.send(payload, function(err, json) {
+			  if (err) { 
+			  	console.error(err); 
+			  }else{
+			  	res.json(json);
+			  }
+			});	
+		});
+		    	
  	});
 }
 

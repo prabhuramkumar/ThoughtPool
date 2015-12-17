@@ -15,7 +15,7 @@ var Comment = React.createClass({
 		
 		inputElements[com.props.index].addEventListener('click', function(){
 			if(com.props.mapActions){
-				com.props.mapActions().showRoute(com.props.poolData.routeEncoded);
+				com.props.mapActions().showRoute(com.props.poolData.encodedRoute);
 			}
 		});
 	},

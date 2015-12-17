@@ -8,7 +8,7 @@ var requestSchema = new Schema({
 	destinationAddress: String,
 	provider: Boolean,
 	time: String,
-	routeEncoded: String,
+	encodedRoute: String,
 	createdOn: Date,
 	everyday: Boolean
 });

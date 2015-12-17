@@ -57,11 +57,20 @@ var CreateForm = React.createClass({
 			'time': time,
 			'originAddress': originAddress,
 			'destinationAddress': destinationAddress,
-			'routeEncoded': routeEncoded,
+			'encodedRoute': routeEncoded,
 			'everyday': everyday
 		};
+
+		var poolForEmail = {
+			'origin': origin,
+			'destination': destination,
+			'encodedRoute': routeEncoded,
+		}
+
 		PoolActions.createPool(pool);
+		PoolActions.sendEmail(poolForEmail);
 		this.props.history.pushState(null, '/search');
+
 	},
 
 	render: function(){

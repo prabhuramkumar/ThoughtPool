@@ -5,7 +5,8 @@ var ActionCollections = Reflux.createActions([
 	'createPool',
 	'searchPoolList',
 	'loadMyPools',
-	'deletePool'
+	'deletePool',
+	'sendEmail'
 ]);
 
 module.exports = ActionCollections;

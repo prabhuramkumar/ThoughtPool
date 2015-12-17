@@ -23,8 +23,8 @@ var PoolStore = Reflux.createStore({
 			success: function(serverData){
 				this.poolObject.poollist = serverData.reverse();
 				if(searchPool){
-					this.searchPoolList(searchPool);
 					this.poolObject.searchPool = searchPool; 
+					this.searchRenderer(searchPool);
 				}
 				this.trigger(this.poolObject);
 			}.bind(this),
@@ -49,12 +49,14 @@ var PoolStore = Reflux.createStore({
 		})
 	},
 
-	createPool: function(comment){
+	createPool: function(pool){
+		console.log("create");
+		console.log(pool);
 		$.ajax({
 		  url: this.sourceUrl,
 		  dataType: 'json',
 		  type: 'POST',
-		  data: comment,
+		  data: pool,
 		  cache: false,
 		  success: function(serverData) {
 		  	this.poolObject.poollist.push(serverData);
@@ -113,7 +115,7 @@ var PoolStore = Reflux.createStore({
 		for(var i = 0; i<allPool.length; i++){
 
 			var pool = allPool[i];
-			var path = this.getPath(pool.routeEncoded);
+			var path = this.getPath(pool.encodedRoute);
 			var polyline = this.getPolyline(path);
 
 			var sourceFallsOnRoute = this.fallsOnRoute(searchOrigin, polyline);
@@ -143,7 +145,45 @@ var PoolStore = Reflux.createStore({
 		}
 
 		var poollistFiltered = exactPool.concat(partialPool);
-		this.poolObject.poollist = poollistFiltered;
+		return poollistFiltered;
+	},
+
+	searchRenderer: function(pool){
+		this.poolObject.poollist = this.searchPoolList(pool);
+	},
+
+	sendEmail: function(pool){
+		var filteredPoolList = this.searchPoolList(pool);
+		var notifications = [];
+			
+		if(filteredPoolList.length > 0){
+
+			for(var i=0; i<filteredPoolList.length; i++){
+
+				var emailPoolList = filteredPoolList[i];
+				var notification = {
+					email : emailPoolList.email,
+					subject: "Thola - Route Match",
+					from: "prabhur@thoughtworks.com",
+					text: "Route match in Thola from "+ emailPoolList.name
+				};
+				notifications.push(notification);
+			}
+
+			$.ajax({
+				  url: '/notify',
+				  dataType: 'json',
+				  type: 'POST',
+				  data: {notifications: notifications},
+				  cache: false,
+				  success: function(res) {
+				  	console.log("Notified Successfully");
+				  }.bind(this),
+				  error: function(xhr, status, err) {
+				    console.error(this.sourceUrl, status, err.toString());
+				  }.bind(this)
+			});
+		}
 	}
 });
 module.exports = PoolStore;
