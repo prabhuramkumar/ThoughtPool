@@ -6,11 +6,11 @@ require("./node_modules/bootstrap-timepicker/js/bootstrap-timepicker");
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
-import CreateForm from './scripts/components/createform';
+import CreateForm from './scripts/components/createForm';
 import NoResultFound from './scripts/components/noresultsfound';
 import SearchPage from './scripts/components/searchPage';
 import MyAccountPage from './scripts/components/myAccountPage';
-import HomePage from './scripts/components/HomePage';
+import HomePage from './scripts/components/homepage';
 
 import { createHistory, useBasename } from 'history';
 const ACTIVE = { color: 'grey' }
