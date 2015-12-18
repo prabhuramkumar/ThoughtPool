@@ -58,6 +58,7 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 	background: none;
 }
 .pool{
+	position: relative;
 	display: flex;
     background: rrgba(239,231,124, 1);
     margin-bottom: 10px;
@@ -66,12 +67,30 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
     border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
+.pool.active .user-profile {
+	background: #fff; 
+}
+
+.pool.active::before {
+	left: -29px;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(255, 255, 255, 0);
+	border-right-color: #fff;
+	border-width: 15px;
+	margin-top: -15px;
+}
 
 .poolList{
 	height: 450px;
 	overflow: auto;
-	margin-left: 30px;
-	margin-top: 24px;
+	padding-left: 30px;
+	padding-top: 24px;
 }
 
 /********* Forms ***********/

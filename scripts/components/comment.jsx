@@ -14,6 +14,8 @@ var Comment = React.createClass({
 		var count;
 		
 		inputElements[com.props.index].addEventListener('click', function(){
+			$(inputElements).removeClass("active");
+			$(this).addClass("active");
 			if(com.props.mapActions){
 				com.props.mapActions().showRoute(com.props.poolData.encodedRoute);
 			}
