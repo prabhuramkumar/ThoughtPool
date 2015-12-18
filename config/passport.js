@@ -1,4 +1,5 @@
-var SamlStrategy = require('passport-saml').Strategy
+var SamlStrategy = require('passport-saml').Strategy;
+var config = require('config');
 
 module.exports = function (passport, config) {
 
