@@ -15,7 +15,7 @@ require('./config/passport')(passport, config);
 
 var app = express();
 
-var url = 'mongodb://localhost:27017/Thola';
+var url = config.app.mongoUrl;
 var mongoose = require('mongoose');
 mongoose.connect(url);
 fs.readdirSync(__dirname + '/models').forEach(function(filename) {
