@@ -4,7 +4,7 @@
   "description": "React Webpack Babel Starter Kit",
   "main": "''",
   "scripts": {
-    "start": "webpack && nodemon server.js"
+    "start": "webpack && node server.js"
   },
   "repository": {
     "type": "git",
