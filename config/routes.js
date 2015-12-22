@@ -121,7 +121,7 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 			  to      : notification.email,
 			  from    : notification.from,
 			  subject : notification.subject,
-			  text    : notification.text
+			  html    : notification.html
 			}
 			sendgrid.send(payload, function(err, json) {
 			  if (err) { 
