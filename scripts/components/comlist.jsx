@@ -17,6 +17,7 @@ var CommentList = React.createClass({
 	render: function(){
 		var current = this;
 		var pools = this.state.poolstore.poollist;
+		this.component = <div className="loader">Loading...</div>;
 
 		if (this.props.filter === Constants.myPoolsFilter){
 			PoolActions.loadMyPools();
@@ -32,6 +33,7 @@ var CommentList = React.createClass({
 																		   <NoResultFound route={this.state.poolstore.searchPool.encodedRoute}/>;
 		}
 		else{
+
 		    this.component = pools.map(function(pool, i){
 				return (
 					<Comment

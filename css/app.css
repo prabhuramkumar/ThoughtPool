@@ -328,6 +328,10 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
     width: 50%;
     letter-spacing: 0.5px;
 }
+.loader{
+	padding: 20px;
+	text-align: center;
+}
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {
     content: "\E092";
