@@ -29,27 +29,21 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 	});
 
 	app.get("/login",
-		passport.authenticate(config.passport.strategy,
-		{
-			successRedirect : "/",
-			failureRedirect : "/login",
-		})
+		passport.authenticate('google', { scope : ['profile', 'email'] })
 	);
 
-	app.post('/login/callback',
-		passport.authenticate(config.passport.strategy,
+	app.get("/auth/google/callback",
+		passport.authenticate('google',
 			{
-				failureRedirect: '/',
+				successRedirect : '/',
+				failureRedirect: '/login',
 				failureFlash: true
-			}),
-		function(req, res) {
-			res.redirect('/');
-		}
+			})
 	);
 
 	app.get('/logout', function(req, res) {
 		req.logout();
-		res.redirect("https://thoughtworks.oktapreview.com");
+		res.redirect("/");
 	});
 
 	var getPools = function(query, res){
@@ -95,7 +89,7 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		var request =  mongoose.model('request');
 		var newRequest = new request({
 			  email: user.email,
-			  name: user.firstName + " " + user.lastName,
+			  name: user.name,
 		      originAddress: req.body.originAddress,
 		      destinationAddress: req.body.destinationAddress,
 		      provider: req.body.provider,
