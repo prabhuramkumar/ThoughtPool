@@ -163,7 +163,7 @@ var PoolStore = Reflux.createStore({
 					email : emailPoolList.email,
 					subject: "Thola - Route Match",
 					from: "prabhur@thoughtworks.com",
-					html: '<div style="padding: 30px; width: 350px; height: 300px; background:#fecb00"><h3>Route Match from Thola</h3><h2>' + emailPoolList.name + '<h2><h4>From: ' + emailPoolList.originAddress + '</h4><h4>To: ' + emailPoolList.destinationAddress + '</h4><a href="https://thola.herokuapp.com/search" style="background:#46afcd; padding: 10px; text-decoration: none">GO</a></div>'
+					html: '<div style="padding: 30px; width: 350px; height: 300px; background:#fecb00"><h3>Route Match from Thola</h3><h2>' + emailPoolList.name + '<h2><h4>From: ' + emailPoolList.originAddress + '</h4><h4>To: ' + emailPoolList.destinationAddress + '</h4><a href="mailto:'+ emailPoolList.email+'" style="background:#46afcd; padding: 10px; text-decoration: none">Contact</a><h5>'+emailPoolList.email+'</h5></div>'
 				};
 				notifications.push(notification);
 			}
