@@ -50,8 +50,6 @@ var PoolStore = Reflux.createStore({
 	},
 
 	createPool: function(pool){
-		console.log("create");
-		console.log(pool);
 		$.ajax({
 		  url: this.sourceUrl,
 		  dataType: 'json',
