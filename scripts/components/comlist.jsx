@@ -17,7 +17,6 @@ var CommentList = React.createClass({
 	render: function(){
 		var current = this;
 		var pools = this.state.poolstore.poollist;
-		this.component = <div className="loader">Loading...</div>;
 
 		if (this.props.filter === Constants.myPoolsFilter){
 			PoolActions.loadMyPools();

@@ -133,6 +133,10 @@ module.exports = function(app, config, passport, mongoose, fs, path){
 		});
 		    	
  	});
+
+ 	app.get('/user', function (req, res) {
+	  res.json(req.user);
+	});
 }
 
 

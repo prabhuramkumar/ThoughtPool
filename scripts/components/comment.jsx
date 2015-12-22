@@ -1,5 +1,6 @@
 import React from 'react';
 import PoolActions from '../actions/poolactions';
+import RequestMail from './requestMailer';
 
 var Comment = React.createClass({
 	removed: '',
@@ -29,6 +30,7 @@ var Comment = React.createClass({
 	componentDidMount: function(){
 		this.setCallback();
 	},
+
 	
 	render: function(){
 		return (
@@ -37,14 +39,19 @@ var Comment = React.createClass({
 				<div className="user-profile">
 					<h3 className="user-name">{this.props.poolData.name}</h3>
 					<p>{this.props.poolData.provider ?'Owns a Car' : 'Doesn\'t own a car'}, leaving at <span className="time">{this.props.poolData.time}</span></p>
-					<a href={"https://contacts.thoughtworks.com/searchUser?searchQuery="+this.props.poolData.email} target="_blank"> Contact</a>
+					<a className={this.props.poolData.editable ? 'hidden' : ''} data-toggle="modal" data-target="#sendEmailRequest" data-whatever="@mdo">Contact</a>
 					<a className={!this.props.poolData.editable ? 'hidden' : ''} onClick={this.removePool}>Remove</a>
 				</div>
 				<div className="user-details">
 					<p><span className="position">From: </span>{this.props.poolData.originAddress}</p>
 					<p><span className="position">To: </span>{this.props.poolData.destinationAddress}</p>
 				</div>
+				<div>
+					<RequestMail email={this.props.poolData.email} origin={this.props.poolData.originAddress} destination={this.props.poolData.destinationAddress}>
+					</RequestMail>
+				</div>
 			</div>
+			
 		);
 	}
 });

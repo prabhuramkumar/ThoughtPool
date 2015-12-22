@@ -1,10 +1,24 @@
+var Reflux = require('reflux');
+
 import React from 'react';
 import CommentList from './comlist';
 import SearchForm from './searchform';
 import Map from './map';
 import SuccessAlert from './successAlert';
+import PoolStore from '../stores/poolstore';
 
 var SearchPage = React.createClass({
+
+	mixins: [Reflux.connect(PoolStore, 'poolstore')],
+
+	postSuccess: function(){
+		if(this.state.poolstore.postSuccess){
+			return <SuccessAlert message="Your route is Successfully posted."/>
+		}
+		if(this.state.poolstore.requestEmailSuccess){
+			return <SuccessAlert message="Your Request is Successfully posted."/>
+		}
+	},
 
 	mapActions: function(route){
 		return this.refs.mapForSearchPage.actions;
@@ -19,7 +33,7 @@ var SearchPage = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<SuccessAlert/>
+				{this.postSuccess()}
 				<SearchForm mapActions = {this.mapActions} ref="searchform"/>
 				<div className="map-and-list">
 					<Map ref="mapForSearchPage"

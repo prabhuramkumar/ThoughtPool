@@ -2,6 +2,7 @@ require("./node_modules/bootstrap/dist/css/bootstrap.min.css")
 require("./css/app.css")
 require("./node_modules/bootstrap/dist/js/bootstrap.min.js");
 require("./node_modules/bootstrap-timepicker/js/bootstrap-timepicker");
+var $ = require('jquery');
 
 import React from 'react';
 import ReactDOM from 'react-dom';

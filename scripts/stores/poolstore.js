@@ -5,10 +5,12 @@ var PoolActions = require('../actions/poolactions');
 var PoolStore = Reflux.createStore({
 	listenables: [PoolActions],
 	sourceUrl: '/api/comments/',
-	poolObject: {poollist: [], postSuccess: false, searchPool: {}, myPoolList: []},
+	poolObject: {poollist: [], postSuccess: false, searchPool: {}, myPoolList: [], requestEmailSuccess: false},
+	user: {},
 
 	init: function(){
 		this.loadPools();
+		this.getUser();
 	},
 
 	getInitialState: function() {
@@ -150,6 +152,40 @@ var PoolStore = Reflux.createStore({
 		this.poolObject.poollist = this.searchPoolList(pool);
 	},
 
+	postNotification: function(notifications, sendRequestEmail){
+		$.ajax({
+			  url: '/notify',
+			  dataType: 'json',
+			  type: 'POST',
+			  data: {notifications: notifications},
+			  cache: false,
+			  success: function(res) {
+			  	console.log("Notified Successfully");
+			  	if(sendRequestEmail){
+			  		this.poolObject.requestEmailSuccess = true;
+			  		this.trigger(this.poolObject);
+			  	}
+			  }.bind(this),
+			  error: function(xhr, status, err) {
+			    console.error(this.sourceUrl, status, err.toString());
+			  }.bind(this)
+		});
+	},
+
+	getUser: function(){
+		$.ajax({
+			  url: '/user',
+			  dataType: 'json',
+			  type: 'GET',
+			  success: function(user) {
+			  	this.user = user;
+			  }.bind(this),
+			  error: function(xhr, status, err) {
+			    console.error(this.sourceUrl, status, err.toString());
+			  }.bind(this)
+		});
+	},
+
 	sendEmail: function(pool){
 		var filteredPoolList = this.searchPoolList(pool);
 		var notifications = [];
@@ -168,20 +204,21 @@ var PoolStore = Reflux.createStore({
 				notifications.push(notification);
 			}
 
-			$.ajax({
-				  url: '/notify',
-				  dataType: 'json',
-				  type: 'POST',
-				  data: {notifications: notifications},
-				  cache: false,
-				  success: function(res) {
-				  	console.log("Notified Successfully");
-				  }.bind(this),
-				  error: function(xhr, status, err) {
-				    console.error(this.sourceUrl, status, err.toString());
-				  }.bind(this)
-			});
+			this.postNotification(notifications);
 		}
+	},
+
+	sendRequestEmail: function(email, originAddress, destinationAddress){
+		var requests = [];
+		var request = {
+			email : email,
+			subject: "Thola - Pool Request",
+			from: "prabhur@thoughtworks.com",
+			html: '<div style="padding: 30px; width: 350px; background:#fecb00"><h3>Pool Request from Thola: </h3><h4>'+this.user.name+'</h4><h4>email: '+this.user.email+'</h4><h5>likes to pool with you on this route.</h5><h2>' + name + '<h2><h4>From: ' + originAddress + '</h4><h4>To: ' + destinationAddress + '</h4></div>'
+		};
+		requests.push(request);
+		this.postNotification(requests, true);
+	
 	}
 });
 module.exports = PoolStore;

@@ -183,11 +183,6 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .alert.alert-success{
 	padding: 10px;
 	margin-top: 10px;
-	opacity: 0;
-	-webkit-transition: opacity 5s ease-in-out;
-    -moz-transition: opacity 5s ease-in-out;
-    -ms-transition: opacity 5s ease-in-out;
-    -o-transition: opacity 5s ease-in-out;
 }		
 .user-profile{
 	background: #333;
@@ -332,6 +327,14 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 	padding: 20px;
 	text-align: center;
 }
+.modal-content{
+	background: #46afcd;
+    border-radius: 0;
+}
+.modal-content *{
+	font-family: Arial;
+}
+
 /********* Icon arrow styel ********/
 .glyphicon-arrow-right:before {
     content: "\E092";

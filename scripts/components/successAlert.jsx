@@ -1,25 +1,22 @@
 import React from 'react';
 import Reflux from 'reflux';
-import PoolStore from '../stores/poolstore';
+
+var $ = require('jquery');
 
 var SuccessAlert = React.createClass({
-
-	mixins: [Reflux.connect(PoolStore, 'poolstore')],
-
-	init: function(){
-		var page;
-		if(this.state.poolstore.postSuccess){
-			page = <div className="alert alert-success">
-				 	Your route is Successfully created and posted.
-				 </div> 
-		} else {
-			page = <div></div>
-		}
-		return page;
-	},
 	
+	componentDidMount: function(){
+		setTimeout(function(){
+			$(".alert-success").fadeOut("slow");
+		}, 3000);
+	},
+
 	render: function(){
-		return this.init();
+		return(
+			<div className="alert alert-success">
+			 	{this.props.message}
+			</div> 
+		);
 	}
 });
 
