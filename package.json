@@ -47,6 +47,7 @@
     "nodemailer": "^1.10.0",
     "passport": "*",
     "passport-saml": "*",
+    "passport-google-oauth": "0.2.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-hot-loader": "^1.2.7",
