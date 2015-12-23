@@ -41,6 +41,7 @@ var SearchPage = React.createClass({
 			    	 	destinationPositionChangeCallback ={this.resetDestinantionLatLng}/>
 					<CommentList mapActions = {this.mapActions}/>
 				</div>
+				
 			</div>
 
 		);

@@ -7,12 +7,23 @@ import NoMyPoolsFound from './noMyPoolsFound';
 import PoolStore from '../stores/poolstore';
 import Constants from './constants';
 import PoolActions from '../actions/poolactions';
+import RequestMail from './requestMailer';
 
 var CommentList = React.createClass({
 
 	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 
 	component: '',
+
+	poolData: {},
+
+	handleEmailRequest: function(poolData){
+		this.poolData = poolData;
+	},
+
+	sendEmailRequest: function(){
+		PoolActions.sendRequestEmail(this.poolData.email, this.poolData.originAddress, this.poolData.destinationAddress);
+	},
 	
 	render: function(){
 		var current = this;
@@ -38,7 +49,8 @@ var CommentList = React.createClass({
 					<Comment
 						index={i}
 						poolData = {pool}
-						mapActions = {current.props.mapActions}>
+						mapActions = {current.props.mapActions}
+						handleEmailRequest = {current.handleEmailRequest}>
 					</Comment>
 				);
 			});
@@ -47,7 +59,10 @@ var CommentList = React.createClass({
 		return (
 			<div className="poolList">
 				{this.component}
+				<RequestMail sendEmailRequest={this.sendEmailRequest}>
+				</RequestMail>
 			</div>
+			
 		);
 	}
 });

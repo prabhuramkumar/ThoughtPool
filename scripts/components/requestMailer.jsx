@@ -10,7 +10,8 @@ var RequestMailer = React.createClass({
 	mixins: [Reflux.connect(PoolStore, 'poolstore')],
 
 	requestMail: function(){
-		PoolActions.sendRequestEmail(this.props.email, this.props.origin, this.props.destination);
+		this.props.sendEmailRequest();
+		
 	},
 
 	render: function(){
@@ -28,10 +29,6 @@ var RequestMailer = React.createClass({
 
 			      <div className="modal-body">
 			        <form>
-			          <div className="form-group">
-			            <label for="recipient-name" className="control-label">Recipient:</label>
-			            <p>{this.props.email}</p>
-			          </div>
 			          <div className="form-group">
 			            <label for="message-text" className="control-label">Message:</label>
 		            	<p>I would like to pool with you on this route.</p>
