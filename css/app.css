@@ -1,8 +1,16 @@
+html{
+	height: 100%;
+}
 body {
 	font-family: 'Open Sans', sans-serif;
 	background-image: url('car-bg.jpg');
 	background-size: cover;
+	background-repeat: no-repeat;
 	font-weight: 400;
+	background-position: bottom;
+    background-color: #acacae;
+    height: 100%;
+    padding-top: 65px;
 }
 h1, h2, h3, h4, h5, h6, label, .user-name a{
 	font-family: 'Poiret One', cursive;
@@ -15,33 +23,49 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
     background-repeat: no-repeat;
     background-size: 54%;
     background-position: -5px 11px;
-    padding-left: 71px;
+    padding-left: 55px;
     display: flex;
     align-items: center;
     height: 80px;
+    width: 100px;
 }
 .hidden{
 	visibility:hidden;
 }
+
+
+/***************** Navigation ***********/
+.navbar-default .navbar-toggle,
+.navbar-nav{
+	margin-top: 25px;
+}
+.navbar-default{
+	background: #acacae;
+	border:0;
+}
+.navbar-default .container-fluid{
+    padding-left: 20px;
+    padding-right: 30px;
+}
+.navbar-default .navbar-nav>li>a{
+	color: #333;
+}
+.navbar-collapse{
+	padding: 0;
+}
 .thola-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     color: #fff;
 }
 .thola-header a, .thola-header a:hover{
-	background-color: rgba(254,203,0,1);
-	padding: 5px 10px;
-	color: #333;
+	background-color: rgba(254,203,0,1) !important;
+	padding: 5px 10px !important;
 	font-size: 11px;
 }
 .thola-header a.logout{
-	background: #333;
-	color: #fecb00;
+	background: #333 !important;
+	color: #666 !important;
 }
 .thola-nav{
-	display: flex;
-	margin:0 10px;
 	padding: 0;
 	list-style: none;
 }
@@ -57,6 +81,10 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 .nav-pills>li>a:focus, .nav-pills>li>a:hover {
 	background: none;
 }
+
+
+
+/************** Pool *************/
 .pool{
 	position: relative;
 	display: flex;
@@ -362,3 +390,72 @@ h1, h2, h3, h4, h5, h6, label, .user-name a{
 a, a:hover, a:focus{
 	color: #fecb00;
 }
+
+
+/************* Media Queries *************/
+@media (max-width: 400px) {
+	html{
+		height: auto;
+	}
+	body{
+		padding-bottom: 20px;
+	}
+	.logo{
+		margin-left: 10px;
+	}
+	.intro-block{
+		flex-direction: column;
+		width: auto;
+	}
+	.container{
+		padding: 0;
+	}
+	.thola-form .btn{
+		width: 100%;
+	}
+	.home-page{
+		margin-top: 10px;
+	}
+	.purpose{
+		width: 80%;
+	}
+	#timepicker1{
+		width: 100%;
+	}
+	.search-elements{
+		display: block;
+	}
+	.thola-form .submit-button {
+		max-width: 100%;
+	}
+	.search-form .auto-complete{
+		margin-bottom: 15px;
+	}
+	.map-and-list, .create-options{
+		display: block;
+	}
+	.poolList{
+		height: 300px;
+		padding: 0;
+		margin-top: 15px;
+	}
+	.pool-options {
+	    display: flex;
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+	#map{
+		height: 240px;
+	}
+	.my-account .poolList{
+		height: 100%;
+	}
+
+	.thola-nav li{
+		margin-right: 0;
+	}
+	.navbar-nav{
+		margin: 0;
+	}
+}
+

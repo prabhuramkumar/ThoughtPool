@@ -6,42 +6,15 @@ var $ = require('jquery');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, Link, IndexLink } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import CreateForm from './scripts/components/createForm';
 import NoResultFound from './scripts/components/noresultsfound';
 import SearchPage from './scripts/components/searchPage';
 import MyAccountPage from './scripts/components/myAccountPage';
 import HomePage from './scripts/components/homepage';
+import App from './scripts/components/navbar';
 
 import { createHistory, useBasename } from 'history';
-const ACTIVE = { color: 'grey' }
-
-var App = React.createClass({
-	init: function(){
-		return(
-			<div>
-				<div className="thola-header">
-		            <div className="logo">
-		                <h3>Thola</h3>
-		            </div>
-		            <ul className="thola-nav">
-			          <li><IndexLink      to="/"           activeStyle={ACTIVE}>Home</IndexLink></li>
-			          <li><Link      to="/search"      activeStyle={ACTIVE}>Search</Link></li>
-			          <li><Link      to="/create"      activeStyle={ACTIVE}>Create</Link></li>
-			          <li><Link to="/myaccount"           activeStyle={ACTIVE}>My Account</Link></li>
-			          <li><a className="logout" href ="/logout">Logout</a></li>
-			        </ul>
-
-		        </div>
-		        {this.props.children}
-	        </div>
-			
-		)
-	},
-	render: function() {
-		return this.init();
-	}
-});
 
 const history = useBasename(createHistory)({
 	basename: '/'

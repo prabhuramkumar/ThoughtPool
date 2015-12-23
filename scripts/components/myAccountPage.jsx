@@ -6,7 +6,9 @@ var MyAccountPage = React.createClass({
 	
 	render: function(){
 		return(
-			<CommentList filter={Constants.myPoolsFilter}/>
+			<div className="my-account">
+				<CommentList filter={Constants.myPoolsFilter}/>
+			</div>
 		)
 	}
 });
