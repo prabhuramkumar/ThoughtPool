@@ -13,9 +13,11 @@ var SearchPage = React.createClass({
 
 	postSuccess: function(){
 		if(this.state.poolstore.postSuccess){
+			this.state.poolstore.postSuccess = false;
 			return <SuccessAlert message="Your route is Successfully posted."/>
 		}
 		if(this.state.poolstore.requestEmailSuccess){
+			this.state.poolstore.requestEmailSuccess = false;
 			return <SuccessAlert message="Your Request is Successfully posted."/>
 		}
 	},
