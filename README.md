@@ -1,6 +1,7 @@
 # ThoughtPool
 Car pooling app for ThoughtWorkers using simple React Webpack Babel Starter Kit 
 
+APP - Open the web browser to `http://thola.herokuapp.com`
 
 This is a simple [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/) and [Babel](https://babeljs.io/) application.
 
